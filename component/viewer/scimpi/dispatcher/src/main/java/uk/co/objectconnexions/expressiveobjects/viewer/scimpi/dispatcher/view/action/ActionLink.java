@@ -21,9 +21,15 @@ package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.a
 
 import java.net.URLEncoder;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.Where;
+import uk.co.objectconnexions.expressiveobjects.applib.profiles.Localization;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.object.parseable.ParseableFacet;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecification;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAction;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectActionParameter;
+import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.AbstractElementProcessor;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext.Scope;
@@ -50,7 +56,10 @@ public class ActionLink extends AbstractElementProcessor {
         final String scopeSegment = scope == null ? "" : "&amp;" + SCOPE + "=" + scope;
         final String confirm = request.getOptionalProperty(CONFIRM);
         final String completionMessage = request.getOptionalProperty(MESSAGE);
+        final String idName = request.getOptionalProperty(ID, method);
+        final String className = request.getOptionalProperty(CLASS);
 
+        
         // TODO need a mechanism for globally dealing with encoding; then use
         // the new encode method
         final String confirmSegment = confirm == null ? "" : "&amp;" + "_" + CONFIRM + "=" + URLEncoder.encode(confirm);
@@ -60,7 +69,6 @@ public class ActionLink extends AbstractElementProcessor {
         final ObjectAdapter object = MethodsUtils.findObject(context, objectId);
         final String version = context.mapVersion(object);
         final ObjectAction action = MethodsUtils.findAction(object, method);
-        objectId = request.getContext().mapObject(object, Scope.REQUEST);
 
         final ActionContent parameterBlock = new ActionContent(action);
         request.setBlockContent(parameterBlock);
@@ -70,6 +78,7 @@ public class ActionLink extends AbstractElementProcessor {
         
         final String[] parameters = parameterBlock.getParameters();
         final String target;
+        /*
         if (action.isContributed()) {
             System.arraycopy(parameters, 0, parameters, 1, parameters.length - 1);
             parameters[0] = request.getContext().mapObject(object, Scope.REQUEST);
@@ -78,11 +87,45 @@ public class ActionLink extends AbstractElementProcessor {
                 resultOverride = parameters[0];
             }
         } else {
-            target = objectId;
+            target =  StringEscapeUtils.escapeHtml(request.getContext().mapObject(object, Scope.INTERACTION));
+        }
+         */
+        
+        final ObjectAdapter[] objectParameters;
+        
+        // TODO copied from ActionButton
+        //final ObjectAdapter target;
+        if (action.isContributed()) {
+            objectParameters= null;
+            System.arraycopy(parameters, 0, parameters, 1, parameters.length - 1);
+            parameters[0] = request.getContext().mapObject(object, Scope.REQUEST);
+         //   target =  action.realTarget(object);
+            target =  request.getContext().mapObject(action.realTarget(object), Scope.REQUEST);
+            if (!action.hasReturn() && resultOverride == null) {
+                resultOverride = parameters[0];
+            }
+        } else {
+            objectParameters = new ObjectAdapter[parameters.length];
+            // target = object;
+            target =  StringEscapeUtils.escapeHtml(request.getContext().mapObject(object, Scope.INTERACTION));
+            int i = 0;
+            for (final ObjectActionParameter spec : action.getParameters()) {
+                final ObjectSpecification type = spec.getSpecification();
+                if (parameters[i] == null) {
+                    objectParameters[i] = null;
+                } else if (type.getFacet(ParseableFacet.class) != null) {
+                    final ParseableFacet facet = type.getFacet(ParseableFacet.class);
+                    Localization localization = ExpressiveObjectsContext.getLocalization(); 
+                    objectParameters[i] = facet.parseTextEntry(null, parameters[i], localization); 
+                } else {
+                    objectParameters[i] = MethodsUtils.findObject(request.getContext(), parameters[i]);
+                }
+                i++;
+            }
         }
 
-        if (MethodsUtils.isVisibleAndUsable(object, action, where)) {
-            writeLink(request, target, version, method, forwardResultTo, forwardVoidTo, resultNameSegment, resultOverride, scopeSegment,
+        if (MethodsUtils.isVisibleAndUsable(object, action, where)  && MethodsUtils.canRunMethod(object, action, objectParameters).isAllowed()) {
+            writeLink(request, idName, className, target, version, method, forwardResultTo, forwardVoidTo, resultNameSegment, resultOverride, scopeSegment,
                     confirmSegment, messageSegment, context, action, parameters, text);
         }
         request.popBlockContent();
@@ -90,6 +133,8 @@ public class ActionLink extends AbstractElementProcessor {
 
     public static void writeLink(
             final Request request,
+            final String idName,
+            final String className,
             final String objectId,
             final String version,
             final String method,
@@ -111,12 +156,14 @@ public class ActionLink extends AbstractElementProcessor {
             parameterSegment += "&param" + (i + 1) + "=" + parameters[i];
         }
 
+        final String idSegment = idName == null ? "" : ("id=\"" + idName + "\" ");
+        final String classSegment = "class=\"" + (className == null ? "action in-line" : className) + "\"";
         final String interactionParamters = context.encodedInteractionParameters();
         final String forwardResultSegment = forwardResultTo == null ? "" : "&amp;" + "_" + VIEW + "=" + context.fullFilePath(forwardResultTo);
         final String resultOverrideSegment = resultOverride == null ? "" : "&amp;" + "_" + RESULT_OVERRIDE + "=" + resultOverride;
         final String voidView = context.fullFilePath(forwardVoidTo == null ? context.getResourceFile() : forwardVoidTo);
         final String forwardVoidSegment = "&amp;" + "_" + VOID + "=" + voidView;
-        request.appendHtml("<a href=\"action.app?" + "_" + OBJECT + "=" + objectId + "&amp;" + "_" + VERSION + "=" + version
+        request.appendHtml("<a " + idSegment + classSegment + " href=\"action.app?" + "_" + OBJECT + "=" + objectId + "&amp;" + "_" + VERSION + "=" + version
                 + "&amp;" + "_" + METHOD + "=" + method + resultOverrideSegment + forwardResultSegment + forwardVoidSegment + resultNameSegment
                 + parameterSegment + scopeSegment + confirmSegment + messageSegment + interactionParamters + "\">");
         request.appendHtml(text);

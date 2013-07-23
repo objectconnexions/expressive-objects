@@ -51,7 +51,7 @@ public class NewActionLink extends AbstractLink {
     @Override
     protected String additionalParameters(final Request request) {
         final String method = request.getRequiredProperty(METHOD);
-        return "method=" + method;
+        return "_method=" + method;
     }
 
     @Override

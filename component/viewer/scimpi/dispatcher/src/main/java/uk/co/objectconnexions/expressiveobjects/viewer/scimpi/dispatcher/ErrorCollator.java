@@ -24,6 +24,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import uk.co.objectconnexions.expressiveobjects.core.commons.config.ConfigurationConstants;
 import uk.co.objectconnexions.expressiveobjects.core.commons.debug.DebugBuilder;
 import uk.co.objectconnexions.expressiveobjects.core.commons.debug.DebugHtmlString;
@@ -32,7 +34,6 @@ import uk.co.objectconnexions.expressiveobjects.core.commons.debug.DebugTee;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.DebugHtmlWriter;
-import org.apache.log4j.Logger;
 
 public class ErrorCollator {
     private static final Logger LOG = Logger.getLogger(ErrorCollator.class);

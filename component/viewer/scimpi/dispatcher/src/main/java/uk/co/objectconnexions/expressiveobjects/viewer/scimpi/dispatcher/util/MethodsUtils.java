@@ -32,7 +32,6 @@ import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ActionType;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAction;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectActionContainer.Contributed;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
-import uk.co.objectconnexions.expressiveobjects.core.runtime.system.persistence.AdapterManagerSpi;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.persistence.PersistenceSession;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.session.ExpressiveObjectsSession;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.DispatchException;

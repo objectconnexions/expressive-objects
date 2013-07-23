@@ -27,11 +27,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.Dispatcher;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.UserManager;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.DebugUsers;
-import org.apache.log4j.Logger;
 
 public class DispatcherServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -53,6 +54,7 @@ public class DispatcherServlet extends HttpServlet {
 
     private void process(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
         try {
+            request.setCharacterEncoding("UTF-8");
             final ServletRequestContext context = new ServletRequestContext(debugUsers);
             context.startRequest(request, response, getServletContext());
             dispatcher.process(context, request.getServletPath());

@@ -101,8 +101,10 @@
 
     <modules>
         <module>sql-impl</module>
+        <!--
         <module>sql-tests-common</module>
         <module>sql-tests-served</module>
+        -->
     </modules>
 
     <dependencyManagement>

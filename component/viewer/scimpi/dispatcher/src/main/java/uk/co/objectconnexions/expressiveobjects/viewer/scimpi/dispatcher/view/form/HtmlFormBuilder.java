@@ -41,7 +41,7 @@ public class HtmlFormBuilder {
             final String cancelTo) {
 
         String classSegment = " class=\"" + className + (id == null ? "\"" : "\" id=\"" + id + "\"");
-        request.appendHtml("<form " + classSegment + " action=\"" + action + "\" method=\"post\" accept-charset=\"UTF-8\">\n");
+        request.appendHtml("<form " + classSegment + " action=\"" + action + "\" method=\"post\" enctype=\"application/x-www-form-urlencoded; charset=utf-8\" accept-charset=\"UTF-8\">\n");
         if (formTitle != null && formTitle.trim().length() > 0) {
             classSegment = " class=\"title\"";
             request.appendHtml("<div" + classSegment + ">");

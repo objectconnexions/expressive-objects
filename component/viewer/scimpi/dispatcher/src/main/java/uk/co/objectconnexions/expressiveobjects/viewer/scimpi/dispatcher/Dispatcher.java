@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -34,6 +33,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TimeZone;
+
+import org.apache.log4j.Logger;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 import uk.co.objectconnexions.expressiveobjects.applib.Identifier;
 import uk.co.objectconnexions.expressiveobjects.core.commons.authentication.AuthenticationSession;
@@ -55,9 +60,9 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext.Debug;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext.Scope;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.DebugAction;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.DebugHtmlWriter;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.DebugUserAction;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.DebugUsers;
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.DebugHtmlWriter;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.LogAction;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.edit.EditAction;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.edit.RemoveAction;
@@ -71,11 +76,6 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.process
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.TagProcessingException;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.util.MethodsUtils;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.Snippet;
-import org.apache.log4j.Logger;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 
 public class Dispatcher {
     private static final String SHOW_UNSHOWN_MESSAGES = ConfigurationConstants.ROOT + "scimpi.show-unshown-messages";
@@ -270,7 +270,7 @@ public class Dispatcher {
         LOG.debug("processing file " + fullPath);
         context.setResourcePath(fullPath);
 
-        context.setContentType("text/html");
+        context.setContentType("text/html;  charset=UTF-8");
 
         context.addVariable("title", "Untitled Page", Scope.REQUEST);
         final Stack<Snippet> tags = loadPageTemplate(context, fullPath);

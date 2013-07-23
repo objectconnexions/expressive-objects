@@ -17,29 +17,26 @@
  *  under the License.
  */
 
-package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.debug;
+package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.logon;
 
-import org.apache.log4j.Logger;
+import java.io.IOException;
+import java.util.List;
 
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.AbstractElementProcessor;
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
+import uk.co.objectconnexions.expressiveobjects.core.commons.authentication.AuthenticationSessionAbstract;
+import uk.co.objectconnexions.expressiveobjects.core.commons.encoding.DataInputExtended;
 
-public class Log extends AbstractElementProcessor {
+public class DomainSession extends AuthenticationSessionAbstract {
 
-    @Override
-    public void process(final Request request) {
-        String name = request.getRequiredProperty(NAME);
-        Logger logger = Logger.getLogger(name);
-        
-        request.pushNewBuffer();
-        request.processUtilCloseTag();
-        final String message = request.popBuffer();
-        logger.info(message);
+    private static final long serialVersionUID = 1L;
+
+    private static final String CODE = "";
+
+    public DomainSession(final String username, final List<String> roles) {
+        super(username, roles, CODE);
     }
-
-    @Override
-    public String getName() {
-        return "log";
+    
+    public DomainSession(final DataInputExtended input) throws IOException {
+        super(input);
     }
-
 }
+

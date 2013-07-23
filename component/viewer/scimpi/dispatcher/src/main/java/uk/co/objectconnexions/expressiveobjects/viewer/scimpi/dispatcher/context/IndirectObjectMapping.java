@@ -21,7 +21,6 @@ package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.contex
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeSet;
 

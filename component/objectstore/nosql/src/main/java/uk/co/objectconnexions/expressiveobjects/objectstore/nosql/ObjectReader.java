@@ -180,7 +180,7 @@ public class ObjectReader {
 
     private void readCollection(final StateReader reader, final DataEncryption dataEncrypter, final OneToManyAssociation association, final ObjectAdapter parentAdapter) {
         final ObjectAdapter collectionAdapter = association.get(parentAdapter);
-        
+        if (collectionAdapter != null) {
         final CollectionFacet facet = collectionAdapter.getSpecification().getFacet(CollectionFacet.class);
         if (association.getSpecification().isParented()) {
             // were persisted inline, so read back inline
@@ -205,6 +205,7 @@ public class ObjectReader {
                 facet.init(collectionAdapter, elements);
             }
         }
+}
     }
 
     private ObjectAdapter[] restoreElements(final String referencesList) {

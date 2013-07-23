@@ -21,6 +21,7 @@ package uk.co.objectconnexions.expressiveobjects.core.runtime.persistence.adapte
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.oid.TypedOid;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecification;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecificationException;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.SpecificationLoaderSpi;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 
@@ -28,6 +29,9 @@ public class PojoRecreatorDefault implements PojoRecreator {
 
     public Object recreatePojo(final TypedOid oid) {
         final ObjectSpecification spec = getSpecificationLoader().lookupBySpecId(oid.getObjectSpecId());
+        if (spec == null) {
+        	throw new ObjectSpecificationException("No specification " + oid.getObjectSpecId() + " for OID " + oid);
+        }
         return spec.createObject();
     }
 

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecification;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAssociation;

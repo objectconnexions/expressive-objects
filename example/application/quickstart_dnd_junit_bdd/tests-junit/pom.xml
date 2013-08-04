@@ -23,7 +23,7 @@
 	<parent>
     	<groupId>uk.co.objectconnexions.expressiveobjects.example.application</groupId>
     	<artifactId>quickstart_dnd_junit_bdd</artifactId>
-		<version>5.0.0-SNAPSHOT</version>
+		<version>5.0.0</version>
 	</parent>
 
 	<artifactId>quickstart_dnd_junit_bdd-tests-junit</artifactId>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>quickstart_dnd_junit_bdd-fixture</artifactId>
-            <version>5.0.0-SNAPSHOT</version>
+            <version>5.0.0</version>
         </dependency>
 
         <!-- expressive objects -->

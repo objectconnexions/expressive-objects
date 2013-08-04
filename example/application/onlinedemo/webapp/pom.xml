@@ -22,7 +22,7 @@
     <parent>
         <groupId>uk.co.objectconnexions.expressiveobjects.example.application</groupId>
         <artifactId>onlinedemo</artifactId>
-        <version>5.0.0-SNAPSHOT</version>
+        <version>5.0.0</version>
     </parent>
 
 	<artifactId>onlinedemo-webapp</artifactId>

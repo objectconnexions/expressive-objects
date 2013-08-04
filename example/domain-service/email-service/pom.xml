@@ -24,13 +24,13 @@
 	<parent>
 		<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 		<artifactId>expressive-object</artifactId>
-		<version>5.0.0-SNAPSHOT</version>
+		<version>5.0.0</version>
 		<relativePath>../../../core/pom.xml</relativePath>
 	</parent>
 
     <groupId>uk.co.objectconnexions.expressiveobjects.example.domainservice</groupId>
     <artifactId>email-domainservice</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.0.0</version>
 
     <name>Email service</name>
     
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             <artifactId>expressiveobjects-core-applib</artifactId>
-            <version>5.0.0-SNAPSHOT</version>
+            <version>5.0.0</version>
         </dependency>
         
         <dependency>

@@ -23,13 +23,13 @@
     <parent>
 		<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 		<artifactId>expressive-object</artifactId>
-		<version>5.0.0-SNAPSHOT</version>
+		<version>5.0.0</version>
 		<relativePath>../../../core/pom.xml</relativePath>
 	</parent>
 
 	<groupId>uk.co.objectconnexions.expressiveobjects.objectstore</groupId>
 	<artifactId>expressiveobjects-objectstore-xml</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.0.0</version>
 
 	<name>Expressive Objects XML ObjectStore</name>
 
@@ -110,7 +110,7 @@
 			<dependency>
 			    <groupId>uk.co.objectconnexions.expressiveobjects.objectstore</groupId>
 			    <artifactId>expressiveobjects-objectstore-xml</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
     	</dependencies>
     </dependencyManagement>
@@ -120,39 +120,39 @@
 		<dependency>
 			<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 			<artifactId>expressiveobjects-core-metamodel</artifactId>
-			<version>5.0.0-SNAPSHOT</version>
+			<version>5.0.0</version>
 			<type>test-jar</type>
 			<scope>test</scope>
         </dependency>
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             <artifactId>expressiveobjects-core-unittestsupport</artifactId>
-			<version>5.0.0-SNAPSHOT</version>
+			<version>5.0.0</version>
             <scope>test</scope>
         </dependency>
 
 		<dependency>
 		    <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 		    <artifactId>expressiveobjects-core-bytecode-cglib</artifactId>
-			<version>5.0.0-SNAPSHOT</version>
+			<version>5.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             <artifactId>expressiveobjects-core-runtime</artifactId>
-			<version>5.0.0-SNAPSHOT</version>
+			<version>5.0.0</version>
 		</dependency>
 
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             <artifactId>expressiveobjects-core-integtestsupport</artifactId>
-			<version>5.0.0-SNAPSHOT</version>
+			<version>5.0.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             <artifactId>expressiveobjects-core-tck-dom</artifactId>
-            <version>5.0.0-SNAPSHOT</version>
+            <version>5.0.0</version>
         </dependency>
 
 	</dependencies>

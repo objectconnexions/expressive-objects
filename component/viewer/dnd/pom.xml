@@ -23,13 +23,13 @@
 	<parent>
 		<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 		<artifactId>expressive-object</artifactId>
-		<version>5.0.0-SNAPSHOT</version>
+		<version>5.0.0</version>
 		<relativePath>../../../core/pom.xml</relativePath>
 	</parent>
 
 	<groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
 	<artifactId>expressiveobjects-viewer-dnd</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.0.0</version>
 
 	<name>Expressive Objects Drag-n-Drop Viewer</name>
 	<packaging>pom</packaging>
@@ -86,13 +86,13 @@
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
                 <artifactId>expressiveobjects-viewer-dnd-impl</artifactId>
-                <version>5.0.0-SNAPSHOT</version>
+                <version>5.0.0</version>
             </dependency>
 
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
                 <artifactId>expressiveobjects-viewer-dnd-tck</artifactId>
-                <version>5.0.0-SNAPSHOT</version>
+                <version>5.0.0</version>
             </dependency>
 
 
@@ -100,27 +100,27 @@
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
                 <artifactId>expressiveobjects-core-unittestsupport</artifactId>
-                <version>5.0.0-SNAPSHOT</version>
+                <version>5.0.0</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
                 <artifactId>expressiveobjects-core-runtime</artifactId>
-                <version>5.0.0-SNAPSHOT</version>
+                <version>5.0.0</version>
             </dependency>
 
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
                 <artifactId>expressiveobjects-core-integtestsupport</artifactId>
-                <version>5.0.0-SNAPSHOT</version>
+                <version>5.0.0</version>
                 <scope>test</scope>
             </dependency>
     
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
                 <artifactId>expressiveobjects-core-runtime</artifactId>
-	            <version>5.0.0-SNAPSHOT</version>
+	            <version>5.0.0</version>
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
@@ -128,7 +128,7 @@
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
                 <artifactId>expressiveobjects-core-objectstore</artifactId>
-                <version>5.0.0-SNAPSHOT</version>
+                <version>5.0.0</version>
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
@@ -136,7 +136,7 @@
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
                 <artifactId>expressiveobjects-core-bytecode-cglib</artifactId>
-                <version>5.0.0-SNAPSHOT</version>
+                <version>5.0.0</version>
                 <scope>test</scope>
             </dependency>
     

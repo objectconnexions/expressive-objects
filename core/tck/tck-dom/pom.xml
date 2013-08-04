@@ -22,7 +22,7 @@
 	<parent>
     	<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
     	<artifactId>expressiveobjects-core-tck</artifactId>
-		<version>5.0.0-SNAPSHOT</version>
+		<version>5.0.0</version>
 	</parent>
 
 	<artifactId>expressiveobjects-core-tck-dom</artifactId>
@@ -65,7 +65,7 @@
                         <plugin>
                             <groupId>org.eclipse.m2e</groupId>
                             <artifactId>lifecycle-mapping</artifactId>
-                            <version>5.0.0-SNAPSHOT</version>
+                            <version>5.0.0</version>
                             <configuration>
                                 <lifecycleMappingMetadata>
                                     <pluginExecutions>

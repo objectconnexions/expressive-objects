@@ -24,13 +24,13 @@
 	<parent>
 		<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 		<artifactId>expressive-object</artifactId>
-		<version>5.0.0-SNAPSHOT</version>
+		<version>5.0.0</version>
 		<relativePath>../../../core/pom.xml</relativePath>
 	</parent>
 
 	<groupId>uk.co.objectconnexions.expressiveobjects.progmodel</groupId>
 	<artifactId>expressiveobjects-progmodel-groovy</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.0.0</version>
 
 	<name>Expressive Objects Groovy ProgModel</name>
 
@@ -86,12 +86,12 @@
 			<dependency>
 				<groupId>uk.co.objectconnexions.expressiveobjects.progmodel</groupId>
 				<artifactId>expressiveobjects-progmodel-groovy-applib</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>uk.co.objectconnexions.expressiveobjects.progmodel</groupId>
 				<artifactId>expressiveobjects-progmodel-groovy-metamodel</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
 
 
@@ -100,12 +100,12 @@
 			<dependency>
 				<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 				<artifactId>expressiveobjects-core-applib</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 				<artifactId>expressiveobjects-core-metamodel</artifactId>
-				<version>5.0.0-SNAPSHOT</version>
+				<version>5.0.0</version>
 			</dependency>
 
 			<!-- Groovy -->

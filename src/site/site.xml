@@ -22,7 +22,7 @@
 	<skin>
 		<groupId>uk.co.objectconnexions.expressiveobjects.skins</groupId>
 		<artifactId>classic-skin</artifactId>
-		<version>5.0.0-SNAPSHOT</version>
+		<version>5.0.0</version>
 	</skin>
 
 	<version position="right" />

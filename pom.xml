@@ -21,7 +21,7 @@
 
     <groupId>uk.co.objectconnexions.expressiveobjects</groupId>
     <artifactId>expressiveobjects-all</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 

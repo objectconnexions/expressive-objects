@@ -6,13 +6,13 @@
 	<parent>
 		<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 		<artifactId>expressive-object</artifactId>
-		<version>5.0.0</version>
+		<version>5.0.1-SNAPSHOT</version>
 		<relativePath>../../../core/pom.xml</relativePath>
 	</parent>
 
     <groupId>uk.co.objectconnexions.expressiveobjects.example</groupId>
 	<artifactId>quickstart-archetype</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1-SNAPSHOT</version>
 
 	<name>Expressive Objects Quickstart Archetype</name>
 

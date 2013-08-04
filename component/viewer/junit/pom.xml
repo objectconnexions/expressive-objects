@@ -23,13 +23,13 @@
     <parent>
 		<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 		<artifactId>expressive-object</artifactId>
-		<version>5.0.0</version>
+		<version>5.0.1-SNAPSHOT</version>
 		<relativePath>../../../core/pom.xml</relativePath>
     </parent>
 
     <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
     <artifactId>expressiveobjects-viewer-junit</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1-SNAPSHOT</version>
 
     <name>Expressive Objects JUnit Viewer</name>
     <packaging>pom</packaging>
@@ -88,12 +88,12 @@
 			<dependency>
 			    <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
 			    <artifactId>expressiveobjects-viewer-junit-impl</artifactId>
-				<version>5.0.0</version>
+				<version>5.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 			    <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
 			    <artifactId>expressiveobjects-viewer-junit-tck</artifactId>
-				<version>5.0.0</version>
+				<version>5.0.1-SNAPSHOT</version>
 			</dependency>
 
 
@@ -102,41 +102,41 @@
         	<dependency>
             	<groupId>uk.co.objectconnexions.expressiveobjects.progmodel</groupId>
             	<artifactId>expressiveobjects-progmodel-wrapper-metamodel</artifactId>
-            	<version>5.0.0</version>
+            	<version>5.0.1-SNAPSHOT</version>
         	</dependency>
 	
         	<dependency>
             	<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             	<artifactId>expressiveobjects-core-bytecode-cglib</artifactId>
-            	<version>5.0.0</version>
+            	<version>5.0.1-SNAPSHOT</version>
         	</dependency>
 	
         	<dependency>
             	<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             	<artifactId>expressiveobjects-core-objectstore</artifactId>
-            	<version>5.0.0</version>
+            	<version>5.0.1-SNAPSHOT</version>
         	</dependency>
         	<dependency>
             	<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             	<artifactId>expressiveobjects-core-profilestore</artifactId>
-            	<version>5.0.0</version>
+            	<version>5.0.1-SNAPSHOT</version>
         	</dependency>
 	
         	<dependency>
             	<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             	<artifactId>expressiveobjects-core-security</artifactId>
-            	<version>5.0.0</version>
+            	<version>5.0.1-SNAPSHOT</version>
         	</dependency>
 	
         	<dependency>
             	<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             	<artifactId>expressiveobjects-core-metamodel</artifactId>
-            	<version>5.0.0</version>
+            	<version>5.0.1-SNAPSHOT</version>
         	</dependency>
         	<dependency>
             	<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             	<artifactId>expressiveobjects-core-metamodel</artifactId>
-            	<version>5.0.0</version>
+            	<version>5.0.1-SNAPSHOT</version>
             	<type>test-jar</type>
             	<scope>test</scope>
         	</dependency>
@@ -144,7 +144,7 @@
         	<dependency>
             	<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             	<artifactId>expressiveobjects-core-runtime</artifactId>
-            	<version>5.0.0</version>
+            	<version>5.0.1-SNAPSHOT</version>
             	<type>test-jar</type>
             	<scope>test</scope>
         	</dependency>

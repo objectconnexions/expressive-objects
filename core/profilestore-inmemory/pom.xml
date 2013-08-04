@@ -23,7 +23,7 @@
 	<parent>
 		<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 		<artifactId>expressive-object</artifactId>
-		<version>5.0.0</version>
+		<version>5.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>expressiveobjects-core-profilestore</artifactId>

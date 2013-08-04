@@ -21,7 +21,7 @@
 
     <groupId>uk.co.objectconnexions.expressiveobjects.example.application</groupId>
     <artifactId>onlinedemo</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1-SNAPSHOT</version>
 
     <name>Online Demo</name>
 
@@ -149,25 +149,25 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>onlinedemo-dom</artifactId>
-                <version>5.0.0</version>
+                <version>5.0.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>onlinedemo-fixture</artifactId>
-                <version>5.0.0</version>
+                <version>5.0.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>onlinedemo-objstore-dflt</artifactId>
-                <version>5.0.0</version>
+                <version>5.0.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>onlinedemo-webapp</artifactId>
-                <version>5.0.0</version>
+                <version>5.0.1-SNAPSHOT</version>
             </dependency>
 
 

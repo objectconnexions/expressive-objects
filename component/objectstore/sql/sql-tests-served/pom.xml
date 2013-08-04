@@ -24,7 +24,7 @@
     <parent>
         <groupId>uk.co.objectconnexions.expressiveobjects.objectstore</groupId>
         <artifactId>expressiveobjects-objectstore-sql</artifactId>
-        <version>5.0.0</version>
+        <version>5.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>expressiveobjects-objectstore-sql-tests-served</artifactId>

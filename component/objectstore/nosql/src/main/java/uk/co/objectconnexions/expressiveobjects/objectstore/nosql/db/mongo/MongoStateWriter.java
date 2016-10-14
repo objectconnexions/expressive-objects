@@ -60,7 +60,7 @@ public class MongoStateWriter implements StateWriter {
 
     @Override
     public void writeOid(final TypedOid typedOid) {
-        writeField(PropertyNames.OID, typedOid.enString(getOidMarshaller()));
+        writeField(PropertyNames.OID, typedOid.enStringNoVersion(getOidMarshaller()));
         if(typedOid instanceof RootOid) {
             RootOid rootOid = (RootOid) typedOid;
             writeField(PropertyNames.MONGO_INTERNAL_ID, rootOid.getIdentifier());

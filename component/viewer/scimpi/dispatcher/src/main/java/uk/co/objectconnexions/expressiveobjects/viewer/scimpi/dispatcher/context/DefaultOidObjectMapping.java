@@ -183,7 +183,7 @@ public class DefaultOidObjectMapping implements ObjectMapping {
 //            oidType = oid.getClass();
 //        }
 
-        String encodedOid = oid.enString(getOidMarshaller());
+        String encodedOid = oid.enStringNoVersion(getOidMarshaller());
 
         //final boolean isTransient = adapter.isTransient();
         //final String transferableId = (isTransient ? "T" : "P") + adapter.getSpecification().getFullIdentifier() + "@" + encodedOid;

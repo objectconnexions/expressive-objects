@@ -48,7 +48,7 @@ public class KeyCreatorDefault {
     }
 
     /**
-     * Equivalent to the {@link Oid#enString(OidMarshaller)} for the adapter's Oid.
+     * Equivalent to the {@link Oid#enStringNoVersion(OidMarshaller)} for the adapter's Oid.
      */
     public String oidStrFor(final ObjectAdapter adapter) {
         if(adapter == null) {
@@ -56,7 +56,7 @@ public class KeyCreatorDefault {
         }
         try {
             //return adapter.getSpecification().getFullIdentifier() + "@" + key(adapter.getOid());
-            return adapter.getOid().enString(getOidMarshaller());
+            return adapter.getOid().enStringNoVersion(getOidMarshaller());
         } catch (final NoSqlStoreException e) {
             throw new NoSqlStoreException("Failed to create refence for " + adapter, e);
         }

@@ -54,7 +54,7 @@ public class JsonStateWriter implements StateWriter {
     @Override
     public void writeOid(final TypedOid typedOid) {
         this.oid = typedOid;
-        writeField(PropertyNames.OID, typedOid.enString(getOidMarshaller()));
+        writeField(PropertyNames.OID, typedOid.enStringNoVersion(getOidMarshaller()));
     }
     
     @Override
@@ -98,7 +98,7 @@ public class JsonStateWriter implements StateWriter {
     }
 
     public String getRequest() {
-        return oid.enString(getOidMarshaller()) + " " + currentVersion + " " + newVersion;
+        return oid.enStringNoVersion(getOidMarshaller()) + " " + currentVersion + " " + newVersion;
     }
 
     public String getData() {

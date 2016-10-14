@@ -181,31 +181,31 @@ public class ObjectReader {
     private void readCollection(final StateReader reader, final DataEncryption dataEncrypter, final OneToManyAssociation association, final ObjectAdapter parentAdapter) {
         final ObjectAdapter collectionAdapter = association.get(parentAdapter);
         if (collectionAdapter != null) {
-        final CollectionFacet facet = collectionAdapter.getSpecification().getFacet(CollectionFacet.class);
-        if (association.getSpecification().isParented()) {
-            // were persisted inline, so read back inline
-            final List<StateReader> readers = reader.readCollection(association.getId());
-            final ObjectAdapter[] elementAdapters = new ObjectAdapter[readers.size()];
-            int i = 0;
-            for (final StateReader elementReader : readers) {
-                
-                final String oidStr = elementReader.readOid();
-                final AggregatedOid aggregatedOid = getOidMarshaller().unmarshal(oidStr, AggregatedOid.class);
-                
-                elementAdapters[i++] = restoreAggregatedObject(elementReader, aggregatedOid, dataEncrypter);
-            }
-            facet.init(collectionAdapter, elementAdapters);
-        } else {
-            // were persisted as references, so read back as references
-            final String referencesList = reader.readField(association.getId());
-            if (referencesList == null || referencesList.length() == 0) {
-                facet.init(collectionAdapter, new ObjectAdapter[0]);
-            } else {
-                final ObjectAdapter[] elements = restoreElements(referencesList);
-                facet.init(collectionAdapter, elements);
-            }
-        }
-}
+			final CollectionFacet facet = collectionAdapter.getSpecification().getFacet(CollectionFacet.class);
+			if (association.getSpecification().isParented()) {
+				// were persisted inline, so read back inline
+				final List<StateReader> readers = reader.readCollection(association.getId());
+				final ObjectAdapter[] elementAdapters = new ObjectAdapter[readers.size()];
+				int i = 0;
+				for (final StateReader elementReader : readers) {
+					
+					final String oidStr = elementReader.readOid();
+					final AggregatedOid aggregatedOid = getOidMarshaller().unmarshal(oidStr, AggregatedOid.class);
+					
+					elementAdapters[i++] = restoreAggregatedObject(elementReader, aggregatedOid, dataEncrypter);
+				}
+				facet.init(collectionAdapter, elementAdapters);
+			} else {
+				// were persisted as references, so read back as references
+				final String referencesList = reader.readField(association.getId());
+				if (referencesList == null || referencesList.length() == 0) {
+					facet.init(collectionAdapter, new ObjectAdapter[0]);
+				} else {
+					final ObjectAdapter[] elements = restoreElements(referencesList);
+					facet.init(collectionAdapter, elements);
+				}
+			}
+		}
     }
 
     private ObjectAdapter[] restoreElements(final String referencesList) {

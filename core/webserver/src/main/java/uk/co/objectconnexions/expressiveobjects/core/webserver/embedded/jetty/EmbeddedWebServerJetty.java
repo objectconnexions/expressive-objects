@@ -20,23 +20,9 @@
 package uk.co.objectconnexions.expressiveobjects.core.webserver.embedded.jetty;
 
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletContextListener;
-
-import org.apache.log4j.Logger;
-import org.mortbay.jetty.Handler;
-import org.mortbay.jetty.NCSARequestLog;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.handler.ContextHandler;
-import org.mortbay.jetty.handler.HandlerList;
-import org.mortbay.jetty.handler.RequestLogHandler;
-import org.mortbay.jetty.handler.ResourceHandler;
-import org.mortbay.jetty.servlet.FilterHolder;
-import org.mortbay.jetty.servlet.FilterMapping;
-import org.mortbay.jetty.servlet.ServletHandler;
-import org.mortbay.jetty.servlet.ServletHolder;
-import org.mortbay.jetty.servlet.ServletMapping;
-import org.mortbay.jetty.servlet.SessionHandler;
 
 import uk.co.objectconnexions.expressiveobjects.core.commons.factory.InstanceUtil;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.viewer.web.FilterSpecification;
@@ -45,6 +31,19 @@ import uk.co.objectconnexions.expressiveobjects.core.runtime.viewer.web.WebAppSp
 import uk.co.objectconnexions.expressiveobjects.core.runtime.web.EmbeddedWebServerAbstract;
 import uk.co.objectconnexions.expressiveobjects.core.webserver.WebServerConstants;
 import uk.co.objectconnexions.expressiveobjects.core.webserver.WebServerException;
+import org.apache.log4j.Logger;
+import org.eclipse.jetty.server.NCSARequestLog;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.RequestLogHandler;
+import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.server.session.SessionHandler;
+import org.eclipse.jetty.servlet.FilterHolder;
+import org.eclipse.jetty.servlet.FilterMapping;
+import org.eclipse.jetty.servlet.ServletHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.servlet.ServletMapping;
 
 public class EmbeddedWebServerJetty extends EmbeddedWebServerAbstract {
     private final static Logger LOG = Logger.getLogger(EmbeddedWebServerJetty.class);
@@ -147,7 +146,7 @@ public class EmbeddedWebServerJetty extends EmbeddedWebServerAbstract {
             final FilterMapping filterMapping = new FilterMapping();
             filterMapping.setFilterName(filterHolder.getName());
             filterMapping.setPathSpecs(filterSpec.getPathSpecs().toArray(new String[] {}));
-            filterMapping.setDispatches(Handler.DEFAULT);
+            filterMapping.setDispatches(FilterMapping.DEFAULT);
             servletHandler.addFilterMapping(filterMapping);
         }
     }
@@ -169,7 +168,10 @@ public class EmbeddedWebServerJetty extends EmbeddedWebServerAbstract {
 
     private void addContextParams(final ContextHandler contextHandler) {
         for (final WebAppSpecification specification : getSpecifications()) {
-            contextHandler.setInitParams(specification.getContextParams());
+            // contextHandler.setInitParams(specification.getContextParams());
+            for (Entry<String, String> set : specification.getContextParams().entrySet()) {
+            	contextHandler.setInitParameter(set.getKey(), set.getValue());
+            }
         }
     }
 
@@ -210,7 +212,7 @@ public class EmbeddedWebServerJetty extends EmbeddedWebServerAbstract {
         }
         try {
             final Server server = new Server(port);
-            server.addHandler(contextHandler);
+            server.setHandler(contextHandler);
             server.start();
         } catch (final RuntimeException e) {
             throw e;

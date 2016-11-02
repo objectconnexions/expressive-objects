@@ -29,11 +29,7 @@ import static uk.co.objectconnexions.expressiveobjects.core.webserver.WebServerC
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.google.inject.Injector;
-
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.webapp.WebAppContext;
+import java.util.Map.Entry;
 
 import uk.co.objectconnexions.expressiveobjects.core.commons.config.ExpressiveObjectsConfiguration;
 import uk.co.objectconnexions.expressiveobjects.core.commons.config.ExpressiveObjectsConfigurationBuilder;
@@ -45,6 +41,11 @@ import uk.co.objectconnexions.expressiveobjects.core.runtime.runner.ExpressiveOb
 import uk.co.objectconnexions.expressiveobjects.core.webapp.WebAppConstants;
 import uk.co.objectconnexions.expressiveobjects.core.webserver.WebServer.StartupMode;
 import org.apache.log4j.Logger;
+
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.webapp.WebAppContext;
+
+import com.google.inject.Injector;
 
 final class WebServerBootstrapper implements ExpressiveObjectsBootstrapper {
 
@@ -114,6 +115,9 @@ final class WebServerBootstrapper implements ExpressiveObjectsBootstrapper {
     private void copyDeploymentTypeIntoInitParams(final WebAppContext context) {
         Map<String, String> initParams = CastUtils.cast(context.getInitParams());
         initParams = new HashMap<String, String>(initParams);
-        context.setInitParams(initParams);
+        for (Entry<String, String> set : initParams.entrySet()) {
+			context.setInitParameter(set.getKey(), set.getValue());
+		}
+        // context.setInitParams(initParams);
     }
 }

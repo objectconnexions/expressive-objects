@@ -814,9 +814,9 @@ the MIT license [1].
 
                 <!-- Runtime: jetty -->
                 <plugin>
-                    <groupId>org.mortbay.jetty</groupId>
-                    <artifactId>maven-jetty-plugin</artifactId>
-                    <version>6.1.25</version>
+				    <groupId>org.eclipse.jetty</groupId>
+				    <artifactId>jetty-maven-plugin</artifactId>
+				    <version>9.2.19.v20160908</version>
                     <configuration>
                         <webAppConfig>
                             <contextPath>webapp</contextPath>
@@ -1236,16 +1236,15 @@ ${license.additional-notes}
             </dependency>
 
             <!-- Web development -->
+             <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>9.2.19.v20160908</version>
+            </dependency>
             <dependency>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty</artifactId>
-                <version>6.1.26</version>
-                <exclusions>
-                    <exclusion>
-		                <groupId>org.mortbay.jetty</groupId>
-		                <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+                <version>9.2.19.v20160908</version>
             </dependency>
 	        <dependency>
 	            <groupId>org.apache.geronimo.specs</groupId>

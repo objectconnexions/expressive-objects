@@ -65,12 +65,18 @@ public class EnumValueSemanticsProvider<T extends Enum<T>> extends ValueSemantic
 
     @Override
     protected String doEncode(final Object object) {
-        return titleString(object, null);
+        return ((Enum) object).name();
     }
 
     @Override
     protected T doRestore(final String data) {
-        return doParse(null, data);
+        final T[] enumConstants = getAdaptedClass().getEnumConstants();
+        for (final T enumConstant : enumConstants) {
+            if (enumConstant.name().equals(data)) {
+                return enumConstant;
+            }
+        }
+        throw new TextEntryParseException("Unknown enum constant '" + data + "'");
     }
 
     @Override

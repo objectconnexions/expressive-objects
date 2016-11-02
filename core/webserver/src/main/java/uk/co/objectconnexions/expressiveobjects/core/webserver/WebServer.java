@@ -22,10 +22,6 @@ package uk.co.objectconnexions.expressiveobjects.core.webserver;
 import java.net.URI;
 import java.util.Formatter;
 
-import org.mortbay.jetty.Connector;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.webapp.WebAppContext;
-
 import uk.co.objectconnexions.expressiveobjects.core.commons.config.ExpressiveObjectsConfigurationBuilderDefault;
 import uk.co.objectconnexions.expressiveobjects.core.commons.lang.ArrayUtils;
 import uk.co.objectconnexions.expressiveobjects.core.commons.lang.StringUtils;
@@ -36,6 +32,10 @@ import uk.co.objectconnexions.expressiveobjects.core.webserver.internal.OptionHa
 import uk.co.objectconnexions.expressiveobjects.core.webserver.internal.OptionHandlerPort;
 import uk.co.objectconnexions.expressiveobjects.core.webserver.internal.OptionHandlerResourceBase;
 import uk.co.objectconnexions.expressiveobjects.core.webserver.internal.OptionHandlerStartupMode;
+
+import org.eclipse.jetty.server.NetworkConnector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.webapp.WebAppContext;
 
 public class WebServer {
 
@@ -118,7 +118,7 @@ public class WebServer {
     }
 
     private String baseFor(final Server jettyServer) {
-        final Connector connector = jettyServer.getConnectors()[0];
+        final NetworkConnector connector = (NetworkConnector) jettyServer.getConnectors()[0];
         final String scheme = "http";
         final String host = StringUtils.coalesce(connector.getHost(), "localhost");
         final int port = connector.getPort();

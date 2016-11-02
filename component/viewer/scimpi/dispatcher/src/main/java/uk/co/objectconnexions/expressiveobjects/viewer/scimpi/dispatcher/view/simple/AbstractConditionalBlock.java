@@ -72,6 +72,9 @@ public abstract class AbstractConditionalBlock extends AbstractElementProcessor 
         // addNormal(new TestCollectionSize(), "collection-size-less-than");
         // addNormal(new TestCollectionSize(), "collection-size-greater-than");
 
+        addNormal(new TestHasEditableFields(), "has-editable-fields");
+        addNegated(new TestHasEditableFields(), "no-editable-fields");
+        
         addNormal(new TestFieldValue(), "test-field");
         addNegated(new TestFieldValue(), "test-field");
            
@@ -439,6 +442,22 @@ class TestMethodUseable extends Test {
         final ObjectAction objectAction = findMethod(attributeName, object);
         final Consent usable = objectAction.isUsable(ExpressiveObjectsContext.getAuthenticationSession(), object, Where.ANYWHERE);
         return usable.isAllowed();
+    }
+}
+
+class TestHasEditableFields extends Test {
+    @Override
+    boolean test(final Request request, final String attributeName, final String targetId) {
+        final ObjectAdapter object = MethodsUtils.findObject(request.getContext(), targetId);
+        final List<? extends ObjectAssociation> objectFields = object.getSpecification().getAssociations();
+        boolean hasEditableFields = false;
+        for (final ObjectAssociation objectAssociation : objectFields) {
+            if (objectAssociation.isUsable(request.getContext().getSession(), object, Where.ANYWHERE).isAllowed()) {
+                hasEditableFields = true;
+                break;
+            }
+        }
+        return hasEditableFields;
     }
 }
 

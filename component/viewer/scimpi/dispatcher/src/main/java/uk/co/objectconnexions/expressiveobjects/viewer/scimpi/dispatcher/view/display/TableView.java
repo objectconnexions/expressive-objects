@@ -294,6 +294,7 @@ public class TableView extends AbstractTableView {
             final List<ObjectAssociation> fields,
             final boolean linkAllFields,
             final boolean showIconByDefault,
+            final String order,
             final String tableClass,
             final String[] rowClasses,
             LinkedObject linkedObject) {
@@ -318,7 +319,7 @@ public class TableView extends AbstractTableView {
         final RequestContext context = request.getContext();
         final TableContentWriter rowBuilder = rowBuilder(request, context, null, context.mapObject(object, Scope.REQUEST), field.getIdentifier().getMemberName(), fields, 
                 showIconByDefault);
-        write(request, collection, summary, rowBuilder, null, null, null);
+        write(request, collection, summary, rowBuilder, null, order, null, null);
     }
 
     @Override

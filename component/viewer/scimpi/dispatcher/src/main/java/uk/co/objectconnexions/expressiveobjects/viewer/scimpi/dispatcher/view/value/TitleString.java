@@ -25,6 +25,8 @@ import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.Obje
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.AbstractElementProcessor;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.ForbiddenException;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext.Scope;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
 
 /**
@@ -37,6 +39,9 @@ public class TitleString extends AbstractElementProcessor {
         final String id = request.getOptionalProperty(OBJECT);
         final String fieldName = request.getOptionalProperty(FIELD);
         final int truncateTo = Integer.valueOf(request.getOptionalProperty(TRUNCATE, "0")).intValue();
+        final String resultName = request.getOptionalProperty(RESULT_NAME);
+        final String scopeName = request.getOptionalProperty(SCOPE);
+        final Scope scope = RequestContext.scope(scopeName, Scope.REQUEST);
         final ObjectAdapter object = request.getContext().getMappedObjectOrResult(id);
         if (object == null) { 
             return; 
@@ -56,8 +61,12 @@ public class TitleString extends AbstractElementProcessor {
                 titleString = "";
             }
         }
-        request.appendDebug("    " + titleString);
-        request.appendTruncated(titleString, truncateTo);
+        if (resultName == null) {
+	        request.appendDebug("    " + titleString);
+	        request.appendTruncated(titleString, truncateTo);
+        } else {
+        	request.getContext().addVariable(resultName, titleString, scope);
+        }
     }
 
     @Override

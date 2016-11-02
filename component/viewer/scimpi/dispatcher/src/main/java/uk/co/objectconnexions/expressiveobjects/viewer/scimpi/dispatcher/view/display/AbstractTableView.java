@@ -19,6 +19,7 @@
 
 package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.display;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,6 +37,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.ScimpiE
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext.Scope;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.util.CollectionUtils;
 
 public abstract class AbstractTableView extends AbstractElementProcessor {
 
@@ -82,6 +84,7 @@ public abstract class AbstractTableView extends AbstractElementProcessor {
         }
 
         final String summary = request.getOptionalProperty("summary");
+        final String order = request.getOptionalProperty("sort");
         final String rowClassesList = request.getOptionalProperty(ROW_CLASSES, ODD_ROW_CLASS + "|" + EVEN_ROW_CLASS);
         String[] rowClasses = null;
         if (rowClassesList.length() > 0) {
@@ -90,7 +93,7 @@ public abstract class AbstractTableView extends AbstractElementProcessor {
 
         final List<ObjectAssociation> allFields = elementSpec.getAssociations(ObjectAssociationFilters.WHEN_VISIBLE_IRRESPECTIVE_OF_WHERE);
         final TableContentWriter rowBuilder = createRowBuilder(request, context, isFieldEditable ? parentObjectId : null, allFields, collection);
-        write(request, collection, summary, rowBuilder, tableId, tableClass, rowClasses);
+        write(request, collection, summary, rowBuilder, tableId, order, tableClass, rowClasses);
 
     }
 
@@ -106,6 +109,7 @@ public abstract class AbstractTableView extends AbstractElementProcessor {
             final String summary,
             final TableContentWriter rowBuilder,
             final String tableId,
+            final String order,
             final String tableClass,
             final String[] rowClasses) {
         final RequestContext context = request.getContext();
@@ -121,10 +125,17 @@ public abstract class AbstractTableView extends AbstractElementProcessor {
         request.appendHtml("<tbody>");
         final CollectionFacet facet = collection.getSpecification().getFacet(CollectionFacet.class);
         final Iterator<ObjectAdapter> iterator = facet.iterator(collection);
-        int row = 1;
+
+        List<ObjectAdapter> elements = new ArrayList<ObjectAdapter>();
         while (iterator.hasNext()) {
             final ObjectAdapter element = iterator.next();
-
+            elements.add(element);
+        }
+        
+        CollectionUtils.sort(elements, collection.getElementSpecification(), order);
+        
+        int row = 1;
+        for (ObjectAdapter element : elements) {
             context.addVariable("row", "" + (row), Scope.REQUEST);
             String cls = "";
             if (rowClasses != null) {

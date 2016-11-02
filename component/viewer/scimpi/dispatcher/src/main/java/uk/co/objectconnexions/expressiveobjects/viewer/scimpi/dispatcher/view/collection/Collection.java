@@ -19,7 +19,9 @@
 
 package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.collection;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.collections.modify.CollectionFacet;
@@ -31,6 +33,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext.Scope;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request.RepeatMarker;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.util.CollectionUtils;
 
 public class Collection extends AbstractElementProcessor {
 
@@ -58,6 +61,7 @@ public class Collection extends AbstractElementProcessor {
         final RepeatMarker marker = request.createMarker();
 
         final String variable = request.getOptionalProperty(ELEMENT_NAME);
+        final String order = request.getOptionalProperty("sort");
         final String scopeName = request.getOptionalProperty(SCOPE);
         final Scope scope = RequestContext.scope(scopeName, Scope.REQUEST);
         final String rowClassesList = request.getOptionalProperty(ROW_CLASSES, ODD_ROW_CLASS + "|" + EVEN_ROW_CLASS);
@@ -70,10 +74,17 @@ public class Collection extends AbstractElementProcessor {
         if (facet.size(collection) == 0) {
             request.skipUntilClose();
         } else {
+        	List<ObjectAdapter> elements = new ArrayList<ObjectAdapter>();
             final Iterator<ObjectAdapter> iterator = facet.iterator(collection);
-            int row = 0;
             while (iterator.hasNext()) {
                 final ObjectAdapter element = iterator.next();
+                elements.add(element);
+            }
+            
+            CollectionUtils.sort(elements, collection.getElementSpecification(), order);
+            
+            int row = 0;
+            for (ObjectAdapter element : elements) {
                 context.addVariable("row", "" + (row + 1), Scope.REQUEST);
                 if (rowClassesList != null) {
                     context.addVariable("row-class", rowClasses[row % rowClasses.length], Scope.REQUEST);

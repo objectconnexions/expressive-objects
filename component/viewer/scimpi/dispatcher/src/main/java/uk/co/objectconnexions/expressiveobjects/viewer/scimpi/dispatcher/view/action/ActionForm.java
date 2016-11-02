@@ -177,18 +177,17 @@ public class ActionForm extends AbstractElementProcessor {
 
     private static void initializeFields(final RequestContext context, final ObjectAdapter object, final ObjectAction action, final InputField[] fields) {
         final List<ObjectActionParameter> parameters = action.getParameters();
+        ObjectAdapter[][] choices = action.getChoices(object);
         for (int i = 0; i < fields.length; i++) {
             final InputField field = fields[i];
             final ObjectActionParameter param = parameters.get(i);
-            if (action.isContributed() && i == 0) {
-                // fields[i].setValue(context.mapObject(object,
-                // Scope.INTERACTION));
+            ObjectSpecification specification = object.getSpecification();
+			if (action.isContributed() && specification != action.getOnType() && specification.isOfType(param.getSpecification())) {
                 fields[i].setType(InputField.REFERENCE);
                 fields[i].setHidden(true);
             } else {
-
                 fields[i].setHelpReference("xxxhelp");
-                final ObjectAdapter[] optionsForParameter = action.getChoices(object)[i];
+				final ObjectAdapter[] optionsForParameter = choices[i];
                 FieldFactory.initializeField(context, object, param, optionsForParameter, !param.isOptional(), field);
             }
         }

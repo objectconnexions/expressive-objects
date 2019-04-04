@@ -16,6 +16,7 @@ public class CollectionUtils {
         } else if (order != null && order.trim().length() > 0) {
         	final boolean reverse;
         	final String field;
+        	// TODO allow multiple fields to be defined
         	if (order.startsWith("reversed ")) {
         		field = order.substring(9);
         		reverse = true;

@@ -41,7 +41,7 @@ public class MongoStateReader implements StateReader {
         final DBCollection instances = db.getCollection(objectSpecId.asString());
         instance = instances.findOne(mongoId);
         if (instance == null) {
-            throw new ObjectNotFoundException(mongoId);
+            throw new ObjectNotFoundException(objectSpecId.asString() + " with ID " + mongoId);
         }
         if(LOG.isDebugEnabled()) {
             LOG.debug("loading " + instance);

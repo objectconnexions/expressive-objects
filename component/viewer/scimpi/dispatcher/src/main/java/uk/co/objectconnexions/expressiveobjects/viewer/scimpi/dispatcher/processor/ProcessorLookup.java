@@ -115,6 +115,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.si
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.simple.SimpleButton;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.simple.StartSession;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.simple.TemplateTag;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.simple.UniqueId;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.simple.Unless;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.simple.Variable;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.simple.When;
@@ -217,6 +218,7 @@ public class ProcessorLookup {
         addElementProcessor(new Type());
         addElementProcessor(new User());
         addElementProcessor(new Unless());
+        addElementProcessor(new UniqueId());
         addElementProcessor(new Variable());
         addElementProcessor(new Warnings());
         addElementProcessor(new When());

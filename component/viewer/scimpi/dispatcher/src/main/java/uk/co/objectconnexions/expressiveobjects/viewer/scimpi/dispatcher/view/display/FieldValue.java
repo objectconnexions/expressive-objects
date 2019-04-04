@@ -21,6 +21,7 @@ package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.d
 
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.Where;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.multiline.MultiLineFacet;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.object.parseable.ParseableFacet;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecification;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAssociation;
@@ -72,7 +73,11 @@ public class FieldValue extends AbstractElementProcessor {
         final ObjectAdapter fieldReference = field.get(object);
 
         if (fieldReference != null) {
-            final String classSection = "class=\"" + (className == null ? "value" : className) + "\"";
+            String classes = className == null ? "value" : className;
+            if (field.containsFacet(MultiLineFacet.class)) {
+                classes += " multiline";
+            } 
+            final String classSection = "class=\"" + classes + "\"";
             request.appendHtml("<span " + classSection + ">");
             if (field.isOneToOneAssociation()) {
                 try {

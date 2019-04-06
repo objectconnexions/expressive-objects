@@ -98,4 +98,6 @@ public interface ColorsAndFonts {
 
     void init();
 
+	Object getAntiAliasing();
+
 }

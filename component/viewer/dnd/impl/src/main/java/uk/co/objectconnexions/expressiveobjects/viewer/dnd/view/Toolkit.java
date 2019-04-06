@@ -52,6 +52,10 @@ public abstract class Toolkit {
         return getInstance().contentFactory;
     }
 
+    public static Object getAntiAliasing() {
+    	return getInstance().colorsAndFonts.getAntiAliasing();
+    }
+    
     protected static Toolkit getInstance() {
         return instance;
     }

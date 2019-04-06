@@ -19,18 +19,25 @@
 
 package uk.co.objectconnexions.expressiveobjects.viewer.dnd.awt;
 
-import java.util.Hashtable;
+import java.awt.RenderingHints;
+import java.util.HashMap;
+import java.util.Map;
 
+import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Color;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.ColorsAndFonts;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Text;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.util.Properties;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.ViewConstants;
+import org.apache.log4j.Logger;
 
 public class AwtColorsAndFonts implements ColorsAndFonts {
-    private final Hashtable colors = new Hashtable();
+	private static final Logger LOG = Logger.getLogger(AwtColorsAndFonts.class);
+    private final Map<String, AwtColor> colors = new HashMap<String, AwtColor>();
     private int defaultBaseline;
     private int defaultFieldHeight;
-    private final Hashtable fonts = new Hashtable();
+    private final Map<String, AwtText> fonts = new HashMap<String, AwtText>();
+	private Object antiAliasing;
 
     @Override
     public int defaultBaseline() {
@@ -53,8 +60,8 @@ public class AwtColorsAndFonts implements ColorsAndFonts {
     public Color getColor(final String name) {
         Color color = (Color) colors.get(name);
         if (color == null && name.startsWith(COLOR_WINDOW + ".")) {
-            color = new AwtColor(name, (AwtColor) getColor(COLOR_WINDOW));
-            colors.put(name, color);
+            AwtColor awtColor = new AwtColor(name, (AwtColor) getColor(COLOR_WINDOW));
+            colors.put(name, awtColor);
         }
         return color;
 
@@ -70,6 +77,11 @@ public class AwtColorsAndFonts implements ColorsAndFonts {
         return (Text) fonts.get(name);
     }
 
+    @Override
+    public Object getAntiAliasing() {
+		return antiAliasing;
+    }
+    
     @Override
     public void init() {
         // core color scheme
@@ -128,7 +140,6 @@ public class AwtColorsAndFonts implements ColorsAndFonts {
         final int defaultFontSizeLarge = AwtText.defaultFontSizeLarge();
 
         setText(TEXT_TITLE, defaultFontFamily + "-bold-" + defaultFontSizeLarge);
-
         setText(TEXT_TITLE_SMALL, defaultFontFamily + "-bold-" + defaultFontSizeMedium);
         setText(TEXT_NORMAL, defaultFontFamily + "-plain-" + defaultFontSizeMedium);
         setText(TEXT_CONTROL, defaultFontFamily + "-bold-" + defaultFontSizeMedium);
@@ -139,6 +150,28 @@ public class AwtColorsAndFonts implements ColorsAndFonts {
         setText(TEXT_LABEL_MANDATORY, defaultFontFamily + "--" + defaultFontSizeSmall);
         setText(TEXT_LABEL_DISABLED, defaultFontFamily + "--" + defaultFontSizeSmall);
         setText(TEXT_LABEL, defaultFontFamily + "--" + defaultFontSizeSmall);
+        
+        String antiAliasProperty = ExpressiveObjectsContext.getConfiguration().getString( Properties.PROPERTY_BASE + "font.anti-alias", "DEFAULT").toLowerCase();
+        if (antiAliasProperty.equals("on")) {
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_ON;
+        } else if (antiAliasProperty.equals("off")) {
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_OFF;
+        } else if (antiAliasProperty.equals("default")) {
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_DEFAULT;
+        } else if (antiAliasProperty.equals("gasp")) {
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_GASP;
+        } else if (antiAliasProperty.equals("hbgr")) {
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HBGR;
+        } else if (antiAliasProperty.equals("hrgb")) {
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB;
+        } else if (antiAliasProperty.equals("vbgr")) {
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_VBGR;
+        } else if (antiAliasProperty.equals("vrgb")) {
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_VRGB;
+        } else {
+        	LOG.warn("Unrecognised setting for anti-aliasing (" + antiAliasProperty + ") using default");
+        	antiAliasing = RenderingHints.VALUE_TEXT_ANTIALIAS_DEFAULT;
+        }
     }
 
     private void setColor(final String name, final Color defaultColor) {

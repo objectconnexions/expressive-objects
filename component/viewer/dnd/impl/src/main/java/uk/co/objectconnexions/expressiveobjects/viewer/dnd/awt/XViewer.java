@@ -100,7 +100,7 @@ public class XViewer implements Viewer {
     private RenderingArea renderingArea;
     private View rootView;
     private String status;
-    private boolean runningAsExploration;
+	private boolean runningAsExploration;
     private boolean runningAsPrototype;
     private InteractionSpy spy;
     private int statusBarHeight;
@@ -537,7 +537,7 @@ public class XViewer implements Viewer {
             menu.addMenuOptions(LOGGING_OPTIONS);
             menu.addMenuOptions(DEBUG_OPTIONS);
         }
-        final boolean showExplorationOptions = includeExploration || showExplorationMenuByDefault;
+        final boolean showExplorationOptions = showExplorationMenuByDefault || includeExploration;
         final boolean showPrototypeOptions = isRunningAsPrototype();
         menu.show(forView, includeDebug, showExplorationOptions, showPrototypeOptions);
         feedbackManager.clearBusy(over);

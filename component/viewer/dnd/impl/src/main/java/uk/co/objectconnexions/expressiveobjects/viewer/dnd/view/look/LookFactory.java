@@ -24,6 +24,7 @@ import java.util.List;
 
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.util.Properties;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Look;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.look.flat.FlatLook;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.look.line.LineLook;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.look.linux.LinuxLook;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.look.simple.SimpleLook;
@@ -32,6 +33,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.look.swing.Swing
 public class LookFactory {
     private static final Look SIMPLE_LOOK = new SimpleLook();
     private static final LineLook LINE_LOOK = new LineLook();
+    private static final FlatLook FLAT_LOOK = new FlatLook();
     private static final Look SWING_LOOK = new SwingLook();
     private static final Look LINUX_LOOK = new LinuxLook();
     private static final Look defaultLook = SIMPLE_LOOK;
@@ -41,6 +43,7 @@ public class LookFactory {
     public static void init() {
         looks.add(SIMPLE_LOOK);
         looks.add(LINE_LOOK);
+        looks.add(FLAT_LOOK);
         looks.add(SWING_LOOK);
         looks.add(LINUX_LOOK);
 

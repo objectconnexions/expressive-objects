@@ -46,6 +46,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.base.DragViewOut
  */
 public class ObjectBorder extends AbstractBorder {
     private static final int BORDER = 13;
+    private static final int PADDING = 6;
 
     public ObjectBorder(final int size, final View wrappedView) {
         super(wrappedView);
@@ -53,7 +54,7 @@ public class ObjectBorder extends AbstractBorder {
         top = size;
         left = size;
         bottom = size;
-        right = size + BORDER;
+        right = size + PADDING + BORDER;
     }
 
     public ObjectBorder(final View wrappedView) {

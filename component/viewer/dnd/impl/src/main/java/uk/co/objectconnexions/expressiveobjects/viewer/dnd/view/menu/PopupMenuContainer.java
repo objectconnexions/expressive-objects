@@ -49,7 +49,7 @@ public class PopupMenuContainer extends AbstractView {
     private PopupMenu submenu;
     private Color backgroundColor;
     private final View target;
-    private final Vector options = new Vector();
+    private final Vector<MenuOptions> options = new Vector<MenuOptions>();
     private final Location at;
     private boolean isLayoutInvalid;
 
@@ -175,7 +175,7 @@ public class PopupMenuContainer extends AbstractView {
             target.contentMenuOptions(optionSet);
         }
         optionSet.add(DEBUG_OPTION);
-        final Enumeration e = options.elements();
+        final Enumeration<MenuOptions> e = options.elements();
         while (e.hasMoreElements()) {
             final MenuOptions element = (MenuOptions) e.nextElement();
             element.menuOptions(optionSet);

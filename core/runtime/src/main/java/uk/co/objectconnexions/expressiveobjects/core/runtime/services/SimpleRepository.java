@@ -19,18 +19,20 @@
 
 package uk.co.objectconnexions.expressiveobjects.core.runtime.services;
 
+import uk.co.objectconnexions.expressiveobjects.applib.annotation.Hidden;
+import uk.co.objectconnexions.expressiveobjects.applib.annotation.Named;
 import uk.co.objectconnexions.expressiveobjects.core.commons.lang.ToString;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecification;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.persistence.Persistor;
 
-public final class SimpleRepository {
+public final class SimpleRepository<T> {
 
-    private final Class<?> type;
+    private final Class<T> type;
     private ObjectSpecification spec;
 
-    public SimpleRepository(final Class<?> cls) {
+    public SimpleRepository(final Class<T> cls) {
         this.type = cls;
     }
 
@@ -57,7 +59,7 @@ public final class SimpleRepository {
     // allInstances
     // //////////////////////////////////////////////////////
 
-    public Object[] allInstances() {
+    public T[] allInstances() {
         return RepositoryHelper.allInstances(getSpec(), type);
     }
 
@@ -69,20 +71,12 @@ public final class SimpleRepository {
     // allInstances
     // //////////////////////////////////////////////////////
 
-    public Object[] findByTitle(final String title) {
-        return RepositoryHelper.findByTitle(getSpec(), type, title).toArray();
+    public T[] findByTitle(final @Named("Title to find") String title) {
+        return (T[]) RepositoryHelper.findByTitle(getSpec(), type, title).toArray();
     }
 
-    public String disableFindByTitle() {
+    public String disableFindByTitle(String title) {
         return disableAllInstances();
-    }
-
-    public static String[] parameterNamesFindByTitle() {
-        return new String[] { "Title to find" };
-    }
-
-    public static boolean[] parametersRequiredFindByTitle() {
-        return new boolean[] { true };
     }
 
     private boolean hasInstances() {
@@ -103,25 +97,26 @@ public final class SimpleRepository {
     // newTransientInstance
     // //////////////////////////////////////////////////////
 
-    public Object newTransientInstance() {
-        return getPersistenceSession().createTransientInstance(getSpec()).getObject();
+    public T newTransientInstance() {
+        return (T) getPersistenceSession().createTransientInstance(getSpec()).getObject();
     }
 
     // //////////////////////////////////////////////////////
     // getSpec (hidden)
     // //////////////////////////////////////////////////////
 
+    @Hidden
     protected ObjectSpecification getSpec() {
         if (spec == null) {
             spec = ExpressiveObjectsContext.getSpecificationLoader().loadSpecification(type);
         }
         return spec;
     }
-
+/*
     public static boolean alwaysHideSpec() {
         return true;
     }
-
+*/
     // //////////////////////////////////////////////////////
     // Dependencies (from singleton)
     // //////////////////////////////////////////////////////

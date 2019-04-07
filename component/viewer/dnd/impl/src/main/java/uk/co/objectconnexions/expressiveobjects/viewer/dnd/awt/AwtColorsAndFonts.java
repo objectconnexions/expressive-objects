@@ -33,6 +33,7 @@ import org.apache.log4j.Logger;
 
 public class AwtColorsAndFonts implements ColorsAndFonts {
 	private static final Logger LOG = Logger.getLogger(AwtColorsAndFonts.class);
+    private final Map<String, AwtColor> defaultColors = new HashMap<String, AwtColor>();
     private final Map<String, AwtColor> colors = new HashMap<String, AwtColor>();
     private int defaultBaseline;
     private int defaultFieldHeight;
@@ -58,13 +59,55 @@ public class AwtColorsAndFonts implements ColorsAndFonts {
 
     @Override
     public Color getColor(final String name) {
-        Color color = (Color) colors.get(name);
-        if (color == null && name.startsWith(COLOR_WINDOW + ".")) {
-            AwtColor awtColor = new AwtColor(name, (AwtColor) getColor(COLOR_WINDOW));
-            colors.put(name, awtColor);
+    	Color color = colors.get(name);
+        if (color == null) {
+        	if (name.startsWith(COLOR_WINDOW + ".")) {
+        			String nextName = name.substring(0, name.lastIndexOf('.'));
+        			AwtColor defaultColor = defaultColors.get(nextName);
+                    final AwtColor c = new AwtColor(name, defaultColor);
+        			colors.put(name, (AwtColor) c);
+					return c;
+        	}
+        	
+        	AwtColor defaultColor = defaultColors.get(name);
+            final AwtColor c = new AwtColor(name, defaultColor);
+            colors.put(name, c);
+            LOG.info("adding color " + c);
+            return c;
+        } else {
+        	return color;
         }
-        return color;
+/*
+        
+        
+        
+        
+    	if (color == null && name.startsWith(COLOR_WINDOW + ".")) {
+//                    AwtColor awtColor = new AwtColor(name, (AwtColor) getColor(COLOR_WINDOW));
+     //               colors.put(name, awtColor);
+            		String nextName = name.substring(0, name.lastIndexOf('.'));
+            		color = colors.get(nextName);
+            		if (color == null) {
+            			throw new ExpressiveObjectsException("No such color: " + name);
+            			//AwtColor awtColor = new AwtColor(name, (AwtColor) getColor(COLOR_WINDOW));
+                	//colors.put(name, awtColor);
+                	//color = awtColor;
+            		}
+            	} else { 
+            		color = new AwtColor(name, defaultColor);
+            	}
+            	
 
+        final AwtColor color = new AwtColor(name, defaultColor);
+        colors.put(name, color);
+        LOG.info("adding wndow color " + color);
+    }
+        		
+    	
+        		
+        		
+        return color;
+        */
     }
 
     @Override
@@ -179,17 +222,18 @@ public class AwtColorsAndFonts implements ColorsAndFonts {
     }
 
     private void setColor(final String name, final AwtColor defaultColor) {
-        if (getColor(name) == null) {
+    //    if (getColor(name) == null) {
             final AwtColor color = new AwtColor(name, defaultColor);
-            colors.put(name, color);
-        }
+            defaultColors.put(name, color);
+    //        LOG.info("adding color " + color);
+  //      }
     }
 
     private void setColor(final String name, final String defaultColor) {
-        if (getColor(name) == null) {
+   //     if (getColor(name) == null) {
             final AwtColor color = new AwtColor(name, defaultColor);
-            colors.put(name, color);
-        }
+            defaultColors.put(name, color);
+  //      }
     }
 
     private void setText(final String name, final String defaultFont) {

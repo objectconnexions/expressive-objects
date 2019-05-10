@@ -40,5 +40,10 @@ public interface Workspace extends View {
      * Raise the specified view so it is above all the other views.
      */
     void raise(View view);
+    
+    /**
+     * Force all views showing the specified object to be updated.
+     */
+    void notifyViewsFor(ObjectAdapter adapter);
 
 }

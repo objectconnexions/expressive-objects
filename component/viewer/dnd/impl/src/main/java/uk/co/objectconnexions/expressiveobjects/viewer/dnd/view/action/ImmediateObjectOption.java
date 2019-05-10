@@ -84,6 +84,8 @@ public class ImmediateObjectOption extends AbstractObjectOption {
                 view.objectActionResult(result, new Placement(view));
                 view.getViewManager().disposeUnneededViews();
                 view.getFeedbackManager().showMessagesAndWarnings();
+                workspace.notifyViewsFor(target);
+                workspace.notifyViewsFor(result);
             }
 
             @Override

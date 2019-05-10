@@ -84,7 +84,7 @@ public final class RepositoryHelper {
         final List<T> list = new ArrayList<T>();
         for (final ObjectAdapter adapter : facet.iterable(instances)) {
         	Object object = adapter.getObject();
-        	if (!object.getClass().isInstance(cls)) {
+        	if (!cls.isInstance(object)) {
         		throw new ExpressiveObjectsException(object + " should be instance of " + cls.getName());
         	}
 			list.add((T) object);

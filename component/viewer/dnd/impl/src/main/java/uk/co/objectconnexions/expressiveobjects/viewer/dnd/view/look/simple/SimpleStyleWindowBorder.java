@@ -40,8 +40,10 @@ public class SimpleStyleWindowBorder implements BorderDrawing {
     final protected static int LINE_THICKNESS = 4;
     private final static Text TITLE_STYLE = Toolkit.getText(ColorsAndFonts.TEXT_TITLE_SMALL);
 
-    int titlebarHeight = Math.max(WindowControl.HEIGHT + ViewConstants.VPADDING + TITLE_STYLE.getDescent(), TITLE_STYLE.getTextHeight());
-    int baseline = LINE_THICKNESS + WindowControl.HEIGHT;
+    int titlebarHeight = 10 + Math.max(WindowControl.HEIGHT + ViewConstants.VPADDING + TITLE_STYLE.getDescent(), TITLE_STYLE.getTextHeight() + ViewConstants.VPADDING);
+    int centreLine = titlebarHeight / 2 + LINE_THICKNESS;
+    //    int baseline = LINE_THICKNESS + titlebarHeight - TITLE_STYLE.getDescent() - ViewConstants.VPADDING; //LINE_THICKNESS + WindowControl.HEIGHT;
+    int baseline = centreLine + TITLE_STYLE.getAscent() / 2;
     int left = LINE_THICKNESS;
     int right = LINE_THICKNESS;
     int top = LINE_THICKNESS + titlebarHeight;
@@ -96,13 +98,29 @@ public class SimpleStyleWindowBorder implements BorderDrawing {
          * Toolkit.getColor("active")); }
          */
         // title bar
-        canvas.drawSolidRectangle(left + 1, LINE_THICKNESS + 1, width - LINE_THICKNESS * 2 - 1, titlebarHeight - 1, titleBarBackgroundColor);
+        canvas.drawSolidRectangle(left, LINE_THICKNESS, width - LINE_THICKNESS * 2, titlebarHeight, titleBarBackgroundColor);
         final int y = LINE_THICKNESS + titlebarHeight;
         canvas.drawLine(LINE_THICKNESS, y, width - LINE_THICKNESS - 1, y, borderColor);
 
+        baseline = centreLine + (titlebarHeight - TITLE_STYLE.getTextHeight()) / 2; // + TITLE_STYLE.getDescent();
         final int controlWidth = ViewConstants.HPADDING + (WindowControl.WIDTH + ViewConstants.HPADDING) * controls.length;
         final String text = TextUtils.limitText(title, TITLE_STYLE, width - controlWidth - LINE_THICKNESS * 2 - 2);
         canvas.drawText(text, x + controlWidth, baseline, titleBarTextColor, TITLE_STYLE);
+        canvas.drawLine(x + 7, centreLine, x + 207, centreLine, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BOUNDS_VIEW));
+        int midLine = titlebarHeight / 2;
+		canvas.drawLine(x + 10, midLine , x + 200, midLine, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BOUNDS_VIEW));
+        int descentline = baseline + TITLE_STYLE.getDescent();
+        canvas.drawLine(x + 20, descentline, x + 200, descentline, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BASELINE));
+        
+        int calcTop = baseline + TITLE_STYLE.getDescent(); //descentline - TITLE_STYLE.getTextHeight();
+		canvas.drawLine(x + 10, calcTop, x + 30, calcTop, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BOUNDS_VIEW));
+        int topline = baseline - TITLE_STYLE.getAscent();
+        canvas.drawLine(x + 20, topline, x + 200, topline, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BASELINE));
+        canvas.drawLine(x + 50, baseline, x + 200, baseline, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BASELINE));
+
+        int calcTop2 = descentline - TITLE_STYLE.getTextHeight();
+		canvas.drawLine(x + 14, calcTop2, x + 40, calcTop2, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BOUNDS_REPAINT));
+
         // canvas.drawRectangle(x, 3, width, 20, titleBarTextColor);
         /*
          * final Color white = Toolkit.getColor("white"); final int hatchX =

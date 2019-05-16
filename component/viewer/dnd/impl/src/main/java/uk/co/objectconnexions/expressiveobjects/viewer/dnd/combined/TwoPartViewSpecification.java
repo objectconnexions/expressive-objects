@@ -21,26 +21,30 @@ package uk.co.objectconnexions.expressiveobjects.viewer.dnd.combined;
 
 import java.util.List;
 
-import uk.co.objectconnexions.expressiveobjects.applib.annotation.Where;
 import uk.co.objectconnexions.expressiveobjects.core.commons.authentication.AuthenticationSession;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecification;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAssociation;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAssociationFilters;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
-import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.FormSpecification;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.FormWithoutIconSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.InternalFormSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Axes;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Content;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Toolkit;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.View;
-import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.axis.LabelAxis;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.base.Layout;
-import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.border.LabelBorder;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.border.FieldOutlineBorder;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.border.IconBorder;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.composite.ColumnLayout;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.content.FieldContent;
 
 public class TwoPartViewSpecification extends SplitViewSpecification {
 
+	public TwoPartViewSpecification() {
+		addViewDecorator(new IconBorder.Factory());
+	}
+	
     @Override
     public Layout createLayout(final Content content, final Axes axes) {
         return new ColumnLayout();
@@ -48,20 +52,21 @@ public class TwoPartViewSpecification extends SplitViewSpecification {
 
     @Override
     View createMainView(final Axes axes, final Content mainContent, final Content secondaryContent) {
-        final View form1 = new FormSpecification() {
+    	final View form1 = new FieldOutlineBorder(mainContent.title(),
+        		1, 5, new InternalFormSpecification() {
             @Override
             protected boolean include(final Content content, final int sequence) {
                 return !secondaryContent.getId().equals(content.getId());
             };
-        }.createView(mainContent, axes, -1);
+        }.createView(mainContent, axes, -1));
         return form1;
     }
 
     @Override
     View createSecondaryView(final Axes axes, final Content fieldContent) {
-        final View form = new InternalFormSpecification().createView(fieldContent, axes, -1);
-        final View labelledForm = LabelBorder.createFieldLabelBorder(new LabelAxis(), form);
-        return labelledForm;
+        final View form = new FieldOutlineBorder(((FieldContent) fieldContent).getFieldName(),
+        		1, 5, new InternalFormSpecification().createView(fieldContent, axes, -1));
+        return form;
     }
 
     @Override

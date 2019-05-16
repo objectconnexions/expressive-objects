@@ -495,6 +495,8 @@ public class XViewer implements Viewer {
             refreshStatus = false;
             UI_LOG.debug("changed user status " + status + " " + statusBarArea);
 
+            ((Graphics2D) graphic).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, Toolkit.getAntiAliasing());
+
             final int width = internalDisplaySize.getWidth();
             graphic.setClip(0, top, width, statusBarHeight);
             graphic.setColor(((AwtColor) Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY3)).getAwtColor());

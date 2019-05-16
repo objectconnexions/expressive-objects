@@ -473,7 +473,8 @@ public final class ApplicationWorkspace extends CompositeViewUsingBuilder implem
         for (final View view : views) {
         	notifyViewsFor(adapter, view);
             if (view.getContent().getAdapter() == adapter) {
-                view.invalidateContent();;
+                view.invalidateContent();
+                container.invalidateContent();
             }
         }
 	

@@ -116,7 +116,8 @@ public class AwtText implements Text {
 
     @Override
     public int getTextHeight() {
-        return metrics.getHeight() - (ascentAdjust ? metrics.getDescent() : 0);
+    	return metrics.getAscent() + metrics.getDescent();
+     //   return metrics.getHeight() - (ascentAdjust ? metrics.getDescent() : 0);
     }
 
     @Override

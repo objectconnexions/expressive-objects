@@ -23,16 +23,21 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Canvas;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Color;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.window.ResizeWindowRender;
 
-public class ResizeWindowSimpleRender extends SimpleRender implements ResizeWindowRender {
+public class SimpleResizeWindowRender extends SimpleRender implements ResizeWindowRender {
 
     @Override
     public void draw(final Canvas canvas, final int width, final int height, final boolean isDisabled, final boolean isOver, final boolean isPressed) {
         final int x = 0;
         final int y = 0;
-
         final Color color = color(isDisabled, isOver);
-        canvas.drawRectangle(x + 3, y + 2, 8, 8, color);
-        canvas.drawLine(x + 3, y + 3, x + 10, y + 3, color);
+        if (!isDisabled && isOver) {
+        	canvas.drawRectangle(x, y, width, height, color);
+        }
+        int size = height - 4;
+        canvas.drawRectangle(x + 3, y + 2, size, size, color);
+        size -= 3;
+        canvas.drawRectangle(x + 3, y + 2, size, size, color);
+
     }
 
 }

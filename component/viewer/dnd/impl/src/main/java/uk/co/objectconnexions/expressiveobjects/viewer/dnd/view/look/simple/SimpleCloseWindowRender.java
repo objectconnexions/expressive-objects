@@ -23,17 +23,23 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Canvas;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Color;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.window.CloseWindowRender;
 
-public class CloseWindowSimpleRender extends SimpleRender implements CloseWindowRender {
+public class SimpleCloseWindowRender extends SimpleRender implements CloseWindowRender {
 
     @Override
     public void draw(final Canvas canvas, final int width, final int height, final boolean isDisabled, final boolean isOver, final boolean isPressed) {
         final int x = 0;
         final int y = 0;
-
         final Color color = color(isDisabled, isOver);
-        canvas.drawLine(x + 4, y + 3, x + 10, y + 9, color);
-        canvas.drawLine(x + 5, y + 3, x + 11, y + 9, color);
-        canvas.drawLine(x + 10, y + 3, x + 4, y + 9, color);
-        canvas.drawLine(x + 11, y + 3, x + 5, y + 9, color);
+        if (!isDisabled && isOver) {
+        	canvas.drawRectangle(x, y, width, height, color);
+        }
+        int right = width - 4;
+        int top = y + 3;
+        int left = x + 5;
+		int bottom = height - 3;
+		canvas.drawLine(left - 1, top, right - 1, bottom, color);
+		canvas.drawLine(left, top, right, bottom, color);
+        canvas.drawLine(right - 1, top, left - 1, bottom, color);
+        canvas.drawLine(right, top, left, bottom, color);
     }
 }

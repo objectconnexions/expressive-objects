@@ -23,15 +23,17 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Canvas;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Color;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.window.IconizeWindowRender;
 
-public class IconizeWindowSimpleRender extends SimpleRender implements IconizeWindowRender {
+public class SimpleIconizeWindowRender extends SimpleRender implements IconizeWindowRender {
 
     @Override
     public void draw(final Canvas canvas, final int width, final int height, final boolean isDisabled, final boolean isOver, final boolean isPressed) {
         final int x = 0;
         final int y = 0;
-
         final Color color = color(isDisabled, isOver);
-        canvas.drawLine(x + 3, y + 8, x + 8, y + 8, color);
-        canvas.drawLine(x + 3, y + 9, x + 8, y + 9, color);
+        if (!isDisabled && isOver) {
+        	canvas.drawRectangle(x, y, width, height, color);
+        }
+        int size = 6;
+		canvas.drawSolidOval(x + 3, height - 8, size, size, color);
     }
 }

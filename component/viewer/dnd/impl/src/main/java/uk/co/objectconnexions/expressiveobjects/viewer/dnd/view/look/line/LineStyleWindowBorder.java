@@ -26,6 +26,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.ColorsAndFont
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Location;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Size;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Text;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.VerticalAlignment;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Toolkit;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.View;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.ViewConstants;
@@ -47,11 +48,12 @@ public class LineStyleWindowBorder implements BorderDrawing {
     public void draw(final Canvas canvas, final Size s, final boolean hasFocus, final ViewState state, final View[] controls, final String title) {
         final Color borderColor = hasFocus ? Toolkit.getColor(ColorsAndFonts.COLOR_BLACK) : Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY1);
         canvas.drawRectangle(0, 0, s.getWidth(), s.getHeight(), borderColor);
-        final int y = titlebarHeight + 5;
+        final int y = titlebarHeight;
         canvas.drawLine(0, y, s.getWidth(), y, borderColor);
         final int controlWidth = ViewConstants.HPADDING + (WindowControl.WIDTH + ViewConstants.HPADDING) * controls.length;
         final String text = TextUtils.limitText(title, TITLE_STYLE, s.getWidth() - controlWidth - ViewConstants.VPADDING);
-        canvas.drawText(text, 6, TITLE_STYLE.getLineHeight(), borderColor, Toolkit.getText(ColorsAndFonts.TEXT_LABEL));
+        int baseline = TextUtils.getBaseline(TITLE_STYLE, VerticalAlignment.CENTER, 1, titlebarHeight);
+		canvas.drawText(text, 6, baseline , borderColor, TITLE_STYLE);
     }
 
     // TODO transiency should be flagged elsewhere and dealt with in the draw
@@ -90,7 +92,7 @@ public class LineStyleWindowBorder implements BorderDrawing {
     @Override
     public void layoutControls(final Size size, final View[] controls) {
         int x = size.getWidth() - 1 - (WindowControl.WIDTH + ViewConstants.HPADDING) * controls.length;
-        final int y = 2 + ViewConstants.VPADDING;
+        final int y = ViewConstants.VPADDING;
         for (final View control : controls) {
             control.setSize(control.getRequiredSize(new Size()));
             control.setLocation(new Location(x, y));

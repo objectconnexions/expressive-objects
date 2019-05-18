@@ -127,8 +127,8 @@ public class TextUtils {
      * @param style 
      */
 	public static int align(final String text, final Text style, final Alignment alignTo, final int leftEdge,
-			final int rightEdge) {
-		return alignTo.align(text, style, leftEdge, rightEdge);
+			final int height) {
+		return alignTo.align(text, style, leftEdge, height);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class TextUtils {
 	 * @param titleStyle 
 	 */
 	public static int getBaseline(final Text style, final VerticalAlignment alignment, final int topEdge, 
-			final int bottomEdge) {
-		return alignment.align(style, topEdge, bottomEdge);
+			final int height) {
+		return alignment.align(style, topEdge, height);
 	}
 }

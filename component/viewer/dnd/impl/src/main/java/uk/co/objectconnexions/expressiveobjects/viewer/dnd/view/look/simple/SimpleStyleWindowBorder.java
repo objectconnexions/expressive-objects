@@ -42,7 +42,7 @@ public class SimpleStyleWindowBorder implements BorderDrawing {
 	private final static int BORDER_THICKNESS = 6;
     private final static Text TITLE_STYLE = Toolkit.getText(ColorsAndFonts.TEXT_TITLE_SMALL);
     
-    int titlebarHeight;
+    private final int titlebarHeight;
 
     public SimpleStyleWindowBorder() {
     	int controlHeight = WindowControl.HEIGHT + TITLE_STYLE.getDescent();
@@ -57,13 +57,11 @@ public class SimpleStyleWindowBorder implements BorderDrawing {
 
     @Override
     public void layoutControls(final Size size, final View[] controls) {
-        int x = BORDER_THICKNESS + ViewConstants.HPADDING; // size.getWidth() - right -
-                                      // (WindowControl.WIDTH + View.HPADDING) *
-                                      // controls.length;
-        final int y = BORDER_THICKNESS + ViewConstants.VPADDING;
-
+        final int y = titlebarHeight / 2;
+        int x = BORDER_THICKNESS + ViewConstants.HPADDING; 
         for (final View control : controls) {
-            control.setSize(control.getRequiredSize(new Size()));
+            Size controlSize = control.getRequiredSize(new Size());
+			control.setSize(controlSize);
             control.setLocation(new Location(x, y));
             x += control.getSize().getWidth();
         }
@@ -115,7 +113,6 @@ public class SimpleStyleWindowBorder implements BorderDrawing {
             // canvas.drawRectangle(x, LINE_THICKNESS + 1, height, height,
             // Color.RED);
         }
-
     }
 
     @Override
@@ -137,7 +134,7 @@ public class SimpleStyleWindowBorder implements BorderDrawing {
 
     @Override
     public int getTop() {
-        return BORDER_THICKNESS + titlebarHeight;
+        return BORDER_THICKNESS + titlebarHeight + 1;
     }
 
     @Override

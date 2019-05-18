@@ -45,20 +45,28 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.base.DragViewOut
  * </ol>
  */
 public class ObjectBorder extends AbstractBorder {
-    private static final int BORDER = 13;
-    private static final int PADDING = 6;
+	private static final int DEFAULT_EXTERNAL_PADDING = 1;
+	private static final int DEFAULT_INTERNAL_PADDING = 1;
+	private static final int DEFAULT_BORDER_WIDTH = 1;
+    private static final int VIEW_CONTROL_BORDER = 13;
+    private static final int VIEW_CONTROL_PADDING = 6;
+	private int externalPadding;
+	private int borderWidth;
 
-    public ObjectBorder(final int size, final View wrappedView) {
+    public ObjectBorder(final int externalPadding, final int borderWidth, final int internalPaddding, final View wrappedView) {
         super(wrappedView);
+		this.externalPadding = externalPadding;
+		this.borderWidth = borderWidth;
 
-        top = size;
-        left = size;
-        bottom = size;
-        right = size + PADDING + BORDER;
+        final int padding = externalPadding + borderWidth + internalPaddding;
+        top = padding;
+        left = padding;
+        bottom = padding;
+        right = padding + VIEW_CONTROL_PADDING + VIEW_CONTROL_BORDER;
     }
 
     public ObjectBorder(final View wrappedView) {
-        this(1, wrappedView);
+        this(DEFAULT_EXTERNAL_PADDING, DEFAULT_BORDER_WIDTH, DEFAULT_INTERNAL_PADDING, wrappedView);
     }
 
     @Override
@@ -96,6 +104,7 @@ public class ObjectBorder extends AbstractBorder {
         } else if (state.isObjectIdentified()) {
             color = Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY2);
         }
+
         final Size s = getSize();
 
         if (getContent().isPersistable() && getContent().isTransient()) {
@@ -112,16 +121,19 @@ public class ObjectBorder extends AbstractBorder {
         if (color != null) {
             if (hasFocus) {
                 final int xExtent = s.getWidth() - left;
-                for (int i = 0; i < left; i++) {
+                for (int i = externalPadding; i < externalPadding + borderWidth; i++) {
                     canvas.drawRectangle(i, i, xExtent - 2 * i, s.getHeight() - 2 * i, color);
                 }
             } else {
-                final int xExtent = s.getWidth();
-                for (int i = 0; i < left; i++) {
+                final int xExtent = s.getWidth(); // - externalPadding - borderWidth - internalPaddding;
+                for (int i = externalPadding; i < externalPadding + borderWidth; i++) {
                     canvas.drawRectangle(i, i, xExtent - 2 * i, s.getHeight() - 2 * i, color);
                 }
-                canvas.drawLine(xExtent - BORDER, top, xExtent - BORDER, top + s.getHeight(), color);
-                canvas.drawSolidRectangle(xExtent - BORDER + 1, top, BORDER - 2, s.getHeight() - 2 * top, Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY3));
+                int y1 = externalPadding + borderWidth;
+				int y2 = s.getHeight() - y1;
+				int x1 = xExtent - externalPadding - borderWidth - VIEW_CONTROL_BORDER;
+				canvas.drawLine(x1, y1, x1, y2, color);
+                canvas.drawSolidRectangle(x1 + 1, y1, VIEW_CONTROL_BORDER - 1, y2 - y1, Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY3));
             }
         }
     }

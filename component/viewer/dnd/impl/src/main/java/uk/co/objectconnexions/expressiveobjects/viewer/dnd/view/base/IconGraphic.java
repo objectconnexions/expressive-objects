@@ -56,12 +56,12 @@ public class IconGraphic {
 
     public IconGraphic(final View view, final Text style) {
         content = view.getContent();
-        iconHeight = style.getTextHeight();
+        iconHeight = (int) (style.getTextHeight() * 0.9);
         this.baseline = style.getAscent();
     }
 
     public void draw(final Canvas canvas, final int x, final int baseline) {
-        final int y = baseline - this.baseline + 1;
+        final int y = baseline - this.baseline;
         if (Toolkit.debug) {
             canvas.drawDebugOutline(new Bounds(new Location(x, y), getSize()), getBaseline(), Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BOUNDS_DRAW));
         }

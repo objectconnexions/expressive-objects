@@ -63,18 +63,8 @@ public class DummyText implements Text {
     }
 
     @Override
-    public int stringHeight(final String text, final int width) {
-        return getLineHeight();
-    }
-
-    @Override
     public int stringWidth(final String text) {
         return text.length() * charWidth('x');
-    }
-
-    @Override
-    public int stringWidth(final String message, final int maxWidth) {
-        return 0;
     }
 
     @Override

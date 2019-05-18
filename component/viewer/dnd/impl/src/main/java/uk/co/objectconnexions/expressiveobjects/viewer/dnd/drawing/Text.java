@@ -75,11 +75,4 @@ public interface Text {
      */
     int stringWidth(String text);
 
-    /**
-     * Returns the height in pixels when the specified text is wrapped at the
-     * specified width
-     */
-    int stringHeight(String text, int maxWidth);
-
-    int stringWidth(String message, int maxWidth);
 }

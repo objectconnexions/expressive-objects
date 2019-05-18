@@ -113,10 +113,16 @@ public class AbstractBorder extends AbstractViewDecorator {
         return wrappedView.getBaseline() + getTop();
     }
 
+    /**
+     * Return the width of the bottom border.
+     */
     protected int getBottom() {
         return bottom;
     }
 
+    /**
+     * Return the width of the left border.
+     */
     protected int getLeft() {
         return left;
     }
@@ -140,6 +146,9 @@ public class AbstractBorder extends AbstractViewDecorator {
         return size;
     }
 
+    /**
+     * Return the width of the right border.
+     */
     protected int getRight() {
         return right;
     }
@@ -152,6 +161,9 @@ public class AbstractBorder extends AbstractViewDecorator {
         return size;
     }
 
+    /**
+     * Return the width of the top border.
+     */
     protected int getTop() {
         return top;
     }

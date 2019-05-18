@@ -37,12 +37,24 @@ public interface BorderDrawing {
 
     public abstract void getRequiredSize(Size size, String title, View[] controls);
 
+    /**
+     * Return the width required to accommodate the left border.
+     */
     public abstract int getLeft();
 
+    /**
+     * Return the width required to accommodate the right border.
+     */
     public abstract int getRight();
 
+    /**
+     * Return the width required to accommodate the top border.
+     */
     public abstract int getTop();
 
+    /**
+     * Return the width required to accommodate the bottom border.
+     */
     public abstract int getBottom();
 
 }

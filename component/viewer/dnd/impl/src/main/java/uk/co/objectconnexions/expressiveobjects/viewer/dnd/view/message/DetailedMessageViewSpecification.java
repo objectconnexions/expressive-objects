@@ -43,6 +43,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.border.ScrollBor
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.control.AbstractButtonAction;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.control.CancelAction;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.debug.DebugOutput;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.text.TextUtils;
 
 public class DetailedMessageViewSpecification implements ViewSpecification {
 
@@ -135,16 +136,16 @@ class DetailedMessageView extends AbstractView {
         size.extendHeight(Toolkit.getText(ColorsAndFonts.TEXT_TITLE).getTextHeight());
         size.extendHeight(30);
 
+        final Text text = Toolkit.getText(ColorsAndFonts.TEXT_NORMAL);
         final String message = ((MessageContent) getContent()).getMessage();
         size.ensureWidth(500);
-        size.extendHeight(Toolkit.getText(ColorsAndFonts.TEXT_NORMAL).stringHeight(message, 500));
+        size.extendHeight(TextUtils.stringHeight(message, text, 500));
         size.extendHeight(30);
 
         final String detail = ((MessageContent) getContent()).getDetail();
         final StringTokenizer st = new StringTokenizer(detail, "\n\r");
         while (st.hasMoreTokens()) {
             final String line = st.nextToken();
-            final Text text = Toolkit.getText(ColorsAndFonts.TEXT_NORMAL);
             size.ensureWidth((line.startsWith("\t") ? 20 : 0) + text.stringWidth(line));
             size.extendHeight(text.getTextHeight());
         }
@@ -170,7 +171,7 @@ class DetailedMessageView extends AbstractView {
         final Text text = Toolkit.getText(ColorsAndFonts.TEXT_NORMAL);
         canvas.drawText(message, left, y, 500, black, text);
 
-        y += text.stringHeight(message, 500);
+        y += TextUtils.stringHeight(message, text, 500);
         canvas.drawText(detail, left, y, 1000, Toolkit.getColor(ColorsAndFonts.COLOR_PRIMARY1), text);
     }
 

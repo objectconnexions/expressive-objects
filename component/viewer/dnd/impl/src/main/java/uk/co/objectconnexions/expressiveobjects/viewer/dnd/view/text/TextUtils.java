@@ -19,7 +19,11 @@
 
 package uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.text;
 
+import java.util.StringTokenizer;
+
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Alignment;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Text;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.VerticalAlignment;
 
 public class TextUtils {
 
@@ -59,5 +63,81 @@ public class TextUtils {
         }
         return text;
     }
+    
+    /**
+     * Returns the height in pixels when the specified text is wrapped at the
+     * specified width.
+     */
+    public static int stringHeight(final String text, final Text style, final int maxWidth) {
+        int noLines = 0;
+        final StringTokenizer lines = new StringTokenizer(text, "\n\r");
+        while (lines.hasMoreTokens()) {
+            final String line = lines.nextToken();
+            final StringTokenizer words = new StringTokenizer(line, " ");
+            final StringBuffer l = new StringBuffer();
+            int width = 0;
+            while (words.hasMoreTokens()) {
+                final String nextWord = words.nextToken();
+                final int wordWidth = style.stringWidth(nextWord);
+                width += wordWidth;
+                if (width >= maxWidth) {
+                    noLines++;
+                    l.setLength(0);
+                    width = wordWidth;
+                }
+                l.append(nextWord);
+                l.append(" ");
+                width += style.stringWidth(" ");
+            }
+            noLines++;
+        }
+        return noLines * style.getLineHeight();
+    }
 
+    public static int stringWidth(final String text, final Text style, final int maxWidth) {
+        int width = 0;
+        final StringTokenizer lines = new StringTokenizer(text, "\n\r");
+        while (lines.hasMoreTokens()) {
+            final String line = lines.nextToken();
+            final StringTokenizer words = new StringTokenizer(line, " ");
+            final StringBuffer l = new StringBuffer();
+            int lineWidth = 0;
+            while (words.hasMoreTokens()) {
+                final String nextWord = words.nextToken();
+                final int wordWidth = style.stringWidth(nextWord);
+                lineWidth += wordWidth;
+                if (lineWidth >= maxWidth) {
+                    return maxWidth;
+                }
+                if (lineWidth > width) {
+                    width = lineWidth;
+                }
+                l.append(nextWord);
+                l.append(" ");
+                lineWidth += style.stringWidth(" ");
+            }
+        }
+        return width;
+    }
+
+
+    /**
+     * Returns the horizontal position to draw text for the given alignment within the 
+     * space between two vertical edges.
+     * @param style 
+     */
+	public static int align(final String text, final Text style, final Alignment alignTo, final int leftEdge,
+			final int rightEdge) {
+		return alignTo.align(text, style, leftEdge, rightEdge);
+	}
+
+	/**
+	 * Returns the baseline (vertical position) to draw text for the given alignment within
+	 * the space between the two specified horizontal edges.
+	 * @param titleStyle 
+	 */
+	public static int getBaseline(final Text style, final VerticalAlignment alignment, final int topEdge, 
+			final int bottomEdge) {
+		return alignment.align(style, topEdge, bottomEdge);
+	}
 }

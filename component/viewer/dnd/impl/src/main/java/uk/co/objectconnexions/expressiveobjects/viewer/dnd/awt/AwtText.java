@@ -77,7 +77,7 @@ public class AwtText implements Text {
 
     @Override
     public int getAscent() {
-        return metrics.getAscent() - (ascentAdjust ? metrics.getDescent() : 0);
+        return metrics.getAscent() - 1 - (ascentAdjust ? metrics.getDescent() : 0);
     }
 
     /**
@@ -91,7 +91,7 @@ public class AwtText implements Text {
 
     @Override
     public int getDescent() {
-        return metrics.getDescent();
+        return metrics.getDescent() - 1;
     }
 
     @Override
@@ -116,62 +116,8 @@ public class AwtText implements Text {
 
     @Override
     public int getTextHeight() {
-    	return metrics.getAscent() + metrics.getDescent();
+    	return metrics.getAscent() + metrics.getDescent() - 2;
      //   return metrics.getHeight() - (ascentAdjust ? metrics.getDescent() : 0);
-    }
-
-    @Override
-    public int stringHeight(final String text, final int maxWidth) {
-        int noLines = 0;
-        final StringTokenizer lines = new StringTokenizer(text, "\n\r");
-        while (lines.hasMoreTokens()) {
-            final String line = lines.nextToken();
-            final StringTokenizer words = new StringTokenizer(line, " ");
-            final StringBuffer l = new StringBuffer();
-            int width = 0;
-            while (words.hasMoreTokens()) {
-                final String nextWord = words.nextToken();
-                final int wordWidth = stringWidth(nextWord);
-                width += wordWidth;
-                if (width >= maxWidth) {
-                    noLines++;
-                    l.setLength(0);
-                    width = wordWidth;
-                }
-                l.append(nextWord);
-                l.append(" ");
-                width += stringWidth(" ");
-            }
-            noLines++;
-        }
-        return noLines * getLineHeight();
-    }
-
-    @Override
-    public int stringWidth(final String text, final int maxWidth) {
-        int width = 0;
-        final StringTokenizer lines = new StringTokenizer(text, "\n\r");
-        while (lines.hasMoreTokens()) {
-            final String line = lines.nextToken();
-            final StringTokenizer words = new StringTokenizer(line, " ");
-            final StringBuffer l = new StringBuffer();
-            int lineWidth = 0;
-            while (words.hasMoreTokens()) {
-                final String nextWord = words.nextToken();
-                final int wordWidth = stringWidth(nextWord);
-                lineWidth += wordWidth;
-                if (lineWidth >= maxWidth) {
-                    return maxWidth;
-                }
-                if (lineWidth > width) {
-                    width = lineWidth;
-                }
-                l.append(nextWord);
-                l.append(" ");
-                lineWidth += stringWidth(" ");
-            }
-        }
-        return width;
     }
 
     // DKH: 20060404... yes, this will grow over time, but only used client-side
@@ -183,12 +129,16 @@ public class AwtText implements Text {
     // DKH 20060404: new implementation that caches
     @Override
     public int stringWidth(final String text) {
+    	return metrics.stringWidth(text);
+    	
+    	/*
         int[] cachedStringWidth = (int[]) stringWidthByString.get(text);
         if (cachedStringWidth == null) {
             cachedStringWidth = new int[] { stringWidthInternal(text) };
             stringWidthByString.put(text, cachedStringWidth);
         }
         return cachedStringWidth[0];
+        */
     }
 
     // DKH 20060404: previously was stringWidth, now cached, see above.

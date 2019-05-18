@@ -41,6 +41,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.base.AbstractVie
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.border.ButtonBorder;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.border.ScrollBorder;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.control.AbstractButtonAction;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.text.TextUtils;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.window.SubviewFocusManager;
 
 public class MessageDialogSpecification implements ViewSpecification {
@@ -129,9 +130,9 @@ class MessageView extends AbstractView {
         size.ensureHeight(errorIcon.getHeight());
         final Text text = Toolkit.getText(ColorsAndFonts.TEXT_NORMAL);
         final Text titleText = Toolkit.getText(ColorsAndFonts.TEXT_TITLE);
-        size.extendWidth(text.stringWidth(message, MAX_TEXT_WIDTH));
+        size.extendWidth(TextUtils.stringWidth(message, text, MAX_TEXT_WIDTH));
         int textHeight = titleText.getLineHeight();
-        textHeight += text.stringHeight(message, MAX_TEXT_WIDTH);
+        textHeight += TextUtils.stringHeight(message, text, MAX_TEXT_WIDTH);
         size.ensureHeight(textHeight);
 
         size.ensureWidth(titleText.stringWidth(heading));

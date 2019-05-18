@@ -27,7 +27,7 @@ class SimpleRender {
     protected Color color(final boolean isDisabled, final boolean isOver) {
         Color color;
         if (isDisabled) {
-            color = Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY3);
+            color = Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY2);
         } else {
             color = isOver ? Toolkit.getColor(ColorsAndFonts.COLOR_PRIMARY2) : Toolkit.getColor(ColorsAndFonts.COLOR_BLACK);
         }

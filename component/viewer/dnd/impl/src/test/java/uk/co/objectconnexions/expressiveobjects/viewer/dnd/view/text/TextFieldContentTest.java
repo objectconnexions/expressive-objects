@@ -22,19 +22,6 @@ package uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.text;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;
-import java.util.List;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.jmock.integration.junit4.JMock;
-import org.jmock.integration.junit4.JUnit4Mockery;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import uk.co.objectconnexions.expressiveobjects.core.commons.config.ExpressiveObjectsConfigurationDefault;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.oid.OidMarshaller;
@@ -53,6 +40,12 @@ import uk.co.objectconnexions.expressiveobjects.core.unittestsupport.jmock.auto.
 import uk.co.objectconnexions.expressiveobjects.core.unittestsupport.jmocking.JUnitRuleMockery2;
 import uk.co.objectconnexions.expressiveobjects.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Location;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.jmock.Expectations;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
 public class TextFieldContentTest {
 

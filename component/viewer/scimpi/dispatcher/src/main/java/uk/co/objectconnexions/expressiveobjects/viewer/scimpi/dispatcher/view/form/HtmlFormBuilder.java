@@ -22,6 +22,10 @@ package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.f
 import uk.co.objectconnexions.expressiveobjects.core.commons.exceptions.UnknownTypeException;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.HelpLink;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.History;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.History.Event;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.History.Events;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.ReferencedObjects;
 
 public class HtmlFormBuilder {
 
@@ -67,12 +71,21 @@ public class HtmlFormBuilder {
             request.appendHtml("\" />\n");
         }
         request.appendHtml(request.getContext().interactionFields());
+        ReferencedObjects referencedObjects = History.getReferencedObjects(request);
         for (final InputField fld : fields) {
             if (fld.isHidden()) {
                 request.appendHtml("  <input type=\"hidden\" name=\"" + fld.getName() + "\" value=\"");
                 request.appendAsHtmlEncoded(fld.getValue());
                 request.appendHtml("\" />\n");
             } else {
+                
+                if (fld.getType() == InputField.REFERENCE) {
+                    String type = fld.getDataType();
+                    String[] optionsText = referencedObjects.getNames(fld.getDataType());
+                    String[] optionValues = referencedObjects.getReferences(fld.getDataType());
+                    fld.setOptions(optionsText, optionValues);
+                }
+                
                 final String errorSegment = fld.getErrorText() == null ? "" : "<span class=\"error\">" + fld.getErrorText() + "</span>";
                 final String fieldSegment = createField(fld);
                 final String helpSegment = HelpLink.createHelpSegment(fld.getDescription(), fld.getHelpReference());
@@ -132,7 +145,18 @@ public class HtmlFormBuilder {
     }
 
     private static String createObjectField(final InputField field, final String type) {
-        return field.getHtml();
+        
+        final String classSegment = field.isRequired() ? " class=\"required\"" : "";
+        final String disabled = field.isEditable() ? "" : " disabled=\"disabled\"";
+        final StringBuffer str = new StringBuffer();
+        str.append("\n  <select name=\"" + field.getName() + "\"" + disabled  + classSegment + ">\n");
+        
+     
+        String value = field.getValue();
+        str.append("    <option value=\"" + Request.getEncoder().encoder(value) + "\" selected=\"selected\">" + Request.getEncoder().encoder(field.getValue()) + "</option>\n");
+
+        str.append("  </select>");
+        return str.toString(); //field.getHtml();
     }
 
     private static String createTextArea(final InputField field) {

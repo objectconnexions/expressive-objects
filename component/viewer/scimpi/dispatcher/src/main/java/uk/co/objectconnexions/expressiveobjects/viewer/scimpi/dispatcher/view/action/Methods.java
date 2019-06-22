@@ -30,6 +30,7 @@ import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.Obje
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.AbstractElementProcessor;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.Dispatcher;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext.Scope;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.util.MethodsUtils;
@@ -62,10 +63,12 @@ public class Methods extends AbstractElementProcessor {
         request.appendHtml("<div class=\"actions\">");
         if (inclusionList.includes("edit") && !object.getSpecification().isService()) {
             request.appendHtml("<div class=\"action\">");
-            request.appendHtml("<a class=\"button\" href=\"_generic_edit." + Dispatcher.EXTENSION + "?_result=" + objectId + "\">Edit...</a>");
+            request.appendHtml("<a class=\"button\" href=\"_generic_edit." + Dispatcher.EXTENSION + "?" + RequestContext.RESULT
+                    + "=" + objectId + "\">Edit...</a>");
             request.appendHtml("</div>");
         }
-        writeMethods(request, objectId, object, showForms, inclusionList, view, "_generic.shtml?_result=" + objectId);
+        writeMethods(request, objectId, object, showForms, inclusionList, view, "_generic.shtml?" + RequestContext.RESULT
+                + "=" + objectId);
         request.popBlockContent();
         request.appendHtml("</div>");
     }
@@ -171,7 +174,8 @@ public class Methods extends AbstractElementProcessor {
                     params.formTitle = action.getName();
                     ActionForm.createForm(request, params, true);
                 } else {
-                    request.appendHtml("<a class=\"button\" href=\"" + view + "?_result=" + objectId + "&amp;_" + VERSION + "=" + version + "&amp;_" + METHOD + "=" + action.getId());
+                    request.appendHtml("<a class=\"button\" href=\"" + view + "?" + RequestContext.RESULT
+                            + "=" + objectId + "&amp;_" + VERSION + "=" + version + "&amp;_" + METHOD + "=" + action.getId());
                     if (cancelTo != null) {
                         request.appendHtml("&amp;_cancel-to=");
                         request.appendAsHtmlEncoded("cancel-to=\"" + cancelTo + "\"");

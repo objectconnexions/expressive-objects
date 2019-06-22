@@ -60,14 +60,14 @@ public abstract class AbstractFormView extends AbstractObjectProcessor {
             request.processUtilCloseTag();
 
             final AuthenticationSession session = ExpressiveObjectsContext.getAuthenticationSession(); 
-            List<ObjectAssociation> associations = object.getSpecification().getAssociations(ObjectAssociationFilters.dynamicallyVisible(session, object, Where.OBJECT_FORMS));
+            List<ObjectAssociation> associations = object.getSpecification().getAssociations(ObjectAssociationFilters.dynamicallyVisible(session, object, Where.ANYWHERE));
             final List<ObjectAssociation> fields = tag.includedFields(associations);
             final LinkedObject[] linkFields = tag.linkedFields(fields);
 
             if (linkAllView != null) {
                 linkAllView = request.getContext().fullUriPath(linkAllView);
                 for (int i = 0; i < linkFields.length; i++) {
-                    final boolean isObject = fields.get(i).isOneToOneAssociation();
+                    final boolean isObject = fields.get(i).isOneToOneAssociation() || fields.get(i).isOneToManyAssociation();
                     final boolean isNotParseable = !fields.get(i).getSpecification().containsFacet(ParseableFacet.class);
                     linkFields[i] = isObject && isNotParseable ? new LinkedObject(linkAllView) : null;
                 }

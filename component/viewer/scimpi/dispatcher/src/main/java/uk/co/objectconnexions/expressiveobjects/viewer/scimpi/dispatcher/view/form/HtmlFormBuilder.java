@@ -79,7 +79,7 @@ public class HtmlFormBuilder {
                 request.appendHtml("\" />\n");
             } else {
                 
-                if (fld.getType() == InputField.REFERENCE) {
+                if (fld.getType() == InputField.REFERENCE && fld.getOptionsText() == null) {
                     String type = fld.getDataType();
                     String[] optionsText = referencedObjects.getNames(fld.getDataType());
                     String[] optionValues = referencedObjects.getReferences(fld.getDataType());
@@ -145,7 +145,6 @@ public class HtmlFormBuilder {
     }
 
     private static String createObjectField(final InputField field, final String type) {
-        
         final String classSegment = field.isRequired() ? " class=\"required\"" : "";
         final String disabled = field.isEditable() ? "" : " disabled=\"disabled\"";
         final StringBuffer str = new StringBuffer();

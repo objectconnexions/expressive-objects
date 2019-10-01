@@ -1751,6 +1751,7 @@ ${license.additional-notes}
 
     <modules>
         <module>applib</module>
+        <module>data-generator</module>
         <module>metamodel</module>
         <module>runtime</module>
         <module>webserver</module>
@@ -1764,6 +1765,8 @@ ${license.additional-notes}
 
         <module>unittestsupport</module>
         <module>integtestsupport</module>
+
+	<module>data-generator</module>
 
         <module>tck</module>
     </modules>

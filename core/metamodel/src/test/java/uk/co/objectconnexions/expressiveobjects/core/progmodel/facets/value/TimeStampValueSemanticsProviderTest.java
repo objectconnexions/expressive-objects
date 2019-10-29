@@ -60,7 +60,7 @@ public class TimeStampValueSemanticsProviderTest extends ValueSemanticsProviderA
 
     @Test
     public void testTitle() {
-        assertEquals("01/01/70 00:00:00 UTC", adapter.titleString(timestamp, null));
+        assertEquals("01/01/1970, 00:00:00 UTC", adapter.titleString(timestamp, null));
     }
 
     @Test

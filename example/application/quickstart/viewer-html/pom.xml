@@ -17,6 +17,7 @@
   specific language governing permissions and limitations
   under the License.
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -28,7 +29,7 @@
 
 	<artifactId>quickstart-viewer-html</artifactId>
 	<name>Quickstart HTML Viewer</name>
-	<description>This module runs ExpressiveObjects' HTML webapp viewer.  By default it is configured to
+	<description>This module runs Expressive Objects' HTML webapp viewer.  By default it is configured to
 	run using the sql object store.  See other viewer modules for more persistence
 	options.</description>
 	
@@ -51,7 +52,7 @@
                             <goal>createconsole</goal>
                         </goals>
                         <configuration>
-                            <backgroundImage>${basedir}/src/main/jettyconsole/expressive-objects-banner.png</backgroundImage>
+                            <backgroundImage>${basedir}/src/main/jettyconsole/isis-banner.png</backgroundImage>
                         </configuration>
                         <phase>package</phase>
                     </execution>

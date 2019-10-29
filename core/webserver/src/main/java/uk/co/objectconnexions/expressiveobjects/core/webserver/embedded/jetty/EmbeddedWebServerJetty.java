@@ -22,6 +22,8 @@ package uk.co.objectconnexions.expressiveobjects.core.webserver.embedded.jetty;
 import java.util.List;
 import java.util.Map.Entry;
 
+import javax.servlet.Filter;
+import javax.servlet.Servlet;
 import javax.servlet.ServletContextListener;
 
 import uk.co.objectconnexions.expressiveobjects.core.commons.factory.InstanceUtil;
@@ -124,7 +126,7 @@ public class EmbeddedWebServerJetty extends EmbeddedWebServerAbstract {
     private void addServletMappings(final ServletHandler servletHandler, final WebAppSpecification webAppSpec) {
         for (final ServletSpecification servletSpec : webAppSpec.getServletSpecifications()) {
 
-            final ServletHolder servletHolder = new ServletHolder(servletSpec.getServletClass());
+            final ServletHolder servletHolder = new ServletHolder((Class<? extends Servlet>) servletSpec.getServletClass());
             servletHolder.setInitParameters(servletSpec.getInitParams());
             servletHandler.addServlet(servletHolder);
 
@@ -139,7 +141,7 @@ public class EmbeddedWebServerJetty extends EmbeddedWebServerAbstract {
     private void addFilterMappings(final ServletHandler servletHandler, final WebAppSpecification webAppSpec) {
         for (final FilterSpecification filterSpec : webAppSpec.getFilterSpecifications()) {
 
-            final FilterHolder filterHolder = new FilterHolder(filterSpec.getFilterClass());
+            final FilterHolder filterHolder = new FilterHolder((Class<? extends Filter>) filterSpec.getFilterClass());
             filterHolder.setInitParameters(filterSpec.getInitParams());
             servletHandler.addFilter(filterHolder);
 

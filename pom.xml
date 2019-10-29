@@ -49,36 +49,32 @@
         <module>component/security/file</module>
         <module>component/security/ldap</module>
         <module>component/security/sql</module>
-<!--
+        
         <module>component/viewer/dnd</module>
+        <!-- 
         <module>component/viewer/html</module>
-       -->
+         -->
        
         <module>component/viewer/scimpi</module>
         
-        <!--
         <module>component/viewer/restfulobjects</module>
-        <module>component/viewer/bdd</module>
+        <!-- 
         <module>component/viewer/junit</module>
-        -->
+         -->
 
+        <module>example/application/quickstart</module>
         <!--
         <module>example/application/claims</module>
         <module>example/application/onlinedemo</module>
-        <module>example/application/quickstart</module>
         <module>example/application/quickstart_dnd_junit_bdd</module>
         <module>example/application/quickstart_wicket_restful_jdo</module>
 
+-->
         <module>example/archetype/quickstart</module>
--->
-<!--
-commenting out since currently references v1.0.0
-        <module>example/archetype/quickstart_wicket_restful_jdo</module>
--->
 
 
-<!--
         <module>example/domain-service/email-service</module>
+<!--
         <module>example/misc/metamodel/namefile</module>
 -->
 <!-- 

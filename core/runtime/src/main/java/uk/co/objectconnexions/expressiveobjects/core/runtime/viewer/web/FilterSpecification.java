@@ -21,8 +21,6 @@ package uk.co.objectconnexions.expressiveobjects.core.runtime.viewer.web;
 
 import java.util.Map;
 
-import javax.servlet.Filter;
-import javax.servlet.Servlet;
 
 public final class FilterSpecification extends AbstractServletOrFilterMapping {
 
@@ -30,7 +28,7 @@ public final class FilterSpecification extends AbstractServletOrFilterMapping {
      * @param filterClass
      *            - should extend <tt>javax.servlet.Filter</tt>
      */
-    public FilterSpecification(final Class<? extends Servlet> filterClass, final Map<String, String> initParams, final String... mappings) {
+    public FilterSpecification(final Class<?> filterClass, final Map<String, String> initParams, final String... mappings) {
         super(filterClass, initParams, mappings);
     }
 
@@ -38,12 +36,12 @@ public final class FilterSpecification extends AbstractServletOrFilterMapping {
      * @param filterClass
      *            - should extend <tt>javax.servlet.Filter</tt>
      */
-    public FilterSpecification(final Class<? extends Servlet> filterClass, final String... pathSpecs) {
+    public FilterSpecification(final Class<?> filterClass, final String... pathSpecs) {
         super(filterClass, pathSpecs);
     }
 
-    public Class<? extends Filter> getFilterClass() {
-        return (Class<? extends Filter>) getServletOrFilterClass();
+    public Class<?> getFilterClass() {
+        return (Class<?>) getServletOrFilterClass();
     }
 
 }

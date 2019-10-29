@@ -62,7 +62,7 @@ public class DateTimeValueSemanticsProviderTest extends ValueSemanticsProviderAb
 
     @Test
     public void testEntryWithShortFormat() {
-        final String entry = "21/5/07 10:30";
+        final String entry = "21/5/2007, 10:30";
         final int year = 2007;
         final int month = 5;
         final int day = 21;

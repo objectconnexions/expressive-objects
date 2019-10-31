@@ -109,7 +109,7 @@
         </dependency>
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.profilestore</groupId>
-            <artifactId>expressiveobjects-profilestore-file</artifactId>
+            <artifactId>expressiveobjects-profilestore-xml</artifactId>
         </dependency>
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.security</groupId>
@@ -119,7 +119,7 @@
         <!-- expressive objects viewers -->
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
-            <artifactId>expressiveobjects-viewer-dnd</artifactId>
+            <artifactId>expressiveobjects-viewer-dnd-impl</artifactId>
         </dependency>
 
     </dependencies>

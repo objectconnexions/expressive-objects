@@ -93,7 +93,6 @@
         </dependency>
 
 
-
         <!-- objectstore/domain service/repository implementations -->
 		<dependency>
 			<groupId>uk.co.objectconnexions.expressiveobjects.objectstore</groupId>
@@ -134,13 +133,4 @@
         </dependency>
 
 	</dependencies>
-
-    <modules>
-        <module>dom</module>
-        <module>fixture</module>
-        <module>test-junit</module>
-        <module>viewer-dnd</module>
-        <module>viewer-html</module>
-        <module>viewer-scimpi</module>
-    </modules>
 </project>

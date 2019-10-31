@@ -32,7 +32,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>uk.co.objectconnexions.expressiveobjects</groupId>
+			<groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
 			<artifactId>expressiveobjects-core-applib</artifactId>
 		</dependency>
 	</dependencies>

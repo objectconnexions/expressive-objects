@@ -21,9 +21,6 @@
 #set( $symbol_escape = '\' )
 package dom.audit;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
-
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.Hidden;
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.Immutable;
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.MemberOrder;
@@ -33,8 +30,6 @@ import uk.co.objectconnexions.expressiveobjects.applib.bookmarks.Bookmark;
 import uk.co.objectconnexions.expressiveobjects.applib.bookmarks.BookmarkHolder;
 import uk.co.objectconnexions.expressiveobjects.applib.value.DateTime;
 
-@javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
-@javax.jdo.annotations.DatastoreIdentity(strategy=IdGeneratorStrategy.UUIDHEX)
 @Immutable
 public class AuditEntry implements BookmarkHolder {
 

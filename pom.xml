@@ -51,10 +51,7 @@
         <module>component/security/sql</module>
         
         <module>component/viewer/dnd</module>
-        <!-- 
-        <module>component/viewer/html</module>
-         -->
-       
+        <module>component/viewer/html</module>      
         <module>component/viewer/scimpi</module>
         
         <module>component/viewer/restfulobjects</module>

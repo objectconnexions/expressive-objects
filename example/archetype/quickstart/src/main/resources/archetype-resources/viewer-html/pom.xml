@@ -96,13 +96,13 @@
         <!-- objectstore/domain service/repository implementations -->
 		<dependency>
 			<groupId>uk.co.objectconnexions.expressiveobjects.objectstore</groupId>
-			<artifactId>expressiveobjects-objectstore-xmll</artifactId>
+			<artifactId>expressiveobjects-objectstore-xml</artifactId>
 		</dependency>
         
         <!-- expressive objects viewer -->
 		<dependency>
 	        <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
-			<artifactId>expressiveobjects-viewer-html</artifactId>
+			<artifactId>expressiveobjects-viewer-html-impl</artifactId>
 		</dependency>
 
         <dependency>
@@ -118,7 +118,7 @@
         
         <!-- to run using WebServer (optional) -->
         <dependency>
-            <groupId>uk.co.objectconnexions.expressiveobjects-core</groupId>
+            <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             <artifactId>expressiveobjects-core-webserver</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>

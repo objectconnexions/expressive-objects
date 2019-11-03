@@ -180,8 +180,8 @@ public abstract class ValueSemanticsProviderAbstractTestCase {
     }
     
     protected boolean hasJavaChangedDateFormat() {
-        DateFormat format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.LONG);
+        DateFormat format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
         String value = format.format(new Date(0));
-        return value.equals("1/1/1970, 1:00 AM");
+        return value.equals("01/01/1970, 00:00");
     }
 }

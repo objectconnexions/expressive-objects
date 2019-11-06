@@ -22,10 +22,10 @@ package uk.co.objectconnexions.expressiveobjects.metamodel.examples.facets.jsr30
 
 import java.lang.reflect.Method;
 
-import uk.co.objectconnexions.expressiveobjects.metamodel.facets.FacetFactory;
-import uk.co.objectconnexions.expressiveobjects.metamodel.facets.FacetHolder;
-import uk.co.objectconnexions.expressiveobjects.metamodel.facets.FacetUtil;
-import uk.co.objectconnexions.expressiveobjects.metamodel.facets.MethodRemover;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facetapi.FacetHolder;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facetapi.FacetUtil;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facetapi.MethodRemover;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.FacetFactory;
 import uk.co.objectconnexions.expressiveobjects.metamodel.spec.feature.ObjectFeatureType;
 
 

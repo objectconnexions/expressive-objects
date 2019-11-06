@@ -28,14 +28,11 @@
 
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.shtml</welcome-file>
     </welcome-file-list>
     
     <context-param>
         <param-name>deploymentType</param-name>
-        <!-- 
-        <param-value>SERVER</param-value>
-         -->
         <param-value>SERVER_EXPLORATION</param-value>
     </context-param>
 

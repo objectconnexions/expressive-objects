@@ -204,7 +204,7 @@ public class ToDoItem {
         getDependencies().remove(toDoItem);
         return this;
     }
-    public String disableRemove() {
+    public String disableRemove(final ToDoItem toDoItem) {
         return getDependencies().isEmpty()? "No dependencies to remove": null;
     }
     public String validateRemove(final ToDoItem toDoItem) {

@@ -94,6 +94,10 @@
 
 
         <!-- objectstore/domain service/repository implementations -->
+        <dependency>
+            <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+            <artifactId>expressiveobjects-core-objectstore</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>uk.co.objectconnexions.expressiveobjects.objectstore</groupId>
 			<artifactId>expressiveobjects-objectstore-xml</artifactId>
@@ -108,11 +112,19 @@
 
         <!-- expressive objects runtime -->
         <dependency>
+            <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+            <artifactId>expressiveobjects-core-profilestore</artifactId>
+        </dependency>
+        <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.profilestore</groupId>
             <artifactId>expressiveobjects-profilestore-xml</artifactId>
         </dependency>
         
         <!-- expressive objects security implementations -->        
+        <dependency>
+            <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+            <artifactId>expressiveobjects-core-security</artifactId>
+        </dependency>      
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.security</groupId>
             <artifactId>expressiveobjects-security-file</artifactId>

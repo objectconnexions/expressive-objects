@@ -199,6 +199,11 @@
                 <artifactId>expressiveobjects-core-objectstore</artifactId>
                 <version>${expressive-objects.version}</version>
             </dependency>
+            <dependency>
+                <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+                <artifactId>expressiveobjects-core-security</artifactId>
+                <version>${expressive-objects.version}</version>
+            </dependency>
 
             <!-- expressive objects: security: sql -->
             <dependency>

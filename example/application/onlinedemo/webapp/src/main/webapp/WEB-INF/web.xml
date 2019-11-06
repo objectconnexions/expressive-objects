@@ -190,7 +190,13 @@
     <filter-mapping>
         <filter-name>ExpressiveObjectsSessionFilterForHtml</filter-name>
         <servlet-name>HtmlLogon</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ExpressiveObjectsSessionFilterForHtml</filter-name>
         <servlet-name>HtmlRegister</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ExpressiveObjectsSessionFilterForHtml</filter-name>
         <servlet-name>HtmlController</servlet-name>
     </filter-mapping>
 

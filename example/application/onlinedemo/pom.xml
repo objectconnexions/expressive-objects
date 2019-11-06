@@ -28,7 +28,7 @@
     <packaging>pom</packaging>
     
     <properties>
-        <expressive-objects.version>1.0.0-SNAPSHOT</expressive-objects.version>
+        <expressive-objects.version>5.0.1-SNAPSHOT</expressive-objects.version>
     </properties>
 
     <repositories>

@@ -1,6 +1,9 @@
+\#*\#
+.\#*
 *~
 *.swp
 *.class
+*.iml
 bin/
 target/
 target-ide/
@@ -9,7 +12,6 @@ logs/
 .project
 .classpath
 .idea
-*.iml
 
 component/objectstore/sql/sql-tests-common/hsql-db/
 component/objectstore/sql/sql-tests-common/xml/
@@ -19,8 +21,7 @@ component/objectstore/xml/tmp/tests/
 #component/security/sql/hsql-db/
 
 # log files
-datanucleus.log
-isis.log
+*.log
 
 # Package Files #
 *.jar

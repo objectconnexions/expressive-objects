@@ -101,6 +101,10 @@
             <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
             <artifactId>expressiveobjects-core-runtime</artifactId>
         </dependency>
+        <dependency>
+            <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+            <artifactId>expressiveobjects-core-objectstore</artifactId>
+        </dependency>
 
         <!-- expressive objects default runtime -->
         <dependency>
@@ -108,8 +112,16 @@
             <artifactId>expressiveobjects-objectstore-xml</artifactId>
         </dependency>
         <dependency>
+             <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+             <artifactId>expressiveobjects-core-profilestore</artifactId>
+        </dependency>
+        <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.profilestore</groupId>
             <artifactId>expressiveobjects-profilestore-xml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+            <artifactId>expressiveobjects-core-security</artifactId>
         </dependency>
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.security</groupId>

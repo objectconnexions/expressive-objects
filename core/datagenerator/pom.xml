@@ -26,7 +26,7 @@
 		<version>5.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>expressiveobjects-core-data-generator</artifactId>
+	<artifactId>expressiveobjects-core-datagenerator</artifactId>
 
 	<name>Expressive Objects Core Data Generator</name>
 	<description>
@@ -36,11 +36,11 @@
 
 	<properties>
         <siteBaseDir>..</siteBaseDir>
-		<relativeUrl>data-generator/</relativeUrl>
+		<relativeUrl>datagenerator/</relativeUrl>
 
 		<docbkxGuideTitle>Expressive Objects Data Generator</docbkxGuideTitle>
 		<docbkxGuideSubTitle>Generating fixture data for use in Expressive Objects fixtures</docbkxGuideSubTitle>
-		<docbkxGuideName>expressive-objects-data-generator</docbkxGuideName>
+		<docbkxGuideName>expressive-objects-datagenerator</docbkxGuideName>
 	</properties>
 
     <!-- used in Site generation for relative references. -->

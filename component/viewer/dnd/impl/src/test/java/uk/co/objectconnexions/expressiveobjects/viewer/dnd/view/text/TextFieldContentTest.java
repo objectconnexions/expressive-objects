@@ -22,19 +22,13 @@ package uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.text;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;
-import java.util.List;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.jmock.integration.junit4.JMock;
-import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import uk.co.objectconnexions.expressiveobjects.core.commons.config.ExpressiveObjectsConfigurationDefault;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.oid.OidMarshaller;
@@ -157,13 +151,13 @@ public class TextFieldContentTest {
     public void testAlignField() {
         
         // the following text wraps so it takes up 9 line
-        content.setText("Expressive Objects - a framework that exposes behaviourally complete business objects directly to the user. Copyright (C) 2012 Apache Software Foundation");
+        content.setText("EOF D and D - a framework that exposes behaviourally complete business objects directly to the user. Copyright (C) 2012 Apache Software Foundation");
 
         assertEquals(9, content.getNoLinesOfContent());
 
         String[] lines = content.getDisplayLines();
         assertEquals(4, lines.length);
-        assertEquals("Expressive Objects - a ", lines[0]);
+        assertEquals("EOF D and D - a ", lines[0]);
         assertEquals("framework that ", lines[1]);
         assertEquals("exposes behaviourally ", lines[2]);
         assertEquals("complete business ", lines[3]);

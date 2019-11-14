@@ -28,7 +28,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>/logon.htmlviewer</welcome-file>
     </welcome-file-list>
     
     <context-param>
@@ -72,7 +72,7 @@
     the following line to your application context ( For more detail see:
     http://tomcat.apache.org/tomcat-7.0-doc/config/context.html${symbol_pound}Context_Parameters )
      
-    <Parameter name="expressive-objects.config.dir" value="/usr/local/tomcat/conf/"
+    <Parameter name="expressive-objects.config.dirm" value="/usr/local/tomcat/conf/"
          override="true"/>
          
     If your configuration directory is fixed you can enable the following 
@@ -147,8 +147,18 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     
-
-
+    <servlet>
+        <servlet-name>Forward</servlet-name>
+        <servlet-class>uk.co.objectconnexions.expressiveobjects.core.webapp.routing.ForwardingServlet</servlet-class>
+        <init-param>
+            <param-name>forwardTo</param-name>
+            <param-value>logon.htmlviewer</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Forward</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
 
     <!--
@@ -173,11 +183,13 @@
             <param-value>/start.htmlviewer</param-value>
         </init-param>
     </filter>
+    <!--
     <filter-mapping>
         <filter-name>RedirectFilterForHtml</filter-name>
         <url-pattern>/htmlviewer</url-pattern>
     </filter-mapping>
-
+    -->
+    
     <!-- authenticate user, and set up an Expressive Objects Session -->
     <filter>
         <filter-name>ExpressiveObjectsSessionFilterForHtml</filter-name>

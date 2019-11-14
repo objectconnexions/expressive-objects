@@ -36,8 +36,8 @@ public class IconElementFactory implements ViewFactory {
     }
 
     public IconElementFactory(final ViewSpecification objectSpec, final ViewSpecification collectionSpec, final boolean createViewsForEmptyContent) {
-        this.objectSpec = this.objectSpec == null ? new SubviewIconSpecification() : objectSpec;
-        this.collectionSpec = this.collectionSpec == null ? new SubviewIconSpecification() : collectionSpec;
+        this.objectSpec = objectSpec == null ? new SubviewIconSpecification() : objectSpec;
+        this.collectionSpec = collectionSpec == null ? new SubviewIconSpecification() : collectionSpec;
         this.createViewsForEmptyContent = createViewsForEmptyContent;
     }
 

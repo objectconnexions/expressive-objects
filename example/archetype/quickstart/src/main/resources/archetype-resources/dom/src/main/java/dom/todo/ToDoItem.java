@@ -25,12 +25,6 @@ package dom.todo;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jdo.JDOHelper;
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.VersionStrategy;
-import javax.jdo.spi.PersistenceCapable;
-
 import org.joda.time.LocalDate;
 
 import uk.co.objectconnexions.expressiveobjects.applib.DomainObjectContainer;
@@ -44,28 +38,8 @@ import uk.co.objectconnexions.expressiveobjects.applib.annotation.ObjectType;
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.Optional;
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.Title;
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.Where;
-import uk.co.objectconnexions.expressiveobjects.runtimes.dflt.objectstores.jdo.applib.annotations.Auditable;
 
-@javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
-@javax.jdo.annotations.DatastoreIdentity(strategy=javax.jdo.annotations.IdGeneratorStrategy.IDENTITY)
-@javax.jdo.annotations.Queries( {
-    @javax.jdo.annotations.Query(
-        name="todo_notYetDone", language="JDOQL",  
-        value="SELECT FROM dom.todo.ToDoItem WHERE ownedBy == :ownedBy && done == false"),
-    @javax.jdo.annotations.Query(
-            name="todo_done", language="JDOQL",  
-            value="SELECT FROM dom.todo.ToDoItem WHERE ownedBy == :ownedBy && done == true"),
-    @javax.jdo.annotations.Query(
-        name="todo_similarTo", language="JDOQL",  
-        value="SELECT FROM dom.todo.ToDoItem WHERE ownedBy == :ownedBy && category == :category"),
-    @javax.jdo.annotations.Query(
-            name="todo_autoComplete", language="JDOQL",  
-            value="SELECT FROM dom.todo.ToDoItem WHERE ownedBy == :ownedBy && description.matches(:description)")
-})
-@javax.jdo.annotations.Version(strategy=VersionStrategy.VERSION_NUMBER, column="VERSION")
 @ObjectType("TODO")
-@Auditable
-@AutoComplete(repository=ToDoItems.class, action="autoComplete")
 public class ToDoItem {
     
     public static enum Category {
@@ -102,7 +76,6 @@ public class ToDoItem {
     // {{ DueBy (property)
     private LocalDate dueBy;
 
-    @javax.jdo.annotations.Persistent
     @MemberOrder(name="Detail", sequence = "3")
     @Optional
     public LocalDate getDueBy() {
@@ -163,15 +136,10 @@ public class ToDoItem {
     @MemberOrder(name="Detail", sequence = "99")
     @Named("Version")
     public Long getVersionSequence() {
-        if(!(this instanceof PersistenceCapable)) {
-            return null;
-        } 
-        PersistenceCapable persistenceCapable = (PersistenceCapable) this;
-        final Long version = (Long) JDOHelper.getVersion(persistenceCapable);
-        return version;
+        return new Long(0);
     }
     public boolean hideVersionSequence() {
-        return !(this instanceof PersistenceCapable);
+        return true;
     }
     // }}
 
@@ -236,7 +204,7 @@ public class ToDoItem {
         getDependencies().remove(toDoItem);
         return this;
     }
-    public String disableRemove() {
+    public String disableRemove(final ToDoItem toDoItem) {
         return getDependencies().isEmpty()? "No dependencies to remove": null;
     }
     public String validateRemove(final ToDoItem toDoItem) {

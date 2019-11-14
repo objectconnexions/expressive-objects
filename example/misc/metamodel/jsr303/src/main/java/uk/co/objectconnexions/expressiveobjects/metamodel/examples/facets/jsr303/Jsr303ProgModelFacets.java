@@ -20,9 +20,9 @@
 
 package uk.co.objectconnexions.expressiveobjects.metamodel.examples.facets.jsr303;
 
-import uk.co.objectconnexions.expressiveobjects.metamodel.facets.FacetFactory;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.FacetFactory;
 import uk.co.objectconnexions.expressiveobjects.metamodel.specloader.progmodelfacets.ProgrammingModelFacets;
-import uk.co.objectconnexions.expressiveobjects.metamodel.specloader.progmodelfacets.ProgrammingModelFacetsJava5;
+import uk.co.objectconnexions.expressiveobjects.progmodels.dflt.ProgrammingModelFacetsJava5;
 
 
 /**

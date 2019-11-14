@@ -52,22 +52,6 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}-objstore-jdo" dir="objstore-jdo" name="${rootArtifactId}-objstore-jdo">
-      <fileSets>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>lib</directory>
-          <includes>
-            <include>**/*.gitignore</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
     <module id="${rootArtifactId}-viewer-dnd" dir="viewer-dnd" name="${rootArtifactId}-viewer-dnd">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
@@ -143,53 +127,6 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}-viewer-restfulobjects" dir="viewer-restfulobjects" name="${rootArtifactId}-viewer-restfulobjects">
-      <fileSets>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/webapp</directory>
-          <includes>
-            <include>**/*.xml</include>
-            <include>**/*.html</include>
-            <include>**/*.properties</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/jettyconsole</directory>
-          <includes>
-            <include>**/*.png</include>
-            <include>**/*.pdn</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/webapp</directory>
-          <includes>
-            <include>**/*.passwords</include>
-            <include>**/*.allow</include>
-            <include>**/*.png</include>
-            <include>**/*.js</include>
-            <include>**/*.css</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.png</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>lib</directory>
-          <includes>
-            <include>**/*.gitignore</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>ide/eclipse</directory>
-          <includes>
-            <include>**/*.launch</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
     <module id="${rootArtifactId}-viewer-scimpi" dir="viewer-scimpi" name="${rootArtifactId}-viewer-scimpi">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
@@ -232,105 +169,6 @@
           <directory>ide/eclipse</directory>
           <includes>
             <include>**/*.launch</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
-    <module id="${rootArtifactId}-viewer-wicket" dir="viewer-wicket" name="${rootArtifactId}-viewer-wicket">
-      <fileSets>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/webapp</directory>
-          <includes>
-            <include>**/*.xml</include>
-            <include>**/*.properties</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.html</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/jettyconsole</directory>
-          <includes>
-            <include>**/*.png</include>
-            <include>**/*.pdn</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/webapp</directory>
-          <includes>
-            <include>**/*.passwords</include>
-            <include>**/*.allow</include>
-            <include>**/*.png</include>
-            <include>**/*.js</include>
-            <include>**/*.pdn</include>
-            <include>**/*.css</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.png</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>lib</directory>
-          <includes>
-            <include>**/*.gitignore</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>ide/eclipse</directory>
-          <includes>
-            <include>**/*.launch</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
-    <module id="${rootArtifactId}-tests-junit" dir="tests-junit" name="${rootArtifactId}-tests-junit">
-      <fileSets>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/test/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory/>
-          <includes>
-            <include>expressive-objects.properties</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
-    <module id="${rootArtifactId}-tests-bdd" dir="tests-bdd" name="${rootArtifactId}-tests-bdd">
-      <fileSets>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/test/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/test/resources</directory>
-          <includes>
-            <include>**/*.html</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/test/resources</directory>
-          <includes>
-            <include>**/*.dtd</include>
-            <include>**/*.ent</include>
-            <include>**/*.css</include>
           </includes>
         </fileSet>
       </fileSets>

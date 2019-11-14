@@ -25,8 +25,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.Servlet;
-
 import uk.co.objectconnexions.expressiveobjects.core.commons.lang.MapUtils;
 
 /**
@@ -70,11 +68,11 @@ public final class WebAppSpecification {
     // Servlet Mappings
     // ///////////////////////////////////////////////////////////
 
-    public void addServletSpecification(final Class<? extends Servlet> servletClass, final String... pathSpecs) {
+    public void addServletSpecification(final Class<?> servletClass, final String... pathSpecs) {
         servletSpecifications.add(new ServletSpecification(servletClass, pathSpecs));
     }
 
-    public void addServletSpecification(final Class<? extends Servlet> servletClass, final Map<String, String> initParams, final String... pathSpecs) {
+    public void addServletSpecification(final Class<?> servletClass, final Map<String, String> initParams, final String... pathSpecs) {
         servletSpecifications.add(new ServletSpecification(servletClass, initParams, pathSpecs));
     }
 
@@ -86,11 +84,11 @@ public final class WebAppSpecification {
     // Filter Mappings
     // ///////////////////////////////////////////////////////////
 
-    public void addFilterSpecification(final Class<? extends Servlet> filterClass, final String... pathSpecs) {
+    public void addFilterSpecification(final Class<?> filterClass, final String... pathSpecs) {
         filterSpecifications.add(new FilterSpecification(filterClass, pathSpecs));
     }
 
-    public void addFilterSpecification(final Class<? extends Servlet> filterClass, final Map<String, String> initParams, final String... pathSpecs) {
+    public void addFilterSpecification(final Class<?> filterClass, final Map<String, String> initParams, final String... pathSpecs) {
         filterSpecifications.add(new FilterSpecification(filterClass, initParams, pathSpecs));
     }
 

@@ -61,7 +61,8 @@ public class JavaSqlTimeStampValueSemanticsProviderTest extends ValueSemanticsPr
 
     @Test
     public void testTitle() {
-        assertEquals("01/01/70 00:00:00 UTC", adapter.titleString(timestamp, null));
+        String date = hasJavaChangedDateFormat() ? "01/01/1970, 00:00:00 UTC" : "01/01/70 00:00:00 UTC";
+        assertEquals(date, adapter.titleString(timestamp, null)); 
     }
 
     @Test

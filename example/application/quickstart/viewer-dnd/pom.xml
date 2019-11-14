@@ -17,6 +17,7 @@
   specific language governing permissions and limitations
   under the License.
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -29,7 +30,7 @@
     <artifactId>quickstart-viewer-dnd</artifactId>
     <name>Quickstart Viewer DnD</name>
     
-    <description>This module runs ExpressiveObjects' DnD viewer, intended for exploration, prototyping and
+    <description>This module runs Expressive Objects' DnD viewer, intended for exploration, prototyping and
     design.  By default the viewer is configured to run with the in-memory object store, 
     meaning that changes will not be persisted from one run to the next; initial seed data
     is read in from the expressive-objects.fixtures key in the expressive-objects.properties config file.  Alternatively,

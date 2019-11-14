@@ -25,9 +25,8 @@ import java.util.List;
 
 import uk.co.objectconnexions.expressiveobjects.applib.AbstractFactoryAndRepository;
 import uk.co.objectconnexions.expressiveobjects.applib.annotation.Hidden;
-import uk.co.objectconnexions.expressiveobjects.runtimes.dflt.objectstores.jdo.applib.AuditService;
 
-public class AuditServiceDemo extends AbstractFactoryAndRepository  implements AuditService {
+public class AuditServiceDemo extends AbstractFactoryAndRepository {
     
     public List<AuditEntry> list() {
         return allInstances(AuditEntry.class);

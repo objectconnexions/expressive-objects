@@ -23,9 +23,10 @@ import static uk.co.objectconnexions.expressiveobjects.core.unittestsupport.jmoc
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import org.jmock.Expectations;
@@ -176,5 +177,11 @@ public abstract class ValueSemanticsProviderAbstractTestCase {
     @Test
     public void testTitleOfForNullObject() {
         assertEquals("", valueSemanticsProvider.displayTitleOf(null, (Localization) null));
+    }
+    
+    protected boolean hasJavaChangedDateFormat() {
+        DateFormat format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+        String value = format.format(new Date(0));
+        return value.equals("01/01/1970, 00:00");
     }
 }

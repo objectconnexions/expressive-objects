@@ -8,7 +8,9 @@
 	by applicable law or agreed to in writing, software distributed under the 
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
-	language governing permissions and limitations under the License. -->
+	language governing permissions and limitations under the
+	License. -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -23,7 +25,7 @@
 	<packaging>pom</packaging>
 
     <properties>
-        <expressive-objects.version>1.0.0-SNAPSHOT</expressive-objects.version>
+        <expressive-objects.version>5.0.1-SNAPSHOT</expressive-objects.version>
     </properties>
 
 	<build>
@@ -129,12 +131,9 @@
 	<modules>
 		<module>dom</module>
 		<module>fixture</module>
-		<module>objstore-jdo</module>
 		<module>viewer-html</module>
 		<module>viewer-restfulobjects</module>
-		<module>viewer-wicket</module>
-        <module>viewer-scimpi</module>
-		<module>viewer-bdd</module>
+		<module>viewer-scimpi</module>
 		<module>viewer-dnd</module>
 	</modules>
 

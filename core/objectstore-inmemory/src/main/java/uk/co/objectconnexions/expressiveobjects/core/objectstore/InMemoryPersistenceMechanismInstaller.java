@@ -26,7 +26,6 @@ import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAda
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectInstantiationException;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.installerregistry.installerapi.PersistenceMechanismInstallerAbstract;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.persistence.objectfactory.ObjectFactoryAbstract;
-import uk.co.objectconnexions.expressiveobjects.core.runtime.persistence.objectfactory.ObjectFactoryAbstract.Mode;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.persistence.objectstore.ObjectStoreSpi;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.DeploymentType;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.persistence.AdapterManagerSpi;

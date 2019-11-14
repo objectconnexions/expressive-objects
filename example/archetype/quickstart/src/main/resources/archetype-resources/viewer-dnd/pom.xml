@@ -16,7 +16,9 @@
   KIND, either express or implied.  See the License for the
   specific language governing permissions and limitations
   under the License.
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -28,7 +30,7 @@
     <artifactId>${artifactId}</artifactId>
     <name>Quickstart Viewer DnD</name>
     
-    <description>This module runs ExpressiveObjects' DnD viewer, intended for exploration, prototyping and
+    <description>This module runs Expressive Objects' DnD viewer, intended for exploration, prototyping and
     design.  By default the viewer is configured to run with the in-memory object store, 
     meaning that changes will not be persisted from one run to the next; initial seed data
     is read in from the expressive-objects.fixtures key in the expressive-objects.properties config file.  Alternatively,
@@ -97,45 +99,39 @@
         <!-- expressive objects core -->
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
-            <artifactId>runtime</artifactId>
+            <artifactId>expressiveobjects-core-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+            <artifactId>expressiveobjects-core-objectstore</artifactId>
         </dependency>
 
         <!-- expressive objects default runtime -->
         <dependency>
-            <groupId>uk.co.objectconnexions.expressiveobjects.runtimes.dflt</groupId>
-            <artifactId>runtime</artifactId>
+            <groupId>uk.co.objectconnexions.expressiveobjects.objectstore</groupId>
+            <artifactId>expressiveobjects-objectstore-xml</artifactId>
         </dependency>
         <dependency>
-            <groupId>uk.co.objectconnexions.expressiveobjects.runtimes.dflt.bytecode</groupId>
-            <artifactId>dflt</artifactId>
+             <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+             <artifactId>expressiveobjects-core-profilestore</artifactId>
         </dependency>
         <dependency>
-            <groupId>uk.co.objectconnexions.expressiveobjects.runtimes.dflt.objectstores</groupId>
-            <artifactId>dflt</artifactId>
+            <groupId>uk.co.objectconnexions.expressiveobjects.profilestore</groupId>
+            <artifactId>expressiveobjects-profilestore-xml</artifactId>
         </dependency>
         <dependency>
-            <groupId>uk.co.objectconnexions.expressiveobjects.runtimes.dflt.objectstores</groupId>
-            <artifactId>xml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>uk.co.objectconnexions.expressiveobjects.runtimes.dflt.profilestores</groupId>
-            <artifactId>dflt</artifactId>
-        </dependency>
-        
-        <!-- expressive objects defaults (other) -->
-        <dependency>
-            <groupId>uk.co.objectconnexions.expressiveobjects.progmodels</groupId>
-            <artifactId>dflt</artifactId>
+            <groupId>uk.co.objectconnexions.expressiveobjects.core</groupId>
+            <artifactId>expressiveobjects-core-security</artifactId>
         </dependency>
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.security</groupId>
-            <artifactId>dflt</artifactId>
+            <artifactId>expressiveobjects-security-file</artifactId>
         </dependency>
         
         <!-- expressive objects viewers -->
         <dependency>
             <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
-            <artifactId>dnd</artifactId>
+            <artifactId>expressiveobjects-viewer-dnd-impl</artifactId>
         </dependency>
 
     </dependencies>

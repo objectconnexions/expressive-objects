@@ -166,7 +166,7 @@ public class ObjectActionParameterAbstractTest_getId_and_getName {
                 one(actionParamPeer).getFacet(NamedFacet.class);
                 will(returnValue(null));
 
-                one(parentAction).getParameters((Filter<ObjectActionParameter>) with(anything()));
+                one(parentAction).getParameters(with(any(Filter.class)));
                 will(returnValue(Lists.newArrayList(objectActionParameter)));
             }
         });
@@ -185,7 +185,7 @@ public class ObjectActionParameterAbstractTest_getId_and_getName {
                 one(actionParamPeer).getFacet(NamedFacet.class);
                 will(returnValue(null));
 
-                one(parentAction).getParameters((Filter<ObjectActionParameter>) with(anything()));
+                one(parentAction).getParameters(with(any(Filter.class)));
                 will(returnValue(Lists.newArrayList(stubObjectActionParameterString, objectActionParameter, stubObjectActionParameterString2)));
             }
         });
@@ -204,7 +204,7 @@ public class ObjectActionParameterAbstractTest_getId_and_getName {
                 one(actionParamPeer).getFacet(NamedFacet.class);
                 will(returnValue(null));
 
-                one(parentAction).getParameters((Filter<ObjectActionParameter>) with(anything()));
+                one(parentAction).getParameters(with(any(Filter.class)));
                 will(returnValue(Lists.newArrayList(stubObjectActionParameterString, objectActionParameter, stubObjectActionParameterString2)));
             }
         });

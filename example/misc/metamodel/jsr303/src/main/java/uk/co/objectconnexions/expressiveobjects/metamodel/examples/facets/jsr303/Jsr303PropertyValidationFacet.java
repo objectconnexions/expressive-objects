@@ -24,16 +24,16 @@ import java.util.Set;
 
 import javax.validation.InvalidConstraint;
 import javax.validation.ValidationProviderFactory;
-import javax.validation.Validator;
+import javax.xml.validation.Validator;
 
 import uk.co.objectconnexions.expressiveobjects.applib.events.ValidityEvent;
-import uk.co.objectconnexions.expressiveobjects.metamodel.adapter.ObjectAdapter;
-import uk.co.objectconnexions.expressiveobjects.metamodel.facets.Facet;
-import uk.co.objectconnexions.expressiveobjects.metamodel.facets.FacetAbstract;
-import uk.co.objectconnexions.expressiveobjects.metamodel.facets.FacetHolder;
-import uk.co.objectconnexions.expressiveobjects.metamodel.interactions.ProposedHolder;
-import uk.co.objectconnexions.expressiveobjects.metamodel.interactions.ValidatingInteractionAdvisor;
-import uk.co.objectconnexions.expressiveobjects.metamodel.interactions.ValidityContext;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facetapi.Facet;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facetapi.FacetAbstract;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facetapi.FacetHolder;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.interactions.ProposedHolder;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.interactions.ValidatingInteractionAdvisor;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.interactions.ValidityContext;
 import uk.co.objectconnexions.expressiveobjects.metamodel.spec.identifier.Identified;
 
 

@@ -73,7 +73,7 @@ public final class SimpleRepository {
         return RepositoryHelper.findByTitle(getSpec(), type, title).toArray();
     }
 
-    public String disableFindByTitle() {
+    public String disableFindByTitle(final String title) {
         return disableAllInstances();
     }
 

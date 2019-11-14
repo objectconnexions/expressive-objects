@@ -156,6 +156,20 @@ public class Money extends Magnitude<Money> {
         assertSameCurrency(money);
         return newMoney(amount - money.amount);
     }
+    
+    /**
+     * Multiply this value by the specified amount
+     */
+    public Money multiply(final double multiplier) {
+        return newMoney((long) (amount * multiplier));
+    }
+    
+    /**
+     * Divide this value by the specified amount
+     */
+    public Money divide(final double divisor) {
+        return newMoney((long) (amount / divisor));
+    }
 
     @Override
     public boolean equals(final Object other) {

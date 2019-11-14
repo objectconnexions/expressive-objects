@@ -53,6 +53,38 @@ public class MoneyTest {
 
         m1.add(m2);
     }
+    
+    @Test
+    public void testMultiplyByWholeNumber() throws Exception {
+        final Money m1 = new Money(100.33, "pds");
+        final Money m2 = m1.multiply(2);
+        
+        assertEquals(200.66, m2.doubleValue(), 0.0);
+    }
+    
+    @Test
+    public void testMultiplyByFraction() throws Exception {
+        final Money m1 = new Money(100.33, "pds");
+        final Money m2 = m1.divide(2);
+        
+        assertEquals(50.16, m2.doubleValue(), 0.0);
+    }
+    
+    @Test
+    public void testDivideByWholeNumber() throws Exception {
+        final Money m1 = new Money(100.50, "pds");
+        final Money m2 = m1.divide(2);
+        
+        assertEquals(50.25, m2.doubleValue(), 0.0);
+    }
+    
+    @Test
+    public void testDivideByFractionNumber() throws Exception {
+        final Money m1 = new Money(100, "pds");
+        final Money m2 = m1.divide(1.5);
+        
+        assertEquals(66.66, m2.doubleValue(), 0.0);
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void testDoubleConstructorExpectsCurrencyToBeSpecified() {

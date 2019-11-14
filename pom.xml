@@ -38,10 +38,8 @@
         <module>component/objectstore/sql</module>
         <module>component/objectstore/nosql</module>
 
-        <!--
         <module>component/progmodel/wrapper</module>
         <module>component/progmodel/groovy</module>
-		-->
 		
         <module>component/profilestore/xml</module>
         <module>component/profilestore/sql</module>

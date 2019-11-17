@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<swf:page-title>Example ECS App</swf:page-title>
+<swf:template  file="scimpi/style/template.shtml" />
+
+<swf:breadcrumbs action="clear"/>
+<swf:services />

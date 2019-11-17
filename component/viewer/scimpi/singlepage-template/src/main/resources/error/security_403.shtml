@@ -1,0 +1,28 @@
+<swf:page-title>Page Not Accessible</swf:page-title>
+<swf:template  file="./error-template.shtml" />
+
+<swf:variable name="reference"><swf:error-reference /></swf:variable>
+<swf:variable name="details"><swf:error-details /></swf:variable>
+
+<h1>error 403... page not accessible...</h1>
+
+<p class="error-links">
+	<a id="message" href="mailto:support@planchaser.com?subject=Page%20not%20accessible%20${reference}">send feedback</a>
+	<a href="${_context}/index.shtml">return to application</a>
+</p>
+
+<swf:show-debug> 
+	<swf:when variable-exists="details">
+		<p class="error-links">
+			<a onclick="$('#error-dump').toggle()">display details...</a>
+		</p>
+		
+		<div id="error-dump" style="display: none; cursor: pointer;">
+			<h1>error 403... page is not accessible: #${reference}</h1>
+			<p class="error"><swf:error-message /></p>
+			<swf:error-details />
+		</div>
+	</swf:when>
+</swf:show-debug>
+
+ 

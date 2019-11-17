@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+body {
+	background: #eee;
+	color: blue;
+}
+
+
+/* forms */
+form.edit div.field label {
+	width: 12em:
+}
+
+
+/* Debug */
+div.error-detail {
+    border: 1px #ddd dashed;
+    padding: 8px	
+}
+div.error-detail h2 {
+    font-size: 90%;
+    color: red; 
+}
+div.error-detail p.error {
+    font-size: 80%;
+    color: red; 
+}
+table.debug {
+	width: 95%;
+	font: 10pt normal monospace;
+	margin-bottom: 2em;
+}
+table.debug td.label {
+    width: 12em;
+}
+table.debug td {
+    overflow: scroll;
+    max-width: 40em
+}
+table.debug th.title {
+    background-color: #888;
+    color: #fff
+}
+table.debug th.subtitle {
+    background-color: #aaa;
+    color: #fff
+}
+table.debug tr.odd {
+	background-color: #eee;
+}
+table.debug tr.even {
+    background-color: #ddd;
+}

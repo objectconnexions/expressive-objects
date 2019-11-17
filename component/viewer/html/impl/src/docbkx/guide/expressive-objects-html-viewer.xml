@@ -44,24 +44,26 @@
 
   <!-- front matter -->
 
-  <toc></toc>
+  <toc/>
 
   <preface id="preface">
     <title>Preface</title>
 
-    <para><emphasis>Expressive Objects</emphasis> is designed to allow programmers
-    rapidly develop domain-driven applications following the <ulink
-    url="http://en.wikipedia.org/wiki/Naked_Objects">Naked Objects</ulink>
-    pattern. It is made up of a core framework plus a number of alternate
-    implementations, and supports various viewers and object stores. Apache
-    Expressive Objects is hosted at the <ulink url="http://incubator.apache.org/expressive-objects">Apache
+    <para><emphasis>Expressive Objects</emphasis> is designed to allow
+    programmers rapidly develop domain-driven applications following the
+    <ulink url="http://en.wikipedia.org/wiki/Naked_Objects">Naked
+    Objects</ulink> pattern. It is made up of a core framework plus a number
+    of alternate implementations, and supports various viewers and object
+    stores. Apache Expressive Objects is hosted at the <ulink
+    url="http://incubator.apache.org/expressive-objects">Apache
     Foundation</ulink>, and is licensed under <ulink
     url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software
     License v2</ulink>.</para>
 
     <para>This guide is written for programmers looking to customize,
-    configure and deploy <emphasis>Expressive Objects</emphasis> applications using
-    the <emphasis>HTML viewer</emphasis> as the primary user interface.</para>
+    configure and deploy <emphasis>Expressive Objects</emphasis> applications
+    using the <emphasis>HTML viewer</emphasis> as the primary user
+    interface.</para>
   </preface>
 
   <!-- main content -->
@@ -106,17 +108,64 @@
         <para>Which enables the character set encoding used by the
         HTTPServletRequest. This is ISO-8859-1 by default.</para>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
+
+        <para>The presented page is slightly templated, allowing a header and
+        footer to specified. This can either be done by directly giving HTML
+        markup in the properties file or by indicating a file whose contents
+        should be used. IUsing a . The direct form is:</para>
+
+        <programlisting>expressive-objects.viewer.html.header=&lt;h2&gt;HTML code for header&lt;/h2&gt;
+expressive-objects.viewer.html.footer=&lt;h3&gt;HTML code for footer&lt;/h3&gt;
+</programlisting>
+
+        <para>While the indirect method, through files, is:</para>
+
+        <programlisting>expressive-objects.viewer.html.header-file=header.html
+expressive-objects.viewer.html.footer-file=footer.html
+</programlisting>
+
+        <para>Note that the file is sought on the file system and not on the
+        classpath, so don't place them in the <filename>webapp</filename>
+        directory without specifying the full path. For example using an
+        archetype and placing the file in the <filename>webapp</filename>
+        directory the path property would be something like
+        <filename>src/main/webapp/template/footer.html.</filename></para>
+
+        <para/>
+
+        <para>A default cascading style is built in to the viewer. This can be
+        extended or overridden. Any new or addition style sheet needs to be
+        accessible by the browser so it needs to be available as a served
+        resource. Hence it should put in the <filename>webapp</filename>. The
+        property is </para>
+
+        <programlisting>expressive-objects.viewer.html.style-sheet=default.css, htmlviewer/style/new.css
+</programlisting>
+
+        <para>and lists all the style sheets to be used in the order they need
+        to be loaded. If you want to retain the use of the default style sheet
+        then include the <property>default.css entry. Alternative styles can
+        be provided so a user has a choice of which style to use. To add each
+        alternative prefix the first file with an asterisk (*). In the
+        following example there are three styles:</property></para>
+
+        <programlisting>expressive-objects.viewer.html.style-sheet=default.css, htmlviewer/style/new.css, \
+     *default.css, htmlviewer/style/alternate.css, *htmlviewer/style/alternate2.css
+</programlisting>
+
+        <para>Note that the second style includes two styles sheets and the
+        third has only one.</para>
       </sect2>
 
       <sect2>
         <title>Reading HTML viewer specific properties</title>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
 
         <programlisting>&lt;web.xml&gt;
     ...
@@ -130,42 +179,42 @@
         <para>This will cause the viewer_html.properties file to be read if it
         is present.</para>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
 
         <para>NB: the value for this parameter is actually comma-separated, to
         allow for multiple viewers to be configured in the same webapp.</para>
 
-        <para></para>
+        <para/>
       </sect2>
 
       <sect2>
         <title>Hosting multiple viewers at the same time</title>
 
-        <para></para>
+        <para/>
 
         <para>*** combine the servlet, filter and listener entries.</para>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
 
         <para>By default the htmlviewer uses ".app" as the suffix for its .
         this can be changed using the viewer-html.suffix init-param in
         web.xml:</para>
 
-        <para></para>
+        <para/>
 
         <para>avoid name clashes.</para>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
 
         <programlisting>&lt;web.xml&gt;
     ...
@@ -176,11 +225,11 @@
     ...
 &lt;/web.xml&gt;</programlisting>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
       </sect2>
 
       <sect2>
@@ -203,9 +252,9 @@
 
         <programlisting>http://localhost:8080/spec.app?id=28</programlisting>
 
-        <para></para>
+        <para/>
 
-        <para></para>
+        <para/>
       </sect2>
     </sect1>
   </chapter>

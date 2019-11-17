@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<swf:page-title><swf:element-type /> Listing</swf:page-title>
+<swf:template  file="../scimpi/style/template.shtml" />
+
+<swf:breadcrumbs action="add" />
+
+<h2>${title}</h2>
+<swf:table xxtitle="My Little Table" xxxno-columns="7" xxheader="no"  footer="yes" link-view="_generic.shtml" />
+ 
+

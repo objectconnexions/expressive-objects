@@ -136,5 +136,8 @@
 		<module>dispatcher</module>
 		<module>servlet</module>
 		<module>tck</module>
+		<module>basic-template</module>
+		<module>multipage-template</module>
+		<module>singlepage-template</module>
 	</modules>
 </project>

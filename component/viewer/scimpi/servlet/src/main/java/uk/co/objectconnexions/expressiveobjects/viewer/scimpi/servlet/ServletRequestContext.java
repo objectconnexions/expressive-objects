@@ -219,8 +219,6 @@ public class ServletRequestContext extends RequestContext {
             } catch (final MalformedURLException e) {
                 throw new ScimpiException(e);
             }
-
-            throw new ScimpiNotFoundException("Cannot find file " + path);
         }
         return in;
     }

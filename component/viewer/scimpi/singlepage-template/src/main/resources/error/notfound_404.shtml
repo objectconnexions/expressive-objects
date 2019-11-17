@@ -1,0 +1,13 @@
+<swf:page-title>Page Not Found</swf:page-title>
+<swf:template  file="./error-template.shtml" />
+
+<h1>error 404... page not found...</h1>
+<p><swf:error-message /></p>
+
+<p class="error-links">
+<!-- 
+	<a id="message" href="mailto:support@planchaser.com?subject=Page%20not%20accessible%20${_error-ref:optional}">send feedback</a>
+ -->
+	<a href="${_context}/index.shtml">return to application</a>
+</p>
+

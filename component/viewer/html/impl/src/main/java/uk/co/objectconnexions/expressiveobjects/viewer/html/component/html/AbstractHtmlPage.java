@@ -84,11 +84,15 @@ public abstract class AbstractHtmlPage implements Component, Page {
         writer.println("  <meta name=\"description\" content=\"Expressive Objects Application Web Page\" />");
 
         final StringTokenizer st = new StringTokenizer(styleSheet, ",");
-        int i = 0;
+        int i = 1;
         while (st.hasMoreTokens()) {
-            final String style = st.nextToken().trim();
+            String style = st.nextToken().trim();
             writer.print("  <link rel=\"");
-            if (i++ > 0) {
+            if (style.trim().startsWith("*")) {
+                i++;
+                style = style.substring(1);
+            }
+            if (i > 1) {
                 writer.print("alternate ");
             }
             writer.print("stylesheet\" title=\"Style " + i + "\" href=\"");

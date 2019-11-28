@@ -54,6 +54,10 @@ h2 {
 	font-size: 130%;
 	line-height: 1.3em;
 }
+pre {
+	font: monospace;
+	font-weight: normal;
+}
 p,
 ol.intro {
 	margin-bottom: 2em;
@@ -105,6 +109,18 @@ p.alternative-links {
     font-weight: bold;
     padding-bottom: 0.4em;
     padding-top: 2em;
+    border-bottom: 1px solid #ccc;
+}
+.subtitle {
+	font-weight: bold;
+	border-bottom: 3px solid #aaa;
+	padding-top: 1.2em;
+}
+.subtitle:first-child {
+    padding-top: 0.3em;
+    }
+.label {
+	color: #888;
 }
 .errors {
 	margin-left: 150px;
@@ -150,8 +166,18 @@ input.button {
 }
 
 #error-dump {
-	margin-top: 4em;
+    margin-top: 4em;
 	border-top: 3px red dotted;
+	position: fixed;
+	top: 3em;
+	background: #ddd;
+	margin: 4em;
+	border: 1px solid red;
+	width: 80%;
+	overflow: auto;
+	scroll-behavior: auto;
+	padding: 10px 40px;
+	box-shadow: 15px 15px rgba\(200,200,200,0.1;
 }
 #error-dump h1 {
 	padding-left: 0;
@@ -177,11 +203,15 @@ p.error-links a#message {
 }
 
 table {
+	min-width: 95%;
 	margin-top: 2em;
 	margin-bottom: 1em;
-	border-bottom: 1px solid #eee;
+	padding-bottom: 0.6em;
+	border-bottom: 1px solid #ccc;
 }
 td:FIRST-CHILD {
 	font-weight: bold;
 	width: 12em;
+	padding-right: 10px;
+}
 }

@@ -4,15 +4,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
   <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-    <listEntry value="/uk.co.objectconnexions.expressiveobjects.runtimes.dflt.webserver/src/main/java/org/apache/expressive-objects/WebServer.java"/>
+  <listEntry value="/expressiveobjects-core-webserver/src/main/java/uk/co/objectconnexions/expressiveobjects/WebServer.java"/>
   </listAttribute>
-  <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
-    <listEntry value="1"/>
   </listAttribute>
-  <mapAttribute key="org.eclipse.debug.core.preferred_launchers">
-    <mapEntry value="org.eclipse.jdt.launching.localJavaApplication" key="[debug]"/>
-    <mapEntry value="org.eclipse.jdt.launching.localJavaApplication" key="[run]"/>
-  </mapAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+       <listEntry value="1"/>
+  </listAttribute>
+  <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+    <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+    <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+  </listAttribute>
   <stringAttribute value="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector" key="org.eclipse.debug.core.source_locator_id"/>
   <booleanAttribute value="true" key="org.eclipse.jdt.debug.ui.INCLUDE_EXTERNAL_JARS"/>
   <stringAttribute value="org.eclipse.m2e.launchconfig.classpathProvider" key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER"/>

@@ -3,15 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<title>${title}</title>
-	<link rel="stylesheet" title="Style 1" href="${_context}/scimpi/style/reset.css" type="text/css" media="all" />
-	<link rel="stylesheet" title="Style 1" href="${_context}/scimpi/style/screen.css" type="text/css" media="all" />
+	<link rel="stylesheet" title="Style 1" href="${_context}/style/reset.css" type="text/css" media="all" />
+	<link rel="stylesheet" title="Style 1" href="${_context}/style/screen.css" type="text/css" media="all" />
 </head>
 
 <body id="demo">
 
 <div id="banner">
-	<div id="logo"><img src="${_context}/scimpi/images/scimpi-logo.png"/></div>
-	<div id="title"><a href="/">ECS App</a></div>
+	<div id="logo"><img src="${_context}/images/scimpi-logo.png"/></div>
+	<div id="title"><a href="/">${title}</a></div>
 	<swf:user login-view="/login.shtml" logout-view="/login.shtml" />
 </div>
 

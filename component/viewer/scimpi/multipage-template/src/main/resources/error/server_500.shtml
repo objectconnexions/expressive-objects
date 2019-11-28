@@ -32,7 +32,7 @@ and patience.</p>
 <swf:show-debug> 
 	<swf:when variable-exists="details">
 		<p class="error-links">
-			<a onclick="$('#error-dump').toggle()">display details...</a>
+			<a href="#" onclick="$('#error-dump').toggle(); return false;">display details...</a>
 		</p>
 		
 		<div id="error-dump" style="display: none; cursor: pointer;">

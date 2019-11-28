@@ -79,6 +79,7 @@ public class ResourceServlet extends HttpServlet {
         }
 
         LOG.warn("failed to load resource from classpath or file system: " + servletPath);
+        response.sendError(HttpServletResponse.SC_NOT_FOUND, "Failed to find resource " + servletPath);
     }
 
     private FileInputStream getRealPath(final HttpServletRequest request) {

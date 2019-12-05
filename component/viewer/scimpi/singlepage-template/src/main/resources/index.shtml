@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<swf:variable name="version" value="0" />
+<meta charset="UTF-8">
+<link rel="stylesheet" href="${_context}/style/style.css?v=${version}" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Welcome to ECS</h1>
+
+
+    <div id="scimpi" class="disable in-login">
+        <div id="scimpi-banner" class="scimpi-ui-template">
+            <div id="logo">
+                <img id="xxxlogo" src="images/small-scimpi-logo.png" />
+            </div>
+        </div>
+
+        <div id="scimpi-content" class="scimpi-ui-template" xxxdata-target="root"></div>
+        
+        <div id="scimpi-footer">
+            <p class="copyright">&copy;2019 Copyright Object Connexions Ltd<a id="dev-show" href="#"
+                    onclick="$('#dev-help').toggle(); return false;">,</a> version V${version}</p>
+            <div id="role" class="scimpi-ui-template"></div>
+            <div id="scimpi-footer-help" class="scimpi-ui-template"></div>
+        </div>
+
+        <div id="scimpi-user" class="scimpi-ui-template"></div>
+    </div>
+
+    <div id="scimpi-dialog-overlay" class="hide">
+        <div id="scimpi-dialog" class="scimpi-ui-dialog scimpi-ui-segment content hide"></div>
+    </div>
+    
+    <div id="message" data-new-view=""></div>
+    
+    <div id="system-error-overlay" class="hide">
+    </div>
+
+
+
+
+    <script type="application/javascript" src="${_context}/scripts/libraries/jquery-1.12.4.js"></script>
+    <script type="application/javascript" src="${_context}/scripts/libraries/moment.min.js?v=${version}"></script>
+    <script type="application/javascript" src="${_context}/scripts/libraries/moment-timezone-with-data-2010-2020.js?v=${version}"></script>
+    <script type="application/javascript" src="${_context}/scripts/libraries/pikaday.js?v=${version}"></script>
+    <script type="application/javascript" src="${_context}/scripts/libraries/jquery.tablesorter.js"></script>
+   <!-- 
+    <script src="${_context}/scripts/scimpi.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-localization.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-date.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-shell.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-dialog.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-login.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-plain.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-tabs.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-split.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-clients.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-data.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-alarms.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-maps.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-configuration.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-charting.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-devices.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-display.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-exports.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-views.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-applications.js?v=${version}"></script>
+    --> 
+
+    <script src="${_context}/scripts/scimpi.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-localization.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-date.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-shell.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-dialog.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-login.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-plain.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-tabs.js?v=${version}"></script>
+    <script src="${_context}/scripts/scimpi-split.js?v=${version}"></script>
+    
+
+
+    <script>
+        $(function () {
+            // $('#scimpi').append('<p>TESTING</p>');
+            scimpi.initModule();
+            /*
+            scimpi.login.showLogin('${_user:optional}', function() {
+                scimpi.shell.start("_logged-in.shtml", 
+                    "#scimpi", 
+                    function() {
+                        scimpi.localization.loadUserData();
+                    }
+                );
+            });*/
+            scimpi.shell.start("_start.shtml", 
+                    "#scimpi", 
+                    function() {
+               //         scimpi.localization.loadUserData();
+                    }
+                );
+
+        });
+    </script>
+    
+	
+</body>
+</html>

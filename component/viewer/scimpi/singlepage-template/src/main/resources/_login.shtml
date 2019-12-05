@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="${_context}/style/ibexis-login.css" />
+
+<div class="ibexis-login no-cancel">
+    <h1>Login 2</h1>
+    <!-- 
+    <swf:logon id="login-form" class="form full login" object="service:users" method="logon" result-name="_user" 
+        view="__empty.shtml" title="" />
+     -->
+    <swf:logon id="login-form" class="form full login" result-name="_user" 
+        view="__empty.shtml" title="" />
+</div>

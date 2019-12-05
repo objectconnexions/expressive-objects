@@ -1,0 +1,45 @@
+<swf:page-title>Internal Error</swf:page-title>
+<swf:template  file="./error-template.shtml" />
+
+<swf:variable name="reference"><swf:error-reference /></swf:variable>
+<swf:variable name="details"><swf:error-details /></swf:variable>
+
+<h1>Something has gone wrong, sorry about that...</h1>
+
+<p>We&apos;re constantly working to improve and enhance PlanChaser so we&apos;re probably already aware 
+of this problem. You can press <a href="${_context}/index.shtml">Return To Application</a> to just go back, but it would help 
+a lot if you could let us know what you were doing immediately prior to receiving this message.</p>
+ 
+<p>There are two ways to get in touch with this information:</p>
+<p>&nbsp;&nbsp;1. By sending a quick message using the <a 
+		href="mailto:support@planchaser.com?subject=System%20failure%20reference%20${reference}">send feedback</a>
+		button below<br />
+	OR<br />
+	&nbsp;&nbsp;2. By emailing the reference you see below to <a 
+		href="mailto:support@planchaser.com?subject=System%20failure%20reference%20${reference}">Support@PlanChaser.com</a>
+</p>
+
+<p>Doing this helps us to improve the product and improve the user experience for everybody. Thank you for your time 
+and patience.</p>
+
+<p>(The reference for this problem, should you be asked for it, is <em>${reference}</em>.)</p>
+
+<p class="error-links">
+	<a id="message" href="mailto:support@planchaser.com?subject=System%20failure%20reference%20${reference}">send feedback</a>
+	<a href="${_context}/index.shtml">return to application</a>
+</p>
+
+<swf:show-debug> 
+	<swf:when variable-exists="details">
+		<p class="error-links">
+			<a href="#" onclick="$('#error-dump').toggle(); return false;">display details...</a>
+		</p>
+		
+		<div id="error-dump" style="display: none; cursor: pointer;">
+			<h1>error 500... an internal error has occurred: #${reference}</h1>
+			<p class="error"><swf:error-message /></p>
+			<swf:error-details />
+		</div>
+	</swf:when>
+</swf:show-debug>
+

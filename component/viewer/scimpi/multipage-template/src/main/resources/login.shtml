@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<swf:template  file="scimpi/style/site-template.shtml" />
+
+<style>
+div#content {
+   margin-left: 2em;
+}
+</style>
+<h2>Please Log In</h2>
+<swf:logon view="index.shtml"/>

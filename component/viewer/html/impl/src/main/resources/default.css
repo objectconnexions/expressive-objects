@@ -17,35 +17,26 @@
  *  under the License.
  */
 /* Start Global styles */
-
 body {
-  background: #101254;
-  text-align: center;
-}
-#wrapper {
-  width: 980px;
-  min-height: 800px;
-  border:3px solid #7F81C0;
-  margin:8px auto;
-  text-align: left;
-  background: white;
-}
-
-.header-icon > img {
-	max-width: 40px;
-	height: 40px;
-}
-	
-BODY {
 	font-family: Arial, Sans-Serif;
 	margin: 0 0 10px 0;
+	text-align: center;
+	background: #ffffff;
 	color: black;
+}
 
-/*
-	background: url(default-images/poweredby-logo.png);
-	background-repeat: no-repeat;
-	background-position: 95% 95%;
-*/
+#wrapper {
+	width: 100%;
+	min-height: 800px;
+	margin: 8px auto;
+	text-align: left;
+	background: white;
+}
+
+.header-icon>img {
+	max-width: 40px;
+	height: 40px;
+	margin-top: 5px;
 }
 
 IMG {
@@ -60,28 +51,32 @@ A:hover {
 	text-decoration: underline;
 }
 
-/* End Global styles */ /* Start Heading */ 
-
+/* End Global styles */ /* Start Heading */
 div#site-header:after {
 	bottom: 0px;
 	display: block;
 	text-align: right;
-	float:right;
+	float: right;
 	bottom: 0;
 	font-size: 70%;
 	color: gray;
 }
 
 div#site-header {
-	background: url(images/banner-bg.png); 
-	background-repeat: repeat-x white-space :   nowrap;
+	background: url(../images/banner-bg.png);
+	background-repeat: repeat-x white-space:   nowrap;
 	list-style: none;
 	margin: 0px;
-	height: 100px;
+}
+
+div#no-site-logo {
+	color: #aaa;
+	padding: 11px 16px;
+	letter-spacing: 1.5px;
 }
 
 div#site-logo {
-	background: url(images/banner.png);
+	background: url(../images/banner.png);
 	background-repeat: no-repeat;
 	background-position: left;
 	position: absolute;
@@ -91,7 +86,20 @@ div#site-logo {
 }
 
 div#page-header {
-	display: none;
+	/*display: none;*/
+	
+}
+
+div#page-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #F0F0F0;
+	color: #888;
+	margin: 0;
+	padding: 5px 30px 0 25px;
+	min-height: 26px;
 }
 
 /* END Heading */
@@ -112,9 +120,8 @@ DIV.options {
 	padding: 4px 0px 4px 5px;
 	min-height: 20px;
 	align: right;
-	float:right;
+	float: right;
 }
-
 
 DIV.options H4 {
 	display: none;
@@ -122,13 +129,11 @@ DIV.options H4 {
 
 DIV.options DIV.item {
 	display: inline;
-	border-right: 1px solid #000000;
 	font-family: arial, 'sans serif';
 	font-weight: bold;
 	color: #00000;
 	font-size: 70%;
-	margin: 0 6px 0 6px;
-	padding 0 0 0 0;
+	margin: 0 6px 0 6px; padding 0 0 0 0;
 	min-width: 200px;
 }
 
@@ -156,15 +161,14 @@ DIV.options DIV.item a:visited {
 	padding: 0 2px 0 0px;
 }
 
-/* End options */ 
+/* End options */
 
 /* Start services */
 DIV.services {
 	background-color: #7F81C0;
 	margin: 0;
-	padding: 4px 20px 4px 5px;
+	padding: 4px 20px 4px 15px;
 	min-height: 20px;
-
 }
 
 DIV.services H4 {
@@ -173,7 +177,6 @@ DIV.services H4 {
 
 DIV.services DIV.item {
 	display: inline;
-	border-right: 1px solid #ffffff;
 	font-family: arial, 'sans serif';
 	font-weight: bold;
 	color: #ffffff;
@@ -239,7 +242,7 @@ DIV.services DIV.item-selected a:visited {
 DIV.history {
 	background-color: #D6D6D6;
 	margin: 0;
-	padding: 1px 30px 0 5px;
+	padding: 1px 30px 0 15px;
 	min-height: 26px;
 }
 
@@ -249,7 +252,6 @@ DIV.history H4 {
 
 DIV.history DIV.item {
 	display: inline;
-	border-right: 1px solid #ffffff;
 	font-family: arial, 'sans serif';
 	font-weight: bold;
 	color: #29357D;
@@ -323,7 +325,7 @@ DIV.history:after {
 div#context {
 	background-color: #F0F0F0;
 	margin: 0;
-	padding: 1px 30px 0 7px;
+	padding: 1px 30px 0 17px;
 	min-height: 26px;
 }
 
@@ -402,19 +404,23 @@ span.disabled:after {
 
 /* End Context */ /*
 div#help-bar {
-	position: relative;
-	right: 50px;
-	top: 10px;
-	text-align: right; 
-	font-family : arial, 'sans serif'; 
-	font-weight : normal;  
-	color: #0000FF; 
-	font-size : 90%; 
-	line-height : 110%;
-	text-decoration: underline;
-	height: 22px;
+    position: relative;
+    right: 50px;
+    top: 10px;
+    text-align: right; 
+    font-family : arial, 'sans serif'; 
+    font-weight : normal;  
+    color: #0000FF; 
+    font-size : 90%; 
+    line-height : 110%;
+    text-decoration: underline;
+    height: 22px;
 }
 */
+#view {
+	min-height: 400px;
+}
+
 DIV#body DIV#view {
 	position: relative;
 	top: 0px;
@@ -468,7 +474,7 @@ DIV.header {
 	background-color: #F0F0F0;
 	min-height: 48px;
 	margin: 0 50px 0 280px;
-
+	padding: 5px 15px;
 }
 
 SPAN.header-icon IMG {
@@ -478,14 +484,12 @@ SPAN.header-icon IMG {
 SPAN.header-text {
 	float: left;
 	position: relative;
-	top: 10px;
-	margin-left: 7px;
-	FONT-WEIGHT: bold;
-	FONT-SIZE: 16px;
-	LEFT: auto;
-	COLOR: #003366;
-	FONT-STYLE: normal;
-	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	top: 20px;
+	margin-left: 15px;
+	color: #003366;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-style: normal;
 }
 
 /* End of Object Header */ /* Start of Object Contents */
@@ -500,18 +504,23 @@ DIV#content {
 DIV.field {
 	margin: 0;
 	padding: 5px 0px 5px 0px;
-	border-top: 1px solid #666666;
+	border-top: 1px solid #eeeeee;
 	min-height: 20px;
 }
 
-DIV.field SPAN.value IMG,DIV.field DIV.value IMG {
+DIV.field:first-child {
+	border-top: none;
+}
+
+DIV.field SPAN.value IMG, DIV.field DIV.value IMG {
 	position: relative;
 	top: 3px;
+	left: -3px;
 	margin: 0px 5px 0 0;
 	height: 16px;
 }
 
-DIV.field SPAN.value A,DIV.field DIV.value A {
+DIV.field SPAN.value A, DIV.field DIV.value A {
 	position: relative;
 	top: -2px;
 	margin: 0px 5px 0 0;
@@ -525,9 +534,9 @@ DIV.field DIV.icon IMG {
 	height: 16px;
 }
 
-.label,.value {
+.label, .value {
 	font-size: 80%;
-	color: #333399;
+	color: #7070e0;
 }
 
 DIV.field DIV.icon {
@@ -537,26 +546,29 @@ DIV.field DIV.icon {
 	left: 200px;
 }
 
-DIV.field span.label,DIV.field DIV.label {
+DIV.field span.label, DIV.field DIV.label {
 	width: 170px;
-	display: block;
-	/*content: ":";*/
-	margin: 0 0 -18px 7px;
+	display: inline-block;
+	margin: 0 0 -18px 13px;
 }
 
 DIV.field span.separator {
-	display: inline;
-	position: relative;
-	margin: 0 0 -15px 180px;
-	vertical-align: top;
+	display: none;
 }
 
 DIV.field span.value, DIV.field DIV.value, DIV.field INPUT.value, DIV.field SELECT.value
 	{
-	top: -2px;
+	/*
+    top: -2px;
+    position: relative;
+    margin: 0px 10px -5px 0px;
+    */
+	display: inline-block;
+}
+
+DIV.field INPUT.value[type=checkbox] {
 	position: relative;
-	margin: 0px 10px -5px 0px;
-	display: inline;
+	left: -6px;
 }
 
 DIV.field span.value PRE {
@@ -565,11 +577,9 @@ DIV.field span.value PRE {
 	font-family: inherit;
 }
 
-
 DIV.field textarea.value {
 	font-family: inherit;
 }
-
 
 DIV.field span.optional {
 	margin: -35px 0 0 0;
@@ -680,7 +690,7 @@ TD DIV.action-button {
 }
 
 /* End of Object Table */
-INPUT.action-button,DIV.action-button {
+INPUT.action-button, DIV.action-button {
 	background-color: #F0F0F0;
 	padding: 10px;
 	display: block;
@@ -688,17 +698,15 @@ INPUT.action-button,DIV.action-button {
 	min-height: 20px;
 }
 
-INPUT.action-button,DIV.action-button A {
-	background: url(default-images/bg-button.gif);
-	background-repeat: repeat-x;
-	padding: 2px;
+INPUT.action-button, DIV.action-button A {
+	background-color: #888;
+	padding: 3px 10px;
 	margin: 5px;
 	border: 1px solid #333399;
 	font-family: arial, 'sans serif';
-	font-weight: normal;
-	color: #000000;
+	color: #ccc;
 	font-size: 70%;
-	font-weight: normal;
+	font-weight: BOLD;
 	text-align: center;
 }
 
@@ -715,21 +723,20 @@ DIV.action-button a:hover {
 	text-decoration: none;
 }
 
-INPUT.action-button,DIV.action-button INPUT {
+INPUT.action-button, DIV.action-button INPUT {
 	float: left;
 }
 
 /* End of Object Contents */ /* Start of Object Actions Menu */
 DIV#body DIV#view DIV#menu {
-	position: relative;
-	top: 40px;
-	left: 0;
-	background-color: #ffffff;
-	border-top: 1px solid #00336F;
-	margin: 0px;
-	width: 210px;
 	display: block;
 	float: left;
+	position: absolute;
+	top: 43px;
+	left: 0;
+	margin: 0px;
+	border-top: 1px solid #00336633;
+	width: 210px;
 }
 
 DIV#body DIV#menu H3 {
@@ -759,7 +766,7 @@ DIV.submenu-item {
 	color: #1A59A7;
 	margin: 0px;
 	padding: 5px 0px 5px 10px;
-	border-bottom: 1px solid #00336F;
+	border-bottom: 1px solid #00336633;
 	line-height: 100%;
 }
 
@@ -782,8 +789,8 @@ DIV.menu-item {
 	background-color: #ffffff;
 	margin: 0px;
 	line-height: 110%;
-	border-bottom: 1px solid #00336F;
-	padding: 5px 5px 5px 10px;
+	border-bottom: 1px solid #00336633;
+	padding: 5px 5px 5px 25px;
 	font-family: arial, 'sans serif';
 	font-weight: normal;
 	color: #1A59A7;
@@ -822,7 +829,6 @@ DIV.submenu-item DIV.menu-item a:hover {
 
 /* End of Object Menu */
 DIV.page-footer {
-	position: absolute;
 	right: 10px;
 	bottom: 10px;
 	font-size: 50%;
@@ -838,7 +844,7 @@ H2 {
 	font-size: 90%;
 	color: #333399;
 	letter-spacing: 1pt;
-	text-indent:-1pt;
+	text-indent: -1pt;
 	margin: 0;
 }
 
@@ -846,7 +852,7 @@ H3 {
 	font-size: 80%;
 	color: #ffffff;
 	letter-spacing: 1pt;
-	text-indent:-1pt;
+	text-indent: -1pt;
 	margin: 15px 10px 5px 10px;
 }
 
@@ -854,7 +860,7 @@ H4 {
 	font-size: 80%;
 	color: #333399;
 	letter-spacing: 1pt;
-	text-indent:-1pt;
+	text-indent: -1pt;
 	margin: 10px 10px 0px 10px;
 }
 
@@ -862,7 +868,7 @@ DIV.text {
 	font-size: 100%;
 	color: #336699;
 	letter-spacing: 1pt;
-	text-indent:-1pt;
+	text-indent: -1pt;
 	margin: 10px 10px 0px 10px;
 }
 
@@ -870,7 +876,7 @@ DIV.error {
 	font-size: 120%;
 	color: #cc0000;
 	letter-spacing: 1pt;
-	text-indent:-1pt;
+	text-indent: -1pt;
 	margin: 10px 10px 0px 10px;
 }
 
@@ -880,7 +886,7 @@ PRE.error-trace {
 	margin: 10px 10px 0px 10px;
 }
 
-DIV#debug { /*	float: left;*/
+DIV#debug { /*  float: left;*/
 	background-color: #F0F0F0;
 	margin: 30px;
 	padding: 1px 10px 0 7px;
@@ -902,10 +908,6 @@ DIV#debug DIV.detail {
 	margin: 0 5px 0 10px;
 }
 
-DIV#page-footer {
-	display: none;
-}
-
 SPAN.message {
 	position: relative;
 	top: 30px;
@@ -914,18 +916,11 @@ SPAN.message {
 	margin: 40px 0 0 0;
 	padding: 10px;
 }
-/* Think this is now redundant
-DIV.items {
-	position: relative;
-} 
-*/
-
 
 SPAN.about {
 	display: block;
 	padding: 4px;
 }
-
 
 SPAN.user {
 	display: block;
@@ -933,7 +928,7 @@ SPAN.user {
 }
 
 .nav-link {
-    display: block;
-    padding: 10px;
-    font-size: 75%;
+	display: block;
+	padding: 10px;
+	font-size: 75%;
 }

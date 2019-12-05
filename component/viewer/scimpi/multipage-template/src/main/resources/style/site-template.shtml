@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>${title}</title>
+	<link rel="stylesheet" title="Style 1" href="${_context}/style/reset.css" type="text/css" media="all" />
+	<link rel="stylesheet" title="Style 1" href="${_context}/style/screen.css" type="text/css" media="all" />
+</head>
+
+<body id="demo">
+
+<div id="banner">
+	<div id="logo"><img src="${_context}/images/scimpi-logo.png"/></div>
+	<div id="title"><a href="/">${title}</a></div>
+	<swf:user login-view="/login.shtml" logout-view="/login.shtml" />
+</div>
+
+<div id="content">
+	<swf:content />
+</div>
+
+<div id="footer">
+    <div style="float:right; margin-right: 40px;">
+        <a href="${_context}/index.html">home</a>&nbsp;|&nbsp;<a href="${_context}/logon.htmlviewer">html</a>&nbsp;|&nbsp;<a href="${_context}/services">rest</a>&nbsp;|&nbsp;<a href="${_context}/mobile/index.html">mobile</a>
+    </div>
+	<div id="debug">
+		<h1>Debug <a href="/debug.app">open</a></h1>
+		<p><strong>Template used:</strong> ${_directory}${_this}</p>
+		<p><strong>Request:</strong> ${_base}</p>
+	</div>
+    <div style="clear:both;"/>
+	<swf:diagnostics/>
+</div>
+
+</body>
+</html>

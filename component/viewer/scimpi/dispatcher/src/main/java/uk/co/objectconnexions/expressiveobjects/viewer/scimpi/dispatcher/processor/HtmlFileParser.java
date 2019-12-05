@@ -33,6 +33,8 @@ import org.htmlparser.lexer.Page;
 import org.htmlparser.nodes.TagNode;
 import org.htmlparser.util.ParserException;
 
+import uk.co.objectconnexions.expressiveobjects.core.commons.lang.Resources;
+import uk.co.objectconnexions.expressiveobjects.core.commons.lang.StringUtils;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.ElementProcessor;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.ScimpiException;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.action.Attributes;
@@ -62,7 +64,10 @@ public class HtmlFileParser {
         final File loadFile = new File(directory.getParentFile(), filePath);
         final String loadPath = loadFile.getPath().replace('\\', '/');
         LOG.debug("loading template '" + loadPath + "'");
-        final InputStream in = context.openStream(loadPath);
+        final InputStream in = getInputStream(context, loadPath);
+        if (in == null) {
+            throw new ScimpiException("Failed to load scimpi file " + filePath);
+        }
 
         Page page;
         try {
@@ -173,6 +178,52 @@ public class HtmlFileParser {
         }
     }
 
+    private InputStream getInputStream(final RequestContext context, final String request) {
+   //     return context.openStream(loadPath);
+        
+
+//        private void processRequest(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+            final String servletPath = StringUtils.stripLeadingSlash(request);
+            if (LOG.isInfoEnabled()) {
+                LOG.info("request: " + servletPath);
+            }
+
+            // try to load from filesystem
+            final InputStream is2 = context.openStream(request); //getRealPath(context, servletPath);
+            if (is2 != null) {
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug("request: " + servletPath + " loaded from filesystem");
+                }
+                return is2;
+            }
+
+            // otherwise, try to load from classpath
+            final InputStream is = Resources.getResourceAsStream(servletPath);
+            if (is != null) {
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug("request: " + servletPath + " loaded from classpath");
+                }
+                return is;
+            }
+
+            LOG.warn("failed to load resource from classpath or file system: " + servletPath);
+            
+            return null;
+        }
+/*
+        private FileInputStream getRealPath(RequestContext context, final String path) {
+            final String realPath = context..getRealPath(path);
+            if (realPath == null) {
+                return null;
+            }
+            try {
+                return new FileInputStream(realPath);
+            } catch (final FileNotFoundException e) {
+                return null;
+            }
+        }
+    
+*/
     private void exception(final String filePath, final Node node, final Exception e) {
         String lineNumbers = "";
         String element = ("" + node).toLowerCase();

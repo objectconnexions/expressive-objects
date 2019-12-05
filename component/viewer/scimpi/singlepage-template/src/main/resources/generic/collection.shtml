@@ -1,0 +1,11 @@
+<swf:feedback />
+
+
+<div class="scimpi-ui-content the-real-contents" data-target="reveal">
+	<h2>Collection</h2>
+	
+	<swf:title />
+	
+	<swf:list/>
+	<swf:table />
+</div> 

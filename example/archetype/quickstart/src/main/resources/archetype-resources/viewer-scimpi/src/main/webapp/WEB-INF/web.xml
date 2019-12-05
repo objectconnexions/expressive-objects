@@ -58,6 +58,22 @@
     </context-param>
 
 
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/security_403.shtml</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/server_500.shtml</location>
+    </error-page>
+ 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/notfound_404.shtml</location>
+    </error-page>
+    
+
     <!-- which configuration directory to read overloaded property files from -->
     <!-- 
     Normally configuration like this should be done from outside your web 

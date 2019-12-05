@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<swf:page-title><swf:title-string /></swf:page-title>
+<swf:template  file="../scimpi/style/template.shtml" />
+
+<swf:breadcrumbs action="add" object="${_result}"/>
+<swf:history action="add" object="${_result}"  link-view="_generic.shtml" />
+
+<h2><swf:title /> <span class="edit"><swf:edit-link>Edit...</swf:edit-link></span></h2>
+<swf:long-form link-view="_generic.shtml" title="" />
+
+<swf:methods />
+
+

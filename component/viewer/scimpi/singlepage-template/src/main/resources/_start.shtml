@@ -1,0 +1,74 @@
+<swf:when variable-exists="_user">
+    <swf:get-field object="${_user}" field="customer" result-name="_user_account" scope="session" />
+    <swf:get-field object="${_user}" field="customer" result-name="_account" scope="session" />
+</swf:when>
+
+<div id="scimpi-footer-help">
+<!-- 
+    <swf:when variable-missing="development-flags">
+        <swf:run-action object="service:settings" method="developmentSettings" />
+        <swf:get-field  field="configuration" />
+        <swf:get-field  field="trackingId" result-name="_tracking-id" scope="global" />
+        <swf:development-flags from="${configuration}" />
+        <swf:variable name="development-flags" value="setup" scope="global" />
+    </swf:when>
+    
+    <swf:when variable-missing="system-links">
+        <swf:run-action object="service:settings" method="supportDetails">
+            <swf:parameter value="${_account}" />
+        </swf:run-action>
+        <swf:get-field field="helpWebsite" result-name="help-url" scope="global" />
+        <swf:get-field  field="supportEmail" result-name="support-email" scope="global" />
+        <swf:variable name="system-links" value="setup" scope="global" />
+    </swf:when>
+ -->
+
+    <swf:when variable-exists="help-url">
+        <p class="help">Visit the <a target="help" href="${help-url}">help site</a></p>
+    </swf:when>
+    <swf:when variable-exists="support-email">
+        <p class="support">Email the team at <a href="mailto:${support-email}">${support-email}</a></p>
+    </swf:when>
+</div>
+<div id="scimpi-banner">
+<!-- 
+    <swf:get-field object="${_account}" field="logoPath"/>
+    <swf:unless variable-exists="logoPath">
+        <swf:variable name="logoPath" value="${_context}/images/small-scimpi-logo.png" />
+    </swf:unless>
+ -->
+    <p>New banner</p>
+    <div  id="logo">
+        <img xxxid="logo" src="images/logo.png" alt="Logo" /></a>
+    </div>  
+    <div id="scimpi-ui-clock">&nbsp;</div>
+</div>
+<div id="role">
+<!-- 
+    <swf:variable name="role-name">Your role is <swf:title-string object="${_user}" field="role" /></swf:variable>
+ -->
+    <p class="role">${role-name:optional}</p>
+    <p>New footer</p>
+</div> 
+
+<div id="scimpi-content" class="orignal">
+	<!-- 
+    <swf:import file="_account.shtml" />
+	
+	<div class="scimpi-ui-segment scimpi-ui-grid" data-label="Grid" 
+	    data-content="station/_stations-grid.shtml?customer=${_account}"></div>
+	 -->
+	    <h4>New content</h4>
+	<div class="scimpi-ui-segment list scimpi-ui-tabs" data-label="List">
+	    <p>started!</p>
+	    <swf:services />
+	</div>
+</div>
+
+
+
+
+
+
+    
+    

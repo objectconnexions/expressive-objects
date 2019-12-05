@@ -1,4 +1,4 @@
-package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.breadcrumbs;
+package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.files;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,14 +7,14 @@ import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
 import org.apache.log4j.Logger;
+
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
 
 
 public class ListFiles extends Files {
@@ -41,7 +41,7 @@ public class ListFiles extends Files {
             String device = (String) request.getContext().getVariable("device");
             final String fromDate = (String) request.getContext().getVariable("from");
             
-            File directory = new File(limitTo + "/log/");
+            File directory = new File(limitTo);
             File[] listFiles = directory.listFiles(new FilenameFilter() {
                 public boolean accept(File dir, String name) {
                     return name.compareTo(fromDate) >= 0;

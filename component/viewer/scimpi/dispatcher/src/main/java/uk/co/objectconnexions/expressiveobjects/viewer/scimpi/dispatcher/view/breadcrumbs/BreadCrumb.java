@@ -1,4 +1,4 @@
-package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.breadcrumbs;
+package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs;
 
 import java.io.Serializable;
 

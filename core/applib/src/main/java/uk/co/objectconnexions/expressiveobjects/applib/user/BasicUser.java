@@ -244,7 +244,7 @@ public class BasicUser extends AbstractDomainObject implements User, Localized {
     }
     
     public String disableRole() {
-        return !role.canAssignRoles() ? "Can't assign roles to users" : null;
+        return (role != null && !role.canAssignRoles()) ? "Can't assign roles to users" : null;
         /*
         boolean isUserAdmin = userHasRole(Role.ADMIN);
         boolean isUserSysadmin = userHasRole(Role.ADMIN);
@@ -317,7 +317,7 @@ public class BasicUser extends AbstractDomainObject implements User, Localized {
         return samePassword ? null : "Passwords do not match";
     }
     
-    public boolean hideChangePassword(Password newPassword, Password confirm) {
+    public boolean hideChangePassword(Password oldPassword, Password newPassword, Password confirm) {
         return password == null;
     }
     // }}

@@ -1,4 +1,4 @@
-package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.breadcrumbs;
+package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs;
 
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.Names;

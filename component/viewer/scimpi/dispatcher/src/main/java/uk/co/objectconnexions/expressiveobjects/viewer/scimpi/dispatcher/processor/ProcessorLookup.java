@@ -26,14 +26,12 @@ import java.util.TreeSet;
 
 import uk.co.objectconnexions.expressiveobjects.core.commons.debug.DebugBuilder;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.ElementProcessor;
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.breadcrumbs.BreadCrumbsTrail;
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.breadcrumbs.Files;
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.breadcrumbs.ListFiles;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.DebugUsersView;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.ErrorDetails;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.ErrorMessage;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.debug.ErrorReference;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.display.DateFormatString;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.display.DevelopmentFlags;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.display.IeInclude;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.display.InitializeLocalization;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.display.MarkdownField;
@@ -50,6 +48,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.ac
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.action.Parameter;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.action.RunAction;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.action.Services;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs.BreadCrumbsTrail;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.collection.Collection;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.debug.DebugAccessCheck;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.debug.DebugCollectionView;
@@ -92,6 +91,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.ed
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.field.ExcludeField;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.field.IncludeField;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.field.LinkField;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.files.ListFiles;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.logon.Logoff;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.logon.Logon;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.logon.RestrictAccess;
@@ -163,6 +163,7 @@ public class ProcessorLookup {
         addElementProcessor(new DebugObjectView()); 
         addElementProcessor(new DebugUsersView());
         addElementProcessor(new DefaultValue());
+        addElementProcessor(new DevelopmentFlags());
         addElementProcessor(new EditLink());
         addElementProcessor(new EditObject());
         addElementProcessor(new ElementType());

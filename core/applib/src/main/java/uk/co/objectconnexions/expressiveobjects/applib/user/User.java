@@ -1,20 +1,14 @@
 package uk.co.objectconnexions.expressiveobjects.applib.user;
 
-import java.util.Locale;
-import java.util.TimeZone;
-
 import uk.co.objectconnexions.expressiveobjects.applib.value.Password;
 
 
+/**
+ * Implementing class represents a User of the system. Users can log in to the
+ * system to interact with it.
+ *
+ */
 public interface User {
-
-    TimeZone forTimeZone();
-
-    Locale forLocale();
-    
-    String getEmail();
-    
-    void setEmail(String email);
 
     String getFirstName();
 
@@ -25,20 +19,18 @@ public interface User {
     void setLastName(String lastName);
     
     String getFullName();
-
-    void setLanguageCode(String languageCode);
     
-    Password getPassword();
+    String getEmail();
     
-    void setPassword(Password createPassword);
-
-    void setTimeZone(String timeZone);
+    void setEmail(String email);
     
     String getUsername();
 
     void setUsername(String email);
-
-    String getLanguageCode();
+    
+    Password getPassword();
+    
+    void setPassword(Password createPassword);
 
     String title();
 

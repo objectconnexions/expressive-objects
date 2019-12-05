@@ -47,8 +47,6 @@ public class Request implements PageWriter {
     }
 
     private static Logger LOG = Logger.getLogger(Request.class);
-    public static final boolean ENSURE_VARIABLES_EXIST = true;
-    public static final boolean NO_VARIABLE_CHECKING = false;
     private static Encoder encoder;
 
     public static Encoder getEncoder() {
@@ -115,7 +113,6 @@ public class Request implements PageWriter {
     @Override
     public void appendAsHtmlEncoded(final String string) {
         appendHtml(encodeHtml(string));
-        // appendHtml(string);
     }
 
     @Override
@@ -272,16 +269,12 @@ public class Request implements PageWriter {
 
     public String getOptionalProperty(final String name, final String defaultValue, final boolean ensureVariablesExists) {
         final Attributes attributes = getTag().getAttributes();
-        return attributes.getOptionalProperty(name, defaultValue, ensureVariablesExists);
+        return attributes.getOptionalProperty(name, defaultValue);
     }
 
     public String getOptionalProperty(final String name) {
-        return getOptionalProperty(name, true);
-    }
-
-    public String getOptionalProperty(final String name, final boolean ensureVariablesExists) {
         final Attributes attributes = getTag().getAttributes();
-        return attributes.getOptionalProperty(name, ensureVariablesExists);
+        return attributes.getOptionalProperty(name);
     }
 
     public Attributes getAttributes() {
@@ -289,12 +282,8 @@ public class Request implements PageWriter {
     }
 
     public String getRequiredProperty(final String name) {
-        return getRequiredProperty(name, true);
-    }
-
-    public String getRequiredProperty(final String name, final boolean ensureVariablesExists) {
         final Attributes attributes = getTag().getAttributes();
-        return attributes.getRequiredProperty(name, ensureVariablesExists);
+        return attributes.getRequiredProperty(name);
     }
 
     public boolean isRequested(final String name) {

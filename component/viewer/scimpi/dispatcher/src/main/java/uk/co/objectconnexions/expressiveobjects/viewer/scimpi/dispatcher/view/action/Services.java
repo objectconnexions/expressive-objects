@@ -22,6 +22,9 @@ package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.a
 import java.util.List;
 
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ActionType;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAction;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectActionContainer.Contributed;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.persistence.PersistenceSession;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.AbstractElementProcessor;
@@ -44,13 +47,16 @@ public class Services extends AbstractElementProcessor {
 
         final List<ObjectAdapter> serviceAdapters = getPersistenceSession().getServices();
         for (final ObjectAdapter adapter : serviceAdapters) {
-            final String serviceId = request.getContext().mapObject(adapter, Scope.REQUEST);
-            request.appendHtml("<div class=\"actions\">");
-            request.appendHtml("<h3>");
-            request.appendAsHtmlEncoded(adapter.titleString());
-            request.appendHtml("</h3>");
-            Methods.writeMethods(request, serviceId, adapter, showForms, inclusionList, view, cancelTo);
-            request.appendHtml("</div>");
+            List<ObjectAction> actions = adapter.getSpecification().getObjectActions(ActionType.USER, Contributed.INCLUDED);
+			if (inclusionList.includedActions(actions).size() > 0) {
+	            final String serviceId = request.getContext().mapObject(adapter, Scope.REQUEST);
+	            request.appendHtml("<div class=\"actions\">");
+	            request.appendHtml("<h3>");
+	            request.appendAsHtmlEncoded(adapter.titleString());
+	            request.appendHtml("</h3>");
+	            Methods.writeMethods(request, serviceId, adapter, showForms, inclusionList, view, cancelTo);
+	            request.appendHtml("</div>");
+			}
         }
         request.popBlockContent();
     }

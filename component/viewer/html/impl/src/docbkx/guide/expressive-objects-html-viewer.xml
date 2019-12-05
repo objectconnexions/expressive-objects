@@ -235,7 +235,7 @@ expressive-objects.viewer.html.footer-file=footer.html
       <sect2>
         <title>Debugging</title>
 
-        <para>To turn on debuging use the debugon command, e.g.,</para>
+        <para>To turn on debugging use the debugon command, e.g.,</para>
 
         <programlisting>http://localhost:8080/debugon.app</programlisting>
 

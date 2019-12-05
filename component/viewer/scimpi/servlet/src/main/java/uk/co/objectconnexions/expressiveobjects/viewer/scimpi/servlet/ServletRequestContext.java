@@ -195,17 +195,17 @@ public class ServletRequestContext extends RequestContext {
 
     @Override
     public String getErrorDetails() {
-        return (String) getRequest().getAttribute("com.planchaser.error.details");
+        return (String) getRequest().getAttribute("org.scimpi.error.details");
     }
 
     @Override
     public String getErrorMessage() {
-        return (String) getRequest().getAttribute("com.planchaser.error.message");
+        return (String) getRequest().getAttribute("org.scimpi.error.message");
     }
 
     @Override
     public String getErrorReference() {
-        return (String) getRequest().getAttribute("com.planchaser.error.reference");
+        return (String) getRequest().getAttribute("org.scimpi.error.reference");
     }
 
     @Override
@@ -289,9 +289,9 @@ public class ServletRequestContext extends RequestContext {
     public void raiseError(final int status, final ErrorCollator errorDetails) {
         try {
             isAborted = true;
-            getRequest().setAttribute("com.planchaser.error.reference", errorDetails.getReference()); 
-            getRequest().setAttribute("com.planchaser.error.message", errorDetails.getMessage());
-            getRequest().setAttribute("com.planchaser.error.details", errorDetails.getDetails());
+            getRequest().setAttribute("org.scimpi.error.reference", errorDetails.getReference()); 
+            getRequest().setAttribute("org.scimpi.error.message", errorDetails.getMessage());
+            getRequest().setAttribute("org.scimpi.error.details", errorDetails.getDetails());
             getResponse().sendError(status);
         } catch (final IOException e) {
             throw new RuntimeException(e);

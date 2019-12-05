@@ -66,7 +66,7 @@ public class UserProfileContentWriter implements ContentWriter {
             xml.append("      <objects>\n");
             for (final Object object : perspective.getObjects()) {
                 final ObjectAdapter adapter = getPersistenceSession().getAdapterManager().adapterFor(object);
-                xml.append("        <object>" + adapter.getOid().enString(getOidMarshaller()) + "</object>\n");
+                xml.append("        <object " + attribute("id", adapter.getOid().enString(getOidMarshaller())) + "/>\n");
             }
             xml.append("      </objects>\n");
             xml.append("    </perspective>\n");

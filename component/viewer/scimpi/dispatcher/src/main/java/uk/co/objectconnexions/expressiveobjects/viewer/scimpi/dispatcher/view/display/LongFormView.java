@@ -68,9 +68,10 @@ public class LongFormView extends AbstractFormView {
             
             final LinkedObject[] linkedFields = new LinkedObject[fields.size()];
 
+      //      linkedObject2 = new LinkedObject(forwardView)
 
             final TableContentWriter rowBuilder =new SimpleTableBuilder(object.titleString(), true, false, "", noColumns, headers, fields, false,
-                    showIcons, false, false, false, field.getName(), linkedFields, null);
+                    showIcons, false, false, false, field.getName(), linkedFields, linkedObject);
             TableView.write(request, collection, summary, rowBuilder, null, "", tableClass, rowClasses);
         } else {
             super.addField(request, object, field, linkedObject, showIcons);

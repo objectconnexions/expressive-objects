@@ -24,7 +24,6 @@ import java.util.Vector;
 
 import org.htmlparser.Attribute;
 import org.htmlparser.nodes.TagNode;
-
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext;
 
 public class Attributes {
@@ -46,8 +45,6 @@ public class Attributes {
         final String variabelName = attribute.substring(2, end);
         final Object value = context.getVariable(variabelName);
         return value != null;
-        // return attribute != null &&
-        // !context.replaceVariables(attribute).equals("");
     }
 
     public boolean isPropertySpecified(final String name) {
@@ -55,16 +52,16 @@ public class Attributes {
         return attribute != null;
     }
 
-    public String getOptionalProperty(final String name, final boolean ensureVariablesExists) {
-        return getOptionalProperty(name, null, ensureVariablesExists);
+    public String getOptionalProperty(final String name) {
+        return getOptionalProperty(name, null);
     }
 
-    public String getOptionalProperty(final String name, final String defaultValue, final boolean ensureVariablesExists) {
+    public String getOptionalProperty(final String name, final String defaultValue) {
         final String attribute = tagNode.getAttribute(name);
         return attribute == null ? defaultValue : context.replaceVariables(attribute);
     }
 
-    public String getRequiredProperty(final String name, final boolean ensureVariablesExists) {
+    public String getRequiredProperty(final String name) {
         final String attribute = tagNode.getAttribute(name);
         if (attribute == null) {
             throw new RequiredPropertyException("Missing property: " + name);
@@ -109,7 +106,7 @@ public class Attributes {
     }
 
     public boolean isRequested(final String name, final boolean defaultValue) {
-        final String flag = getOptionalProperty(name, true);
+        final String flag = getOptionalProperty(name);
         if (flag == null) {
             return defaultValue;
         } else {

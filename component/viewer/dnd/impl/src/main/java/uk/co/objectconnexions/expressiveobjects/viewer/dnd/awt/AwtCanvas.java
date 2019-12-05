@@ -190,7 +190,17 @@ public class AwtCanvas implements Canvas {
 
     @Override
     public void drawText(final String text, final int x, final int y, final Color color, final Text style) {
-        useColor(color);
+    	/*
+    	// debug
+    	int topline = y - style.getAscent();
+    	int descentline = y + style.getDescent();
+    	int width = x + style.stringWidth(text);
+    	drawLine(x - 30, descentline, width + 50, descentline, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BOUNDS_BORDER));    	
+    	drawLine(x - 30, topline, width + 50, topline, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BOUNDS_BORDER));
+    	drawLine(x - 40, y, width + 50, y, Toolkit.getColor(ColorsAndFonts.COLOR_DEBUG_BASELINE));
+    	*/
+    	
+    	useColor(color);
         useFont(style);
         graphics.drawString(text, x, y);
     }

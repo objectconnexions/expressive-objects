@@ -19,19 +19,21 @@
 
 package uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.look.simple;
 
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Canvas;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Color;
-import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.ColorsAndFonts;
-import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Toolkit;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.window.IconizeWindowRender;
 
-class SimpleRender {
-    protected Color color(final boolean isDisabled, final boolean isOver) {
-        Color color;
-        if (isDisabled) {
-            color = Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY2);
-        } else {
-            color = isOver ? Toolkit.getColor(ColorsAndFonts.COLOR_PRIMARY2) : Toolkit.getColor(ColorsAndFonts.COLOR_BLACK);
+public class SimpleIconizeWindowRender extends SimpleRender implements IconizeWindowRender {
+
+    @Override
+    public void draw(final Canvas canvas, final int width, final int height, final boolean isDisabled, final boolean isOver, final boolean isPressed) {
+        final int x = 0;
+        final int y = 0;
+        final Color color = color(isDisabled, isOver);
+        if (!isDisabled && isOver) {
+        	canvas.drawRectangle(x, y, width, height, color);
         }
-        return color;
+        int size = 6;
+		canvas.drawSolidOval(x + 3, height - 8, size, size, color);
     }
-
 }

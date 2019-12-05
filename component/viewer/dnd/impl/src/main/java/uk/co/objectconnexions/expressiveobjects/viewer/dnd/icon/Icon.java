@@ -103,7 +103,7 @@ public class Icon extends ObjectView {
     @Override
     public Size getRequiredSize(final Size availableSpace) {
         if (icon == null) {
-            // icon = unselectedGraphic;
+            icon = unselectedGraphic;
         }
 
         final Size size = icon.getSize();
@@ -112,8 +112,8 @@ public class Icon extends ObjectView {
             size.extendHeight(ViewConstants.VPADDING + textSize.getHeight() + ViewConstants.VPADDING);
             size.ensureWidth(textSize.getWidth());
         } else {
-            size.extendWidth(ViewConstants.HPADDING);
-            size.extendWidth(textSize.getWidth());
+            size.extendWidth(ViewConstants.HPADDING + textSize.getWidth());
+            size.ensureHeight(textSize.getHeight());
         }
         return size;
     }

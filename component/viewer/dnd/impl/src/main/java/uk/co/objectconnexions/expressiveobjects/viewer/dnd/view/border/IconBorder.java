@@ -120,7 +120,7 @@ public class IconBorder extends AbstractBorder {
     @Override
     public int getBaseline() {
         return baseline; // wrappedView.getBaseline() + baseline +
-                         // titlebarHeight;
+                         // titlebarBottom;
     }
 
     @Override

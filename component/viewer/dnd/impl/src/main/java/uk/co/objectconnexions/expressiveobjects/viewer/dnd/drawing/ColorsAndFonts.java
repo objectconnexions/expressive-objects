@@ -24,53 +24,53 @@ package uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing;
  * 
  */
 public interface ColorsAndFonts {
-    public final static String COLOR_BLACK = "color.black";
-    public final static String COLOR_WHITE = "color.white";
-    public final static String COLOR_PRIMARY1 = "color.primary1";
-    public final static String COLOR_PRIMARY2 = "color.primary2";
-    public final static String COLOR_PRIMARY3 = "color.primary3";
-    public final static String COLOR_SECONDARY1 = "color.secondary1";
-    public final static String COLOR_SECONDARY2 = "color.secondary2";
-    public final static String COLOR_SECONDARY3 = "color.secondary3";
+    public final static String COLOR_BLACK = "black";
+    public final static String COLOR_WHITE = "white";
+    public final static String COLOR_PRIMARY1 = "primary1";
+    public final static String COLOR_PRIMARY2 = "primary2";
+    public final static String COLOR_PRIMARY3 = "primary3";
+    public final static String COLOR_SECONDARY1 = "secondary1";
+    public final static String COLOR_SECONDARY2 = "secondary2";
+    public final static String COLOR_SECONDARY3 = "secondary3";
 
     // background colors
-    public final static String COLOR_APPLICATION = "color.background.application";
-    public final static String COLOR_WINDOW = "color.background.window";
-    public final static String COLOR_MENU_VALUE = "color.background.menu.value";
-    public final static String COLOR_MENU_CONTENT = "color.background.menu.content";
-    public final static String COLOR_MENU_VIEW = "color.background.menu.view";
-    public final static String COLOR_MENU_WORKSPACE = "color.background.menu.workspace";
+    public final static String COLOR_APPLICATION = "background.application";
+    public final static String COLOR_WINDOW = "background.window";
+    public final static String COLOR_MENU_VALUE = "background.menu.value";
+    public final static String COLOR_MENU_CONTENT = "background.menu.content";
+    public final static String COLOR_MENU_VIEW = "background.menu.view";
+    public final static String COLOR_MENU_WORKSPACE = "background.menu.workspace";
 
     // menu colors
-    public final static String COLOR_MENU = "color.menu.normal";
-    public final static String COLOR_MENU_DISABLED = "color.menu.disabled";
-    public final static String COLOR_MENU_REVERSED = "color.menu.reversed";
+    public final static String COLOR_MENU = "menu.normal";
+    public final static String COLOR_MENU_DISABLED = "menu.disabled";
+    public final static String COLOR_MENU_REVERSED = "menu.reversed";
 
     // label colors
-    public final static String COLOR_LABEL = "color.label.normal";
-    public final static String COLOR_LABEL_DISABLED = "color.label.disabled";
-    public final static String COLOR_LABEL_MANDATORY = "color.label.mandatory";
+    public final static String COLOR_LABEL = "label.normal";
+    public final static String COLOR_LABEL_DISABLED = "label.disabled";
+    public final static String COLOR_LABEL_MANDATORY = "label.mandatory";
 
     // state colors
-    public final static String COLOR_IDENTIFIED = "color.identified";
-    public final static String COLOR_VALID = "color.valid";
-    public final static String COLOR_INVALID = "color.invalid";
-    public final static String COLOR_ERROR = "color.error";
-    public final static String COLOR_ACTIVE = "color.active";
-    public final static String COLOR_OUT_OF_SYNC = "color.out-of-sync";
+    public final static String COLOR_IDENTIFIED = "identified";
+    public final static String COLOR_VALID = "valid";
+    public final static String COLOR_INVALID = "invalid";
+    public final static String COLOR_ERROR = "error";
+    public final static String COLOR_ACTIVE = "active";
+    public final static String COLOR_OUT_OF_SYNC = "out-of-sync";
 
     // text colors
-    public final static String COLOR_TEXT_SAVED = "color.text.saved";
-    public final static String COLOR_TEXT_EDIT = "color.text.edit";
-    public final static String COLOR_TEXT_CURSOR = "color.text.cursor";
-    public final static String COLOR_TEXT_HIGHLIGHT = "color.text.highlight";
+    public final static String COLOR_TEXT_SAVED = "text.saved";
+    public final static String COLOR_TEXT_EDIT = "text.edit";
+    public final static String COLOR_TEXT_CURSOR = "text.cursor";
+    public final static String COLOR_TEXT_HIGHLIGHT = "text.highlight";
 
     // debug outline colors
-    public final static String COLOR_DEBUG_BASELINE = "color.debug.baseline";
-    public final static String COLOR_DEBUG_BOUNDS_BORDER = "color.debug.bounds.border";
-    public final static String COLOR_DEBUG_BOUNDS_DRAW = "color.debug.bounds.draw";
-    public final static String COLOR_DEBUG_BOUNDS_REPAINT = "color.debug.bounds.repaint";
-    public final static String COLOR_DEBUG_BOUNDS_VIEW = "color.debug.bounds.view";
+    public final static String COLOR_DEBUG_BASELINE = "debug.baseline";
+    public final static String COLOR_DEBUG_BOUNDS_BORDER = "debug.bounds.border";
+    public final static String COLOR_DEBUG_BOUNDS_DRAW = "debug.bounds.draw";
+    public final static String COLOR_DEBUG_BOUNDS_REPAINT = "debug.bounds.repaint";
+    public final static String COLOR_DEBUG_BOUNDS_VIEW = "debug.bounds.view";
 
     // fonts
     public final static String TEXT_DEFAULT = "text.default";
@@ -97,5 +97,7 @@ public interface ColorsAndFonts {
     Text getText(String name);
 
     void init();
+
+	Object getAntiAliasing();
 
 }

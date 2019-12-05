@@ -17,33 +17,23 @@
  *  under the License.
  */
 
-package uk.co.objectconnexions.expressiveobjects.viewer.dnd.view;
+package uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.look.flat;
 
-import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Look;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.control.Button;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.window.AbstractWindowBorder;
 
-public interface Workspace extends View {
+public class FlatLook implements Look {
 
-    View addIconFor(ObjectAdapter adapter, Placement placement);
+    @Override
+    public void install() {
+        AbstractWindowBorder.setBorderRenderer(new FlatStyleWindowBorder());
+        Button.setButtonRender(new ButtonFlatStyleRender());
+    }
 
-    View addWindowFor(ObjectAdapter object, Placement placement);
-
-    void addWindow(View window, Placement placement);
-
-    void addDialog(View dialog, Placement placement);
-
-    /**
-     * Lower the specified view so it is below all the other views.
-     */
-    void lower(View view);
-
-    /**
-     * Raise the specified view so it is above all the other views.
-     */
-    void raise(View view);
-    
-    /**
-     * Force all views showing the specified object to be updated.
-     */
-    void notifyViewsFor(ObjectAdapter adapter);
+    @Override
+    public String getName() {
+        return "Flat";
+    }
 
 }

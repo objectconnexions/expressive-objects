@@ -93,6 +93,10 @@ public abstract class ObjectView extends AbstractView {
         if (result != null) {
             objectActionResult(result, new Placement(this));
         }
+        Workspace workspace = getWorkspace();
+        workspace.notifyViewsFor(drag.getSourceContent().getAdapter());
+        workspace.notifyViewsFor(drag.getTargetView().getContent().getAdapter());
+        workspace.notifyViewsFor(result);
         getState().clearObjectIdentified();
         getFeedbackManager().showMessagesAndWarnings();
 

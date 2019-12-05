@@ -37,18 +37,8 @@ final class TextBlockTargetExample implements TextBlockTarget {
             }
 
             @Override
-            public int stringHeight(final String text, final int width) {
-                return 0;
-            }
-
-            @Override
             public int stringWidth(final String string) {
                 return 40;
-            }
-
-            @Override
-            public int stringWidth(final String message, final int maxWidth) {
-                return 0;
             }
 
             @Override

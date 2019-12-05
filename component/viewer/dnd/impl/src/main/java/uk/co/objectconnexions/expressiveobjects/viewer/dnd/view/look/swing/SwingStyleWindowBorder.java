@@ -29,6 +29,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.ImageFactory;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Location;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Size;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Text;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.VerticalAlignment;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Toolkit;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.View;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.ViewConstants;
@@ -42,7 +43,7 @@ public class SwingStyleWindowBorder implements BorderDrawing {
     private final static Text TITLE_STYLE = Toolkit.getText(ColorsAndFonts.TEXT_TITLE_SMALL);
 
     int titlebarHeight = Math.max(WindowControl.HEIGHT + ViewConstants.VPADDING + TITLE_STYLE.getDescent(), TITLE_STYLE.getTextHeight());
-    int baseline = LINE_THICKNESS + WindowControl.HEIGHT;
+    int baseline = TextUtils.getBaseline(TITLE_STYLE, VerticalAlignment.CENTER, LINE_THICKNESS, titlebarHeight); 
     int left = LINE_THICKNESS;
     int right = LINE_THICKNESS;
     int top = LINE_THICKNESS + titlebarHeight;

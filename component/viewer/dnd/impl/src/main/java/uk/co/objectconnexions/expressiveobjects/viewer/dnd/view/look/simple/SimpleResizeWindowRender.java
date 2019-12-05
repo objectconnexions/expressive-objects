@@ -19,19 +19,25 @@
 
 package uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.look.simple;
 
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Canvas;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Color;
-import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.ColorsAndFonts;
-import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Toolkit;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.window.ResizeWindowRender;
 
-class SimpleRender {
-    protected Color color(final boolean isDisabled, final boolean isOver) {
-        Color color;
-        if (isDisabled) {
-            color = Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY2);
-        } else {
-            color = isOver ? Toolkit.getColor(ColorsAndFonts.COLOR_PRIMARY2) : Toolkit.getColor(ColorsAndFonts.COLOR_BLACK);
+public class SimpleResizeWindowRender extends SimpleRender implements ResizeWindowRender {
+
+    @Override
+    public void draw(final Canvas canvas, final int width, final int height, final boolean isDisabled, final boolean isOver, final boolean isPressed) {
+        final int x = 0;
+        final int y = 0;
+        final Color color = color(isDisabled, isOver);
+        if (!isDisabled && isOver) {
+        	canvas.drawRectangle(x, y, width, height, color);
         }
-        return color;
+        int size = height - 4;
+        canvas.drawRectangle(x + 3, y + 2, size, size, color);
+        size -= 3;
+        canvas.drawRectangle(x + 3, y + 2, size, size, color);
+
     }
 
 }

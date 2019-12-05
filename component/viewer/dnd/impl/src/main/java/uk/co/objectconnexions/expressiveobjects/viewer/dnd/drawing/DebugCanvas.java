@@ -148,7 +148,8 @@ public class DebugCanvas implements Canvas {
     @Override
     public void drawText(final String text, final int x, final int y, final Color color, final Text style) {
         indent();
-        buffer.appendln("Text " + x + "," + y + " \"" + text + "\" " + style + " " + color);
+        buffer.appendln("Text " + x + "," + y + " \"" + text + "\" " + style + " " + 
+        		style.getTextHeight() + "/" + style.getAscent() + "~" + style.getDescent() + " " + color);
     }
 
     @Override

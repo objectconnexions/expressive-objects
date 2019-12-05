@@ -77,4 +77,7 @@ public class DummyWorkspaceView extends DummyView implements Workspace {
     public void addWindow(final View window, final Placement placement) {
     }
 
+    @Override
+    public void notifyViewsFor(ObjectAdapter adapter) {
+    }
 }

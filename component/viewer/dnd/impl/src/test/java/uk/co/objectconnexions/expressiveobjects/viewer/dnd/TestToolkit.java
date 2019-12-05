@@ -87,6 +87,11 @@ public class TestToolkit extends Toolkit {
             }
 
             @Override
+            public Object getAntiAliasing() {
+            	// TODO Auto-generated method stub
+            	return null;
+            }
+            @Override
             public void init() {
             }
         };

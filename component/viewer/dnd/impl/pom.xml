@@ -28,6 +28,7 @@
 
 	<groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
 	<artifactId>expressiveobjects-viewer-dnd-impl</artifactId>
+	<version>5.0.1-SNAPSHOT</version>
 
 	<name>Expressive Objects Drag-n-Drop Viewer Implementation</name>
 

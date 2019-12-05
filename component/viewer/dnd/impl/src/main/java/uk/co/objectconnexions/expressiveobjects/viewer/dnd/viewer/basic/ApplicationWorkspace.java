@@ -38,7 +38,6 @@ import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecif
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.SpecificationLoaderSpi;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.authentication.exploration.MultiUserExplorationSession;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
-import uk.co.objectconnexions.expressiveobjects.core.runtime.system.persistence.AdapterManagerSpi;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.persistence.PersistenceSession;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.userprofile.PerspectiveEntry;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.ColorsAndFonts;
@@ -462,8 +461,27 @@ public final class ApplicationWorkspace extends CompositeViewUsingBuilder implem
         return v;
     }
 
+    @Override
+    public void notifyViewsFor(ObjectAdapter adapter) {
+    	if (adapter != null) {
+    		notifyViewsFor(adapter, this);
+    	}
+    }
+    
+    private void notifyViewsFor(ObjectAdapter adapter, View container) {
+        final View views[] = container.getSubviews();
+        for (final View view : views) {
+        	notifyViewsFor(adapter, view);
+            if (view.getContent().getAdapter() == adapter) {
+                view.invalidateContent();
+                container.invalidateContent();
+            }
+        }
+	
+    }
+    
     public void clearServiceViews() {
-        final Enumeration e = serviceViews.elements();
+        final Enumeration<View> e = serviceViews.elements();
         while (e.hasMoreElements()) {
             final View view = (View) e.nextElement();
             view.markDamaged();

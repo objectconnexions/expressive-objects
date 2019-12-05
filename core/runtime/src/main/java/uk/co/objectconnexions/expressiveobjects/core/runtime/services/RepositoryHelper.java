@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.objectconnexions.expressiveobjects.applib.query.QueryFindAllInstances;
+import uk.co.objectconnexions.expressiveobjects.core.commons.exceptions.ExpressiveObjectsException;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.collections.modify.CollectionFacet;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.collections.modify.CollectionFacetUtils;
@@ -39,33 +40,33 @@ public final class RepositoryHelper {
     private RepositoryHelper() {
     }
 
-    public static Object[] allInstances(final Class<?> cls) {
+    public static <T> Object[] allInstances(final Class<T> cls) {
         return allInstances(getSpecificationLoader().loadSpecification(cls), cls);
     }
 
-    public static <T> Object[] allInstances(final ObjectSpecification spec, final Class<T> cls) {
+    public static <T> T[] allInstances(final ObjectSpecification spec, final Class<T> cls) {
         final QueryFindAllInstances<T> query = new QueryFindAllInstances<T>(spec.getFullIdentifier());
         final ObjectAdapter instances = getPersistenceSession().findInstances(query, QueryCardinality.MULTIPLE);
-        final Object[] array = convertToArray(instances, cls);
+        final T[] array = convertToArray(instances, cls);
         return array;
     }
 
-    public static List<Object> findByPersistenceQuery(final PersistenceQuery persistenceQuery, final Class<?> cls) {
+    public static <T> List<T> findByPersistenceQuery(final PersistenceQuery persistenceQuery, final Class<T> cls) {
         final ObjectAdapter instances = getPersistenceSession().findInstances(persistenceQuery);
         return convertToList(instances, cls);
     }
 
-    public static List<Object> findByTitle(final Class<?> type, final String title) {
+    public static <T> List<T> findByTitle(final Class<T> type, final String title) {
         final ObjectSpecification spec = getSpecificationLoader().loadSpecification(type);
         return findByTitle(spec, type, title);
     }
 
-    public static List<Object> findByTitle(final ObjectSpecification spec, final Class<?> cls, final String title) {
+    public static <T> List<T> findByTitle(final ObjectSpecification spec, final Class<T> cls, final String title) {
         final PersistenceQuery criteria = new PersistenceQueryFindByTitle(spec, title);
         return findByPersistenceQuery(criteria, cls);
     }
 
-    public static boolean hasInstances(final Class<?> type) {
+    public static <T> boolean hasInstances(final Class<T> type) {
         final ObjectSpecification spec = getSpecificationLoader().loadSpecification(type);
         return hasInstances(spec);
     }
@@ -78,17 +79,21 @@ public final class RepositoryHelper {
     // Helpers
     // /////////////////////////////////////////////////////////////////////
 
-    private static List<Object> convertToList(final ObjectAdapter instances, final Class<?> cls) {
+    private static <T> List<T> convertToList(final ObjectAdapter instances, final Class<T> cls) {
         final CollectionFacet facet = CollectionFacetUtils.getCollectionFacetFromSpec(instances);
-        final List<Object> list = new ArrayList<Object>();
+        final List<T> list = new ArrayList<T>();
         for (final ObjectAdapter adapter : facet.iterable(instances)) {
-            list.add(adapter.getObject());
+        	Object object = adapter.getObject();
+        	if (!cls.isInstance(object)) {
+        		throw new ExpressiveObjectsException(object + " should be instance of " + cls.getName());
+        	}
+			list.add((T) object);
         }
         return list;
     }
 
-    private static Object[] convertToArray(final ObjectAdapter instances, final Class<?> cls) {
-        return convertToList(instances, cls).toArray();
+    private static <T>  T[] convertToArray(final ObjectAdapter instances, final Class<T> cls) {
+        return (T[]) convertToList(instances, cls).toArray();
     }
 
     // /////////////////////////////////////////////////////////////////////

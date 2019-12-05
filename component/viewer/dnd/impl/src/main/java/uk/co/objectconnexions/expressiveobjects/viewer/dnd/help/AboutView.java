@@ -32,6 +32,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.FocusManager;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Toolkit;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.base.AbstractView;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.content.NullContent;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.text.TextUtils;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.window.SubviewFocusManager;
 
 public class AboutView extends AbstractView {
@@ -78,28 +79,28 @@ public class AboutView extends AbstractView {
         String text = AboutExpressiveObjects.getApplicationName();
         if (text != null) {
             canvas.drawText(text, left, line, MAX_WIDTH, color, titleStyle);
-            line += titleStyle.stringHeight(text, MAX_WIDTH) + titleStyle.getLineSpacing() + linePadding;
+            line += TextUtils.stringHeight(text, titleStyle, MAX_WIDTH) + titleStyle.getLineSpacing() + linePadding;
         }
         text = AboutExpressiveObjects.getApplicationCopyrightNotice();
         if (text != null) {
             canvas.drawText(text, left, line, MAX_WIDTH, color, normalStyle);
-            line += normalStyle.stringHeight(text, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
+            line += TextUtils.stringHeight(text, normalStyle, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
         }
         text = AboutExpressiveObjects.getApplicationVersion();
         if (text != null) {
             canvas.drawText(text, left, line, MAX_WIDTH, color, normalStyle);
-            line += normalStyle.stringHeight(text, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
+            line += TextUtils.stringHeight(text, normalStyle, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
             line += 2 * normalStyle.getLineHeight();
         }
 
         // framework details
         text = AboutExpressiveObjects.getFrameworkName();
         canvas.drawText(text, left, line, MAX_WIDTH, color, titleStyle);
-        line += titleStyle.stringHeight(text, MAX_WIDTH) + titleStyle.getLineSpacing() + linePadding;
+        line += TextUtils.stringHeight(text, titleStyle, MAX_WIDTH) + titleStyle.getLineSpacing() + linePadding;
 
         text = AboutExpressiveObjects.getFrameworkCopyrightNotice();
         canvas.drawText(text, left, line, MAX_WIDTH, color, normalStyle);
-        line += normalStyle.stringHeight(text, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
+        line += TextUtils.stringHeight(text, normalStyle, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
 
         canvas.drawText(frameworkVersion(), left, line, MAX_WIDTH, color, normalStyle);
 
@@ -121,37 +122,31 @@ public class AboutView extends AbstractView {
         int height = 0;
 
         String text = AboutExpressiveObjects.getFrameworkName();
-        height += titleStyle.stringHeight(text, MAX_WIDTH) + titleStyle.getLineSpacing() + linePadding;
-        // height += normalStyle.getLineHeight();
-        int width = titleStyle.stringWidth(text, MAX_WIDTH);
+        height += TextUtils.stringHeight(text, titleStyle, MAX_WIDTH) + titleStyle.getLineSpacing() + linePadding;
+        int width = TextUtils.stringWidth(text, titleStyle, MAX_WIDTH);
 
         text = AboutExpressiveObjects.getFrameworkCopyrightNotice();
-        height += normalStyle.stringHeight(text, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
-        // height += normalStyle.getLineHeight();
-        width = Math.max(width, normalStyle.stringWidth(text, MAX_WIDTH));
+        height += TextUtils.stringHeight(text, normalStyle, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
+        width = Math.max(width, TextUtils.stringWidth(text, normalStyle, MAX_WIDTH));
 
         text = frameworkVersion();
-        height += normalStyle.stringHeight(text, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
-        // height += normalStyle.getLineHeight();
-        width = Math.max(width, normalStyle.stringWidth(text, MAX_WIDTH));
+        height += TextUtils.stringHeight(text, normalStyle, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
+        width = Math.max(width, TextUtils.stringWidth(text, normalStyle, MAX_WIDTH));
 
         text = AboutExpressiveObjects.getApplicationName();
         if (text != null) {
-            height += titleStyle.stringHeight(text, MAX_WIDTH) + titleStyle.getLineSpacing() + linePadding;
-            // height += normalStyle.getLineHeight();
-            width = Math.max(width, titleStyle.stringWidth(text, MAX_WIDTH));
+            height += TextUtils.stringHeight(text, titleStyle, MAX_WIDTH) + titleStyle.getLineSpacing() + linePadding;
+            width = Math.max(width, TextUtils.stringWidth(text, titleStyle, MAX_WIDTH));
         }
         text = AboutExpressiveObjects.getApplicationCopyrightNotice();
         if (text != null) {
-            height += normalStyle.stringHeight(text, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
-            // height += normalStyle.getLineHeight();
-            width = Math.max(width, normalStyle.stringWidth(text, MAX_WIDTH));
+            height += TextUtils.stringHeight(text, normalStyle, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
+            width = Math.max(width, TextUtils.stringWidth(text, normalStyle, MAX_WIDTH));
         }
         text = AboutExpressiveObjects.getApplicationVersion();
         if (text != null) {
-            height += normalStyle.stringHeight(text, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
-            // height += normalStyle.getLineHeight();
-            width = Math.max(width, normalStyle.stringWidth(text, MAX_WIDTH));
+            height += TextUtils.stringHeight(text, normalStyle, MAX_WIDTH) + normalStyle.getLineSpacing() + linePadding;
+            width = Math.max(width, TextUtils.stringWidth(text, normalStyle, MAX_WIDTH));
         }
 
         height += noticePadding;

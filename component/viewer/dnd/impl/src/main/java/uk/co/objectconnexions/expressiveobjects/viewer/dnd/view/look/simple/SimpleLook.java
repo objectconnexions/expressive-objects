@@ -33,9 +33,9 @@ public class SimpleLook implements Look {
     @Override
     public void install() {
         AbstractWindowBorder.setBorderRenderer(new SimpleStyleWindowBorder());
-        CloseWindowControl.setRender(new CloseWindowSimpleRender());
-        ResizeWindowControl.setRender(new ResizeWindowSimpleRender());
-        IconizeWindowControl.setRender(new IconizeWindowSimpleRender());
+        CloseWindowControl.setRender(new SimpleCloseWindowRender());
+        ResizeWindowControl.setRender(new SimpleResizeWindowRender());
+        IconizeWindowControl.setRender(new SimpleIconizeWindowRender());
         ViewResizeBorder.setRender(new SimpleResizeViewRender());
         ScrollBorder.setRender(new SimpleScrollBarRender());
         Button.setButtonRender(new SimpleButtonRender());

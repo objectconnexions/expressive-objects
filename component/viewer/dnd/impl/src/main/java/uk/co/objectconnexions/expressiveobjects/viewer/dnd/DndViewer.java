@@ -22,8 +22,6 @@ package uk.co.objectconnexions.expressiveobjects.viewer.dnd;
 import java.awt.Dimension;
 import java.util.StringTokenizer;
 
-import org.apache.log4j.Logger;
-
 import uk.co.objectconnexions.expressiveobjects.core.commons.authentication.AuthenticationSession;
 import uk.co.objectconnexions.expressiveobjects.core.commons.config.ExpressiveObjectsConfigurationException;
 import uk.co.objectconnexions.expressiveobjects.core.commons.exceptions.ExpressiveObjectsException;
@@ -63,6 +61,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.ExpandableFormSp
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.FormSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.FormWithDetailSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.InternalFormSpecification;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.SimpleFormSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.form.SummaryFormSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.grid.GridSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.help.HelpViewer;
@@ -97,6 +96,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.viewer.basic.DragCont
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.viewer.basic.InnerWorkspaceSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.viewer.basic.RootWorkspaceSpecification;
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.viewer.basic.WrappedTextFieldSpecification;
+import org.apache.log4j.Logger;
 
 public class DndViewer extends ExpressiveObjectsViewerAbstract {
 
@@ -421,6 +421,7 @@ public class DndViewer extends ExpressiveObjectsViewerAbstract {
             viewFactory.addSpecification(new FormWithDetailSpecification());
 
             viewFactory.addSpecification(new SummaryFormSpecification());
+            viewFactory.addSpecification(new SimpleFormSpecification());
 
             viewFactory.addSpecification(new TreeSpecification());
             // TODO allow window form to be used for objects with limited number

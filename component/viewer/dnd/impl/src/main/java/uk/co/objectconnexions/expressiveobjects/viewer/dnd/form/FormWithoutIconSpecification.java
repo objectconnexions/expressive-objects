@@ -17,59 +17,27 @@
  *  under the License.
  */
 
-package uk.co.objectconnexions.expressiveobjects.viewer.dnd.viewer.drawing;
+package uk.co.objectconnexions.expressiveobjects.viewer.dnd.form;
 
-import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.Text;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.ViewRequirement;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.border.IconBorder;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.composite.FieldLabelsDecorator;
 
-public class DummyText implements Text {
+public class FormWithoutIconSpecification extends AbstractFormSpecification {
 
-    public DummyText() {
-        super();
+    @Override
+    public boolean canDisplay(final ViewRequirement requirement) {
+        return super.canDisplay(requirement) && !requirement.is(ViewRequirement.SUBVIEW);
     }
 
     @Override
-    public int charWidth(final char c) {
-        return 10;
-    }
-
-    @Override
-    public int getAscent() {
-        return 2;
-    }
-
-    @Override
-    public int getDescent() {
-        return 4;
-    }
-
-    @Override
-    public int getMidPoint() {
-        return 1;
-    }
-
-    @Override
-    public int getTextHeight() {
-        return 8;
-    }
-
-    @Override
-    public int getLineHeight() {
-        return getAscent() + getTextHeight() + getDescent();
-    }
-
-    @Override
-    public int getLineSpacing() {
-        return getLineHeight() + 5;
-    }
-
-    @Override
-    public int stringWidth(final String text) {
-        return text.length() * charWidth('x');
+    protected void init() {
+        addSubviewDecorator(new FieldLabelsDecorator());
+        addViewDecorator(new IconBorder.Factory());
     }
 
     @Override
     public String getName() {
-        return null;
+        return "Form";
     }
-
 }

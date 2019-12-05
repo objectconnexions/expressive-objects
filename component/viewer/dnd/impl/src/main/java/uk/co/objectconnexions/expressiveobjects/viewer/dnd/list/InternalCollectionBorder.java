@@ -42,7 +42,10 @@ import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.composite.Compos
 import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.field.OneToManyField;
 
 public class InternalCollectionBorder extends AbstractBorder {
-    public static class Factory implements CompositeViewDecorator {
+    private static final String EMPTY = "empty";
+    private static final int GAP = 6;
+
+	public static class Factory implements CompositeViewDecorator {
         @Override
         public View decorate(final View child, final Axes axes) {
             return new InternalCollectionBorder(child);
@@ -55,7 +58,7 @@ public class InternalCollectionBorder extends AbstractBorder {
         super(wrappedView);
 
         icon = new InternalCollectionIconGraphic(this, Toolkit.getText(ColorsAndFonts.TEXT_NORMAL));
-        left = icon.getSize().getWidth();
+        left = icon.getSize().getWidth() + GAP;
     }
 
     @Override
@@ -66,18 +69,23 @@ public class InternalCollectionBorder extends AbstractBorder {
     @Override
     public Size getRequiredSize(final Size maximumSize) {
         final Size size = super.getRequiredSize(maximumSize);
-        size.ensureWidth(left + 45 + right);
+        size.ensureWidth(left + Toolkit.getText(ColorsAndFonts.TEXT_NORMAL).stringWidth(EMPTY) + right);
         size.ensureHeight(24);
         return size;
     }
 
     @Override
     public void draw(final Canvas canvas) {
-        icon.draw(canvas, 0, getBaseline());
+    	final ObjectAdapter collection = getContent().getAdapter();
+    	final CollectionFacet facet = CollectionFacetUtils.getCollectionFacetFromSpec(collection);
+    	boolean isEmpty = collection == null || facet.size(collection) == 0;
+    	final ViewState state = getState();
 
-        final ObjectAdapter collection = getContent().getAdapter();
-        final CollectionFacet facet = CollectionFacetUtils.getCollectionFacetFromSpec(collection);
-        final ViewState state = getState();
+    	Size iconSize = icon.getSize();
+/*
+		canvas.drawSolidOval(0, getBaseline()  - iconSize.getHeight() / 3,   iconSize.getWidth(),  iconSize.getHeight(), Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY3));
+        icon.draw(canvas, 0, getBaseline());
+*/
         final Color color;
         if (state.canDrop()) {
             color = Toolkit.getColor(ColorsAndFonts.COLOR_VALID);
@@ -86,13 +94,15 @@ public class InternalCollectionBorder extends AbstractBorder {
         } else {
             color = Toolkit.getColor(ColorsAndFonts.COLOR_SECONDARY2);
         }
-        if (collection == null || facet.size(collection) == 0) {
-            canvas.drawText("empty", left, getBaseline(), color, Toolkit.getText(ColorsAndFonts.TEXT_NORMAL));
+		if (isEmpty) {
+			icon.draw(canvas, 0, getBaseline());
+            canvas.drawText(EMPTY, left, getBaseline(), color, Toolkit.getText(ColorsAndFonts.TEXT_NORMAL));
         } else {
-            final int x = icon.getSize().getWidth() / 2;
-            final int x2 = x + 4;
-            final int y = icon.getSize().getHeight() + 1;
+            final int x = iconSize.getWidth() / 2;
+            final int x2 = x + 10;
+            final int y = getBaseline() - Toolkit.getText(ColorsAndFonts.TEXT_NORMAL).getAscent() / 2; //iconSize.getHeight() + 1;
             final int y2 = getSize().getHeight() - 5;
+            canvas.drawLine(x - 6, y, x2, y, color);
             canvas.drawLine(x, y, x, y2, color);
             canvas.drawLine(x, y2, x2, y2, color);
         }

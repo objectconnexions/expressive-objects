@@ -425,16 +425,20 @@ the MIT license [1].
 
 
                 <!-- Test coverage: cobertura -->
+                <!-- 
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>2.7</version>
                     <inherited>true</inherited>
+                    -->
                     <!-- goal:check binds to phase:verify (not currently 
                         configured, can be used to break build if code coverage < threshold) -->
                     <!-- goal:cobertura is a report so is configured in the 
                         reporting section; invokes phase:test before running itself -->
+                <!--
                 </plugin>
+                 -->
 
 
                 <!-- Quality checks: checkstyle -->
@@ -1475,11 +1479,13 @@ ${license.additional-notes}
                             </reportSet>
                         </reportSets>
                     </plugin>
+                    <!-- 
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>cobertura-maven-plugin</artifactId>
-                        <version>2.4</version>
+                        <version>2.7</version>
                     </plugin>
+                     -->
 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>

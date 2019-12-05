@@ -1,0 +1,32 @@
+## Notes on drawing
+
+Drawing is relative to the top-left corner of a component, starting at
+coordinates 0,0.
+
+Some drawing methods (rectangles, ovals etc) have a position and a
+size, some have multiple positions, while other have a single position
+and known their own size.
+
+#### Heights/widths vs positions
+
+Because the drawing is based on lines with a width (typically a pixel)
+the calculations for determining position can be non-obvious. If you
+draw a rectangle at 0,0 with a height of 10 then to draw a line at the
+same level as bottom edge then that line must have a y coordinate of
+9. This is because the first line is on pixel row 0, the second on row
+1 and so on. After 10 pixels - the height - you will reach the 9th
+row.
+
+The same applies for widths.
+
+#### Aligning text
+
+There are some helpers method to align text. The calculate the
+baseline and the left-hand edge of the text give a particular style,
+bounding area and the text. The methods are
+
+* TextUtils.getBaseline(TextStyle, VerticalAlignment, y, height)
+* TextUtils.align(TextStle, Alignment, x, width)
+
+VerticalAligment is one of TOP, CENTER or BOTTOM and Alignment is one
+of LEFT, CENTER or RIGHT.

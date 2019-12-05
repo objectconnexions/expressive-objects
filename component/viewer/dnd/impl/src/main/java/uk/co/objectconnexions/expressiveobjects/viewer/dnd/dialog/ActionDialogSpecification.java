@@ -126,6 +126,8 @@ public class ActionDialogSpecification extends CompositeViewSpecification {
                     if (result != null) {
                         view.objectActionResult(result, new Placement(view.getAbsoluteLocation()));
                     }
+                    workspace.notifyViewsFor(actionContent.getAdapter());
+                    workspace.notifyViewsFor(result);
                     view.getViewManager().disposeUnneededViews();
                     view.getFeedbackManager().showMessagesAndWarnings();
                 }

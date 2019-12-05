@@ -22,9 +22,11 @@ package uk.co.objectconnexions.expressiveobjects.viewer.dnd.awt;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
@@ -86,7 +88,7 @@ public class XViewer implements Viewer {
     private ApplicationOptions APPLICATION_OPTIONS;
     private final DebugOptions DEBUG_OPTIONS = new DebugOptions(this);
 
-    private Graphics bufferGraphics;
+    private Graphics2D bufferGraphics;
     private Image doubleBuffer;
     private boolean doubleBuffering = false;
     private Insets insets;
@@ -98,7 +100,7 @@ public class XViewer implements Viewer {
     private RenderingArea renderingArea;
     private View rootView;
     private String status;
-    private boolean runningAsExploration;
+	private boolean runningAsExploration;
     private boolean runningAsPrototype;
     private InteractionSpy spy;
     private int statusBarHeight;
@@ -445,17 +447,19 @@ public class XViewer implements Viewer {
                 doubleBuffer = renderingArea.createImage(w, h);
                 LOG.debug("buffer sized to " + doubleBuffer.getWidth(null) + "x" + doubleBuffer.getHeight(null));
             }
-            bufferGraphics = doubleBuffer.getGraphics().create();
+            bufferGraphics = (Graphics2D) doubleBuffer.getGraphics().create();
         } else {
-            bufferGraphics = graphic;
+            bufferGraphics = (Graphics2D) graphic;
         }
 
+        bufferGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, Toolkit.getAntiAliasing());
+
+        
         bufferGraphics.clearRect(paintArea.x, paintArea.y, paintArea.width, paintArea.height);
         bufferGraphics.clearRect(0, 0, w, h);
 
         bufferGraphics.setClip(paintArea.x, paintArea.y, paintArea.width, paintArea.height);
         final Canvas c = new AwtCanvas(bufferGraphics, renderingArea, paintArea.x, paintArea.y, paintArea.width, paintArea.height);
-        // Canvas c = new Canvas(bufferGraphics, 0, 0, w, h);
         return c;
     }
 
@@ -490,6 +494,8 @@ public class XViewer implements Viewer {
         if (refreshStatus || graphic.getClip().getBounds().getY() + graphic.getClip().getBounds().getHeight() > top) {
             refreshStatus = false;
             UI_LOG.debug("changed user status " + status + " " + statusBarArea);
+
+            ((Graphics2D) graphic).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, Toolkit.getAntiAliasing());
 
             final int width = internalDisplaySize.getWidth();
             graphic.setClip(0, top, width, statusBarHeight);
@@ -533,7 +539,7 @@ public class XViewer implements Viewer {
             menu.addMenuOptions(LOGGING_OPTIONS);
             menu.addMenuOptions(DEBUG_OPTIONS);
         }
-        final boolean showExplorationOptions = includeExploration || showExplorationMenuByDefault;
+        final boolean showExplorationOptions = showExplorationMenuByDefault || includeExploration;
         final boolean showPrototypeOptions = isRunningAsPrototype();
         menu.show(forView, includeDebug, showExplorationOptions, showPrototypeOptions);
         feedbackManager.clearBusy(over);

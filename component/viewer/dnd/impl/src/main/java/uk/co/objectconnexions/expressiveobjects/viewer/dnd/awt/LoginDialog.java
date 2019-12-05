@@ -26,10 +26,13 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.RenderingHints;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,6 +47,8 @@ import uk.co.objectconnexions.expressiveobjects.core.commons.authentication.Auth
 import uk.co.objectconnexions.expressiveobjects.core.commons.lang.StringUtils;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.authentication.AuthenticationManager;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.authentication.AuthenticationRequestPassword;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.drawing.ColorsAndFonts;
+import uk.co.objectconnexions.expressiveobjects.viewer.dnd.view.Toolkit;
 
 public class LoginDialog extends Frame implements ActionListener, KeyListener {
     private static final long serialVersionUID = 1L;
@@ -102,6 +107,8 @@ public class LoginDialog extends Frame implements ActionListener, KeyListener {
 
     private void createInstructionLabel() {
         instructionLabel = new Label("Please enter your user name and password.");
+        final AwtText textStyle = (AwtText) Toolkit.getText(ColorsAndFonts.TEXT_NORMAL);
+        instructionLabel.setFont(textStyle.getAwtFont());
         add(instructionLabel, BorderLayout.NORTH);
     }
 
@@ -116,13 +123,20 @@ public class LoginDialog extends Frame implements ActionListener, KeyListener {
         };
         add(form, BorderLayout.CENTER);
 
-        form.add(new Label("User name:", Label.RIGHT));
+        Label label = new Label("User name:", Label.RIGHT);
+        final AwtText textStyle = (AwtText) Toolkit.getText(ColorsAndFonts.TEXT_LABEL_MANDATORY);
+        label.setFont(textStyle.getAwtFont());
+		form.add(label);
         form.add(user = new TextField());
+        user.setFont(textStyle.getAwtFont());
         user.addKeyListener(this);
 
-        form.add(new Label("Password:", Label.RIGHT));
+        label = new Label("Password:", Label.RIGHT);
+		form.add(label);
+		label.setFont(textStyle.getAwtFont());
         form.add(password = new TextField());
         password.addKeyListener(this);
+        password.setFont(textStyle.getAwtFont());
         password.setEchoChar('*');
     }
 
@@ -131,10 +145,13 @@ public class LoginDialog extends Frame implements ActionListener, KeyListener {
         add(buttons, BorderLayout.SOUTH);
 
         buttons.add(cancel = new Button(CANCEL_LABEL));
+        final AwtText textStyle = (AwtText) Toolkit.getText(ColorsAndFonts.TEXT_CONTROL);
+        cancel.setFont(textStyle.getAwtFont());
         cancel.addActionListener(this);
         cancel.addKeyListener(this);
 
         buttons.add(login = new Button(LOGIN_LABEL));
+        login.setFont(textStyle.getAwtFont());
         login.addActionListener(this);
         login.addKeyListener(this);
     }
@@ -236,6 +253,13 @@ public class LoginDialog extends Frame implements ActionListener, KeyListener {
         } catch (final InterruptedException e) {
         }
         return logIn;
+    }
+    
+    @Override
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, Toolkit.getAntiAliasing());
+    	super.paint(g2d);
     }
 
 }

@@ -48,7 +48,7 @@ public class Selector extends AbstractElementProcessor {
     private void processElement(final Request request, final FormFieldBlock block, final String field) {
         final String type = request.getOptionalProperty(TYPE, "dropdown");
         if (!request.isPropertySpecified(METHOD) && request.isPropertySpecified(COLLECTION)) {
-            final String id = request.getRequiredProperty(COLLECTION, Request.NO_VARIABLE_CHECKING);
+            final String id = request.getRequiredProperty(COLLECTION);
             final String selector = showSelectionList(request, id, block.getCurrent(field), block.isNullable(field), type);
             block.replaceContent(field, selector);
         } else {

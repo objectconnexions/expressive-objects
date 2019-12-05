@@ -128,6 +128,8 @@ public abstract class RequestContext {
         variables.put(Scope.INTERACTION, Maps.<String, Object>newHashMap());
         variables.put(Scope.REQUEST, Maps.<String, Object>newHashMap());
         variables.put(Scope.ERROR, Maps.<String, Object>newHashMap());
+        
+        debug = Debug.ON;
     }
 
     public void endHttpSession() {
@@ -287,7 +289,7 @@ public abstract class RequestContext {
             debug.appendln("Roles", session.getRoles());
         }
 
-        debug.appendTitle("context");
+        debug.appendTitle("Context");
         debug.appendln("Parent request path", requestedParentPath);
         debug.appendln("Requested file", requestedFile);
         debug.appendln("Parent resource path", resourceParentPath);
@@ -335,7 +337,7 @@ public abstract class RequestContext {
 
     private void appendVariables(final DebugBuilder debug, final Scope scope) {
         final Map<String, Object> map = variables.get(scope);
-        final Iterator<String> names = new TreeSet(map.keySet()).iterator();
+        final Iterator<String> names = new TreeSet<String>(map.keySet()).iterator();
         if (names.hasNext()) {
             debug.startSection(scope.toString());
             while (names.hasNext()) {
@@ -496,8 +498,6 @@ public abstract class RequestContext {
             return resourceParentPath;
         } else if (name.equals("_base")) {
             return getUrlBase() + getContextPath() + resourceParentPath + resourceFile;
-            // return "http://localhost:8080" + resourceParentPath +
-            // resourceFile;
         }
         return null;
     }

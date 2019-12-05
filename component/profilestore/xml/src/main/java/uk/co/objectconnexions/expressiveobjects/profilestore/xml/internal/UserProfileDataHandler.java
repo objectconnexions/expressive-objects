@@ -26,6 +26,9 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.oid.Oid;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.oid.TypedOid;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.services.ServiceUtil;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.userprofile.Options;
@@ -110,6 +113,11 @@ public class UserProfileDataHandler extends DefaultHandler {
                         }
                     } else if (isObjects) {
                         // TODO reload objects
+                        final String oidString = attributes.getValue("id");
+                        TypedOid oid = ExpressiveObjectsContext.getOidMarshaller().unmarshal(oidString, TypedOid.class);
+                        // doesnt work as no session
+                        //ObjectAdapter object = ExpressiveObjectsContext.getPersistenceSession().getObjectStore().loadInstanceAndAdapt(oid);
+                        perspective.addToObjects(oid);
                     } else if (tagName.equals("services")) {
                         isServices = true;
                     } else if (tagName.equals("objects")) {

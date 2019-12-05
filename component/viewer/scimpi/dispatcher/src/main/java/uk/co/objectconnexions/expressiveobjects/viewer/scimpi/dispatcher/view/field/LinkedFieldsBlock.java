@@ -37,7 +37,7 @@ public class LinkedFieldsBlock extends InclusionList {
         final LinkedObject[] includedFields = new LinkedObject[fields.size()];
         for (int i = 0; i < fields.size(); i++) {
             final String id2 = fields.get(i).getId();
-            if (fields.get(i).isOneToOneAssociation() && linkedFields.containsKey(id2)) {
+            if (/*fields.get(i).isOneToOneAssociation() && */ linkedFields.containsKey(id2)) {
                 includedFields[i] = linkedFields.get(id2);
             }
         }

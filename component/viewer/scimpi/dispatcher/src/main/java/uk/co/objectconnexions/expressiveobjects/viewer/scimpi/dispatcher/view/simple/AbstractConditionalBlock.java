@@ -126,7 +126,7 @@ public abstract class AbstractConditionalBlock extends AbstractElementProcessor 
                 if (test == null) {
                     throw new ScimpiException("No such test: " + propertyName);
                 }
-                final String attributeValue = request.getOptionalProperty(propertyName, false);
+                final String attributeValue = request.getOptionalProperty(propertyName);
                 result = test.test(request, attributeValue, id);
                 if (test.negateResult) {
                     result = !result;

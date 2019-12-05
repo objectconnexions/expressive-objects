@@ -157,7 +157,12 @@ public class ImageLookup {
      */
 
     public static String imagePath(final ObjectAdapter object, final String contextPath) {
-        final String name = object.getIconName();
+        String name = object.getIconName();
+        
+        if (name == null) {
+        	name = object.getSpecification().getShortIdentifier();
+	    }
+        
         final String imageName = (String) images.get(name);
         if (imageName != null) {
             return imageName;

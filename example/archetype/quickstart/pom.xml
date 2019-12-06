@@ -16,6 +16,10 @@
 
 	<name>Expressive Objects Quickstart Archetype</name>
 
+    <description>
+        Create Expressive Object application with DND, HTML and Scimpi viewers.
+    </description>
+
     <packaging>maven-archetype</packaging>
 
 	<build>

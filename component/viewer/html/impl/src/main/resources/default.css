@@ -16,6 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
+
 /* Start Global styles */
 body {
 	font-family: Arial, Sans-Serif;
@@ -28,7 +29,7 @@ body {
 #wrapper {
 	width: 100%;
 	min-height: 800px;
-	margin: 8px auto;
+	margin: 0 auto;
 	text-align: left;
 	background: white;
 }
@@ -64,8 +65,7 @@ div#site-header:after {
 
 div#site-header {
 	background: url(../images/banner-bg.png);
-	background-repeat: repeat-x white-space:   nowrap;
-	list-style: none;
+	background-repeat: repeat-x white-space: nowrap;
 	margin: 0px;
 }
 
@@ -79,7 +79,6 @@ div#site-logo {
 	background: url(../images/banner.png);
 	background-repeat: no-repeat;
 	background-position: left;
-	position: absolute;
 	width: 980px;
 	height: 100px;
 	margin: 0 auto;

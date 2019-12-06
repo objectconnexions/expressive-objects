@@ -17,7 +17,11 @@
   specific language governing permissions and limitations
   under the License.
 -->
-<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" name="quickstart" xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" 
+    name="quickstart" 
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modules>
     <module id="${rootArtifactId}-dom" dir="dom" name="${rootArtifactId}-dom">
       <fileSets>
@@ -34,15 +38,19 @@
             <include>**/*.gif</include>
           </includes>
         </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-fixture" dir="fixture" name="${rootArtifactId}-fixture">
+      <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
-          <directory/>
+          <directory>src/main/java</directory>
           <includes>
-            <include>log4j.properties</include>
+            <include>**/*.java</include>
           </includes>
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}-fixture" dir="fixture" name="${rootArtifactId}-fixture">
+    <module id="${rootArtifactId}-service" dir="service" name="${rootArtifactId}-service">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/java</directory>
@@ -100,29 +108,9 @@
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-          <directory>hsql-db</directory>
-          <includes>
-            <include>**/*.properties</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>lib</directory>
-          <includes>
-            <include>**/*.gitignore</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
           <directory>ide/eclipse</directory>
           <includes>
             <include>**/*.launch</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>hsql-db</directory>
-          <includes>
-            <include>**/*.lck</include>
-            <include>**/*.script</include>
-            <include>**/*.log</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -151,18 +139,6 @@
             <include>**/*.png</include>
             <include>**/*.shtml</include>
             <include>**/*.css</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.png</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>lib</directory>
-          <includes>
-            <include>**/*.gitignore</include>
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">

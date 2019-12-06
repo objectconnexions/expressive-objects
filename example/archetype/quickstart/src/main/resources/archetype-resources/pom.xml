@@ -149,6 +149,12 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>${rootArtifactId}-service</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>${rootArtifactId}-webapp</artifactId>
                 <version>${version}</version>
             </dependency>

@@ -26,7 +26,6 @@
 
     <display-name>Expressive Objects Webapp</display-name>
 
-
     <welcome-file-list>
         <welcome-file>index.shtml</welcome-file>
     </welcome-file-list>
@@ -36,16 +35,6 @@
         <param-value>SERVER_EXPLORATION</param-value>
     </context-param>
 
-    
-    
-    <!--
-    -
-    -
-    - config common to all viewer(s)
-    -
-    -
-    -->
-    
     <!-- bootstrap the Expressive Objects metamodel and runtime -->
     <listener>
         <listener-class>uk.co.objectconnexions.expressiveobjects.core.webapp.ExpressiveObjectsWebAppBootstrapper</listener-class>
@@ -73,29 +62,6 @@
         <location>/error/notfound_404.shtml</location>
     </error-page>
     
-
-    <!-- which configuration directory to read overloaded property files from -->
-    <!-- 
-    Normally configuration like this should be done from outside your web 
-    application. Especially if your configuration is not know in advance or
-    if it can change depending on where the application gets deployed.
-    
-    For instance to configure this in Tomcat outside the application WAR add
-    the following line to your application context ( For more detail see:
-    http://tomcat.apache.org/tomcat-7.0-doc/config/context.html${symbol_pound}Context_Parameters )
-     
-    <Parameter name="expressive-objects.config.dir" value="/usr/local/tomcat/conf/"
-         override="true"/>
-         
-    If your configuration directory is fixed you can enable the following 
-    context parameter in here and forget about the outside part.
-         
-    <context-param>
-      <param-name>expressive-objects.config.dir</param-name>
-      <param-value>location of your config directory if fixed</param-value>
-    </context-param>
-    -->
-
     <!-- cache static resources for 1 day -->
     <filter>
         <filter-name>ResourceCachingFilter</filter-name>
@@ -159,16 +125,6 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     
-
-
-
-    <!--
-    -
-    -
-    - config specific to the scimpi-viewer
-    -
-    -
-    -->
     <servlet>
         <servlet-name>ScimpiDispatcher</servlet-name>
         <servlet-class>uk.co.objectconnexions.expressiveobjects.viewer.scimpi.servlet.DispatcherServlet</servlet-class>

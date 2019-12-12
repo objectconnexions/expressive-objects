@@ -316,17 +316,17 @@
             <!-- expressive objects: viewer: scimpi -->
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
-                <artifactId>expressiveobjects-viewer-scimpi</artifactId>
-                <version>${expressive-objects.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
                 <artifactId>expressiveobjects-viewer-scimpi-dispatcher</artifactId>
                 <version>${expressive-objects.version}</version>
             </dependency>
             <dependency>
                 <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
                 <artifactId>expressiveobjects-viewer-scimpi-servlet</artifactId>
+                <version>${expressive-objects.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
+                <artifactId>expressiveobjects-viewer-scimpi-multipagetemplate</artifactId>
                 <version>${expressive-objects.version}</version>
             </dependency>
 

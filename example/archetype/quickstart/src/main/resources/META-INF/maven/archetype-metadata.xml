@@ -63,13 +63,26 @@
     <module id="${rootArtifactId}-viewer-dnd" dir="viewer-dnd" name="${rootArtifactId}-viewer-dnd">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/scripts</directory>
+          <includes>
+            <include>**/exploration.*</include>
+            <include>**/startup.*</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/assembly</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
           <directory>config</directory>
           <includes>
             <include>**/*.properties</include>
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-          <directory>ide/eclipse</directory>
+          <directory>ide</directory>
           <includes>
             <include>**/*.launch</include>
           </includes>
@@ -108,7 +121,7 @@
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-          <directory>ide/eclipse</directory>
+          <directory>ide</directory>
           <includes>
             <include>**/*.launch</include>
           </includes>
@@ -142,7 +155,7 @@
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-          <directory>ide/eclipse</directory>
+          <directory>ide</directory>
           <includes>
             <include>**/*.launch</include>
           </includes>

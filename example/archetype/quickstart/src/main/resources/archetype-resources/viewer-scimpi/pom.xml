@@ -90,6 +90,10 @@
             <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
             <artifactId>expressiveobjects-viewer-scimpi-servlet</artifactId>
         </dependency>
+        <dependency>
+            <groupId>uk.co.objectconnexions.expressiveobjects.viewer</groupId>
+            <artifactId>expressiveobjects-viewer-scimpi-multipagetemplate</artifactId>
+        </dependency>
 
 
         <!-- expressive objects runtime -->

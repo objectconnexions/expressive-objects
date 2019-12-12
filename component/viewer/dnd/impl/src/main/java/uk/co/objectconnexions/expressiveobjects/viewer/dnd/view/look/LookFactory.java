@@ -47,10 +47,10 @@ public class LookFactory {
         looks.add(SWING_LOOK);
         looks.add(LINUX_LOOK);
 
-        final String className = Properties.getString("look");
-        if (className != null) {
+        final String lookNameOrClass = Properties.getString("look");
+        if (lookNameOrClass != null) {
             for (final Look look : looks) {
-                if (look.getClass().getName().equals(className)) {
+                if (look.getName().equalsIgnoreCase(lookNameOrClass) || look.getClass().getName().equals(lookNameOrClass)) {
                     setLook(look);
                     return;
                 }

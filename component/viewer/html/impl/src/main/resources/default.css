@@ -64,7 +64,7 @@ div#site-header:after {
 }
 
 div#site-header {
-	background: url(../images/banner-bg.png);
+	background: url(./images/banner-bg.png);
 	background-repeat: repeat-x white-space: nowrap;
 	margin: 0px;
 }
@@ -76,7 +76,7 @@ div#no-site-logo {
 }
 
 div#site-logo {
-	background: url(../images/banner.png);
+	background: url(./images/banner.png);
 	background-repeat: no-repeat;
 	background-position: left;
 	width: 980px;

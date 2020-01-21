@@ -1,1 +1,1 @@
-java -jar maven-assembly-plugin.jar %*
+java -jar ${rootArtifactId}.jar %*

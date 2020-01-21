@@ -11,7 +11,7 @@
 	</parent>
 
     <groupId>uk.co.objectconnexions.expressiveobjects.example</groupId>
-	<artifactId>quickstart-archetype</artifactId>
+	<artifactId>archetype-quickstart</artifactId>
     <version>5.0.1-SNAPSHOT</version>
 
 	<name>Expressive Objects Quickstart Archetype</name>

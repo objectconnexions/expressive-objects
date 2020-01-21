@@ -22,18 +22,26 @@
             <includes>
                 <include>logging.properties</include>
                 <include>expressive-objects.properties</include>
-                <include>passwords</include>
+                <include>authentication_file.passwords</include>
             </includes>
         </fileSet>
-
 
         <fileSet>
             <directory>${project.build.scriptSourceDirectory}
             </directory>
             <outputDirectory></outputDirectory>
             <includes>
-                <include>startup.*</include>
-                <include>exploration.*</include>
+                <include>*.bat</include>
+            </includes>
+        </fileSet>
+
+        <fileSet>
+            <directory>${project.build.scriptSourceDirectory}
+            </directory>
+            <outputDirectory></outputDirectory>
+            <fileMode>0755</fileMode>
+            <includes>
+                <include>*.sh</include>
             </includes>
         </fileSet>
 

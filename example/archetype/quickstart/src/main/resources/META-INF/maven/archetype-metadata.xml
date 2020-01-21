@@ -78,6 +78,7 @@
         <fileSet filtered="true" encoding="UTF-8">
           <directory>config</directory>
           <includes>
+            <include>**/*.passwords</include>
             <include>**/*.properties</include>
           </includes>
         </fileSet>

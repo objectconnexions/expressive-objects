@@ -26,6 +26,7 @@
                 version="1.0"
                 xmlns="http://www.w3.org/TR/xhtml1/transitional"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:db="http://docbook.org/ns/docbook"
                 exclude-result-prefixes="#default">
                 
 <xsl:import href="urn:docbkx:stylesheet"/>
@@ -71,44 +72,44 @@
 				<xsl:attribute name="src">
 					<xsl:text>url(</xsl:text>
 					<xsl:value-of select="$img.src.path"/>
-					<xsl:text>images/apache-expressive-objects-logo.png)</xsl:text>
+					<xsl:text>images/expressive-objects-logo.png)</xsl:text>
 				</xsl:attribute>
 	  		    </fo:external-graphic>
+        </fo:block>
 								
-                            </fo:block>
-                            <fo:block font-family="Helvetica" font-size="16pt" padding-before="40mm">
-                                <xsl:value-of select="bookinfo/title"/>
-                            </fo:block>
-                            <fo:block font-family="Helvetica" font-size="14pt">
-                                <xsl:value-of select="bookinfo/subtitle"/> 
-                            </fo:block>
-			    <fo:block font-family="Helvetica" font-size="12pt">
-                                <xsl:text>Version </xsl:text><xsl:value-of select="bookinfo/releaseinfo"/>  
+        <fo:block font-family="Helvetica" font-size="18pt" font-weight="bold" padding-before="30mm">
+            <xsl:value-of select="db:bookinfo/db:title"/>
+        </fo:block>
+        <fo:block font-family="Helvetica" font-size="14pt">
+            <xsl:value-of select="db:bookinfo/db:subtitle"/> 
+        </fo:block>
+			    <fo:block font-family="Helvetica" font-size="10pt" padding-before="7mm">
+                                <xsl:text>Version </xsl:text><xsl:value-of select="db:bookinfo/db:releaseinfo"/>  
                             </fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                     <fo:table-row>
                         <fo:table-cell text-align="center">
                             <fo:block font-family="Helvetica" font-size="12pt">
-                                <xsl:value-of select="bookinfo/pubdate"/>
+                                <xsl:value-of select="db:bookinfo/db:pubdate"/>
                             </fo:block>
                         </fo:table-cell>
                     </fo:table-row>
                     <fo:table-row>
                         <fo:table-cell text-align="center">
-                            <fo:block font-family="Helvetica" font-size="10pt" padding-before="80mm">
-                                <xsl:text>Copyright &copyright; 2010~2011 </xsl:text>
-                                <xsl:for-each select="bookinfo/authorgroup/author">
+                            <fo:block font-family="Helvetica" font-size="10pt" padding-before="70mm">
+                                <xsl:text>Copyright &copyright; 2010~2020</xsl:text>
+                                <xsl:for-each select="db:bookinfo/db:authorgroup/db:author">
                                     <xsl:if test="position() > 1">
                                         <xsl:text>, </xsl:text>
                                     </xsl:if>
-                                    <xsl:value-of select="firstname"/>
+                                    <xsl:value-of select="db:firstname"/>
                                     <xsl:text> </xsl:text>
-                                    <xsl:value-of select="surname"/>
+                                    <xsl:value-of select="db:surname"/>
                                 </xsl:for-each>
                             </fo:block>
                             <fo:block font-family="Helvetica" font-size="9pt" padding="1mm">
-                                <xsl:value-of select="bookinfo/legalnotice"/>  
+                                <xsl:value-of select="db:bookinfo/db:legalnotice"/>  
                             </fo:block>
                         </fo:table-cell>
                     </fo:table-row>
@@ -134,7 +135,7 @@
 	<xsl:param name="header.rule">1</xsl:param>
 	
     <xsl:attribute-set name="header.content.properties">
-    <xsl:attribute name="font-family">sans-serif</xsl:attribute>
+    <xsl:attribute name="font-family">Helvetica</xsl:attribute>
     <xsl:attribute name="font-size">8pt</xsl:attribute>
         
 <!--
@@ -219,9 +220,9 @@
 -->
 
   	 	  <xsl:when test="$position='center'">
-	       	<xsl:text> </xsl:text>
+  	       	<xsl:text></xsl:text>
 	      </xsl:when>
-
+          
 		  <xsl:when test="$double.sided != 0">
 	        <xsl:if test="$pageclass != 'titlepage'">
 	          <xsl:choose>
@@ -244,7 +245,6 @@
 	        </xsl:if>
 	      </xsl:when>
 
-
 	    </xsl:choose>
 	  </fo:block>
 	</xsl:template>
@@ -259,11 +259,11 @@
 		  <xsl:when test="$pageclass = 'titlepage'">
 			<!-- off -->
 		  </xsl:when>
-		  <xsl:when test="$pageclass = 'body' and $sequence = 'firstXXX'">
-			<!-- off -->
+		  <xsl:when test="$pageclass = 'body' and $sequence = 'first'">
+			<!-- off - hide for first pages of chapter-->
 		  </xsl:when>
 		  <xsl:otherwise>
-			<xsl:attribute name="border-bottom-width">1pt</xsl:attribute>
+			<xsl:attribute name="border-bottom-width">0.5pt</xsl:attribute>
 			<xsl:attribute name="border-bottom-style">solid</xsl:attribute>
 			<xsl:attribute name="border-bottom-color">black</xsl:attribute>
 		  </xsl:otherwise>
@@ -288,16 +288,16 @@
 		<xsl:param name="position" select="''" />
 		<xsl:param name="gentext-key" select="''" />
         <xsl:variable name="OrigVersion">
-            <xsl:if test="//releaseinfo">
-                <xsl:value-of select="//bookinfo/title" /><xsl:text> (</xsl:text><xsl:value-of select="//releaseinfo" /><xsl:text>)</xsl:text>
+            <xsl:if test="//db:releaseinfo">
+                <xsl:value-of select="//db:bookinfo/db:title" /><xsl:text> (</xsl:text><xsl:value-of select="//db:releaseinfo" /><xsl:text>)</xsl:text>
             </xsl:if>
         </xsl:variable>
 		<xsl:variable name="BookTitle">
-			<xsl:value-of select="//bookinfo/title" /><xsl:text></xsl:text>
+			<xsl:value-of select="//db:bookinfo/db:title" /><xsl:text></xsl:text>
 		</xsl:variable>
         <xsl:variable name="Version">
-            <xsl:if test="//releaseinfo">
-                <xsl:value-of select="//releaseinfo" />
+            <xsl:if test="//db:releaseinfo">
+                <xsl:value-of select="//db:releaseinfo" />
             </xsl:if>
         </xsl:variable>
 
@@ -455,11 +455,11 @@
     ################################################### -->      
 
     <!-- Left aligned text and no hyphenation -->
-    <xsl:param name="alignment">justify</xsl:param>
+    <xsl:param name="alignment">left</xsl:param>
     <xsl:param name="hyphenate">true</xsl:param>
 
     <!-- Default Font size -->
-	<xsl:param name="body.font.family">serif</xsl:param>
+	<xsl:param name="body.font.family">Times</xsl:param>
     <xsl:param name="body.font.master">11</xsl:param>
     <xsl:param name="body.font.small">9</xsl:param>
 
@@ -520,7 +520,7 @@
     ################################################### -->   
 	
 
-	<xsl:template match="part/title" mode="part.titlepage.recto.auto.mode">
+	<xsl:template match="db:part/db:title" mode="part.titlepage.recto.auto.mode">
 		<fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" font-size="17.8832pt" font-weight="normal" 
 			space-before="5cm" space-before.conditionality="retain" >
 			Part <xsl:number format="I" level="any" count="part"/>
@@ -531,13 +531,13 @@
 		</fo:block>
 	</xsl:template>
 
-	<xsl:template match="chapter/title" mode="chapter.titlepage.recto.auto.mode">
-		<fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" font-size="17.8832pt" font-weight="normal" 
-			space-before="5cm" space-before.conditionality="retain" >
-			Chapter <xsl:number format="1" level="any" count="chapter"/>
+	<xsl:template match="db:chapter/db:title" mode="chapter.titlepage.recto.auto.mode">
+		<fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" font-size="36pt" font-weight="normal" color="#bbb" 
+			space-before="5cm" space-after="0cm" space-before.conditionality="retain" >
+			Chapter <xsl:number format="1" level="any" count="db:chapter"/>
 		</fo:block>
-		<fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" font-size="24.8832pt" font-weight="bold" 
-			space-before="0cm" text-align="start" space-after="2cm">
+		<fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" font-size="20pt" font-weight="bold" 
+			space-before="0cm" text-align="start" space-after="4cm">
 			<xsl:value-of select="."/>
 		</fo:block>
 	</xsl:template>
@@ -652,36 +652,39 @@
     </xsl:template>
     -->
 	
-	
+	<xsl:attribute-set name="normal.para.spacing">
+        <xsl:attribute name="text-indent">0</xsl:attribute>
+        <xsl:attribute name="space-before.optimum">0</xsl:attribute>
+        <xsl:attribute name="space-before.minimum">0</xsl:attribute>
+        <xsl:attribute name="space-before.maximum">0</xsl:attribute>
+        <xsl:attribute name="space-after">1em</xsl:attribute>
+    </xsl:attribute-set>
+    
 	
     <!-- Sections 1, 2 and 3 titles have a small bump factor and padding -->    
     <xsl:attribute-set name="section.title.level1.properties">
         <xsl:attribute name="space-before">2.5em</xsl:attribute>
+        <xsl:attribute name="space-after">0.4em</xsl:attribute>
         <xsl:attribute name="font-size">
-            <xsl:value-of select="$body.font.master * 1.2"/>
+            <xsl:value-of select="$body.font.master * 1.3"/>
             <xsl:text>pt</xsl:text>
         </xsl:attribute>
-        <xsl:attribute name="space-after">0.1em</xsl:attribute>
     </xsl:attribute-set>
     <xsl:attribute-set name="section.title.level2.properties">
         <xsl:attribute name="space-before">1.9em</xsl:attribute>
+        <xsl:attribute name="space-after">0.4em</xsl:attribute>
         <xsl:attribute name="font-size">
-            <xsl:value-of select="$body.font.master * 1.1"/>
+            <xsl:value-of select="$body.font.master * 1.15"/>
             <xsl:text>pt</xsl:text>
         </xsl:attribute>
-        <xsl:attribute name="space-after">0.1em</xsl:attribute>
     </xsl:attribute-set>
     <xsl:attribute-set name="section.title.level3.properties">
-        <xsl:attribute name="space-before.optimum">0.4em</xsl:attribute>
-        <xsl:attribute name="space-before.minimum">0.4em</xsl:attribute>
-        <xsl:attribute name="space-before.maximum">0.4em</xsl:attribute>
+        <xsl:attribute name="space-before">1.6em</xsl:attribute>
+        <xsl:attribute name="space-after">0.2em</xsl:attribute>
         <xsl:attribute name="font-size">
-            <xsl:value-of select="$body.font.master * 1.0"/>
+            <xsl:value-of select="$body.font.master * 1.05"/>
             <xsl:text>pt</xsl:text>
         </xsl:attribute>
-        <xsl:attribute name="space-after.optimum">0.1em</xsl:attribute>
-        <xsl:attribute name="space-after.minimum">0.1em</xsl:attribute>
-        <xsl:attribute name="space-after.maximum">0.1em</xsl:attribute>
     </xsl:attribute-set>
 
 <!--
@@ -726,7 +729,7 @@
 <!--###################################################
                       Formal paras
     ################################################### -->  
-  <xsl:template match="formalpara/title">
+  <xsl:template match="db:formalpara/db:title">
      <fo:block xsl:use-attribute-sets="section.title.properties">
         <xsl:apply-templates/>
      </fo:block>
@@ -736,7 +739,7 @@
     ################################################### -->  
     
     <!-- Verbatim text formatting (programlistings) -->
-<!--	<xsl:param name="hyphenate.verbatim" select="1"></xsl:param> -->
+    <xsl:param name="hyphenate.verbatim" select="1"></xsl:param> 
 
     <xsl:attribute-set name="monospace.verbatim.properties">
         <xsl:attribute name="font-size">
@@ -744,9 +747,9 @@
             <xsl:text>pt</xsl:text>
         </xsl:attribute>
 		<xsl:attribute name="wrap-option">wrap</xsl:attribute>
-		<!--
-		<xsl:attribute name="hyphenation-character">!</xsl:attribute>
-		-->
+        <!-- 
+		<xsl:attribute name="hyphenation-character">?</xsl:attribute>
+         -->
     </xsl:attribute-set>
     
     <xsl:attribute-set name="verbatim.properties">
@@ -767,14 +770,22 @@
     </xsl:attribute-set>    
 
     <!-- Shade (background) programlistings -->    
-<!--
     <xsl:param name="shade.verbatim">1</xsl:param>
     <xsl:attribute-set name="shade.verbatim.style">
-        <xsl:attribute name="background-color">#f0f0f0</xsl:attribute>
+        <xsl:attribute name="background-color">#f8f8f8</xsl:attribute>
+
+        <xsl:attribute name="border-color">#444444</xsl:attribute>
+        <xsl:attribute name="border-style">solid</xsl:attribute>
+        <xsl:attribute name="border-width">0.2pt</xsl:attribute>      
+        <xsl:attribute name="padding-top">0.5em</xsl:attribute>      
+        <xsl:attribute name="padding-left">0.5em</xsl:attribute>      
+        <xsl:attribute name="padding-right">0.5em</xsl:attribute>      
+        <xsl:attribute name="padding-bottom">0.5em</xsl:attribute>      
+        <xsl:attribute name="margin-left">0.5em</xsl:attribute>      
+        <xsl:attribute name="margin-right">0.5em</xsl:attribute>      
     </xsl:attribute-set>
-    -->
     
-    <xsl:template match="programlistings/emphasis"> 
+    <xsl:template match="db:programlistings/db:emphasis"> 
         <fo:inline font-weight="bold">
             <xsl:apply-templates/>
         </fo:inline> 
@@ -797,8 +808,36 @@
     ################################################### -->   
 
     <!-- Use nice graphics for admonitions -->
+    <!-- 
     <xsl:param name="admon.graphics">'1'</xsl:param>
     <xsl:param name="admon.graphics.path">&admon_gfx_path;</xsl:param>
+     -->
+
+    <xsl:template name="nongraphical.admonition">
+        <xsl:variable name="id">
+            <xsl:call-template name="object.id" />
+        </xsl:variable>
+    
+        <fo:block space-before.minimum="0.8em"
+            space-before.optimum="1em" space-before.maximum="1.2em"
+            start-indent="0.25in" end-indent="0.25in"
+            border-left="1em solid #aaa"
+            padding-left="8pt"
+            margin-left="5em"
+            margin-bottom="1em"
+            id="{$id}">
+            <xsl:if test="$admon.textlabel != 0 or title">
+                <fo:block keep-with-next='always' xsl:use-attribute-sets="admonition.title.properties">
+                    <xsl:apply-templates select="." mode="object.title.markup" />
+                </fo:block>
+            </xsl:if>
+    
+            <fo:block xsl:use-attribute-sets="admonition.properties" font-style="italic" color="#666">
+                <xsl:apply-templates />
+            </fo:block>
+        </fo:block>
+    </xsl:template>
+    
 
 <!--###################################################
                           Misc
@@ -823,9 +862,9 @@
         <xsl:attribute name="space-before.optimum">0.1em</xsl:attribute>
         <xsl:attribute name="space-before.minimum">0.1em</xsl:attribute>
         <xsl:attribute name="space-before.maximum">0.1em</xsl:attribute>
-        <xsl:attribute name="space-after.optimum">0.1em</xsl:attribute>
-        <xsl:attribute name="space-after.minimum">0.1em</xsl:attribute>
-        <xsl:attribute name="space-after.maximum">0.1em</xsl:attribute>
+        <xsl:attribute name="space-after.optimum">1.1em</xsl:attribute>
+        <xsl:attribute name="space-after.minimum">1.1em</xsl:attribute>
+        <xsl:attribute name="space-after.maximum">1.1em</xsl:attribute>
     </xsl:attribute-set>
 
 	<xsl:attribute-set name="list.item.spacing">
@@ -837,7 +876,7 @@
 <!--###################################################
               colored and hyphenated links 
     ################################################### --> 
-	<xsl:template match="ulink"> 
+	<xsl:template match="db:ulink"> 
 	<fo:basic-link external-destination="{@url}" 
 			xsl:use-attribute-sets="xref.properties" 
 			text-decoration="underline" 
@@ -853,7 +892,7 @@
 			</fo:basic-link> 
 	</xsl:template> 
 	
-    <xsl:template match="varlistentry/term"> 
+    <xsl:template match="db:varlistentry/db:term"> 
     <fo:inline font-style="italic"> 
             <xsl:apply-templates/>
     </fo:inline> 
@@ -874,35 +913,35 @@
 </xsl:template>
 -->
 
-   <xsl:template match="markup"> 
-        <fo:inline font-weight="bold">
+   <xsl:template match="db:markup"> 
+        <fo:inline color="red" font-weight="bold">
             <xsl:apply-templates/>
         </fo:inline> 
     </xsl:template> 
 
-    <xsl:template match="abstract/para"> 
-        <fo:block margin-left="10px" padding="10px" font-style="italic" space-after="1cm">
+    <xsl:template match="db:abstract/db:para"> 
+        <fo:block margin="0em" padding="1em" font-family="Helvetica" font-style="italic" background-color="#e8e8e8" space-before="0cm" space-after="1cm">
             <xsl:apply-templates/>
         </fo:block> 
     </xsl:template> 
 
 	
 	
-	 <xsl:template match="screenshot"> 
+	 <xsl:template match="db:screenshot"> 
         <fo:block space-before="20px">
             <xsl:apply-templates/>
         </fo:block> 
     </xsl:template> 
 
 	
-	 <xsl:template match="remark"> 
+	 <xsl:template match="db:remark"> 
         <fo:block padding="10px" space-before="10px" color="red" border-style="solid" border-width="1px" border-color="red">
             <xsl:apply-templates/>
         </fo:block> 
     </xsl:template> 
     
 
-	 <xsl:template match="mediaobject"> 
+	 <xsl:template match="db:mediaobject"> 
         <fo:block space-after="32px">
             <xsl:apply-templates/>
         </fo:block> 

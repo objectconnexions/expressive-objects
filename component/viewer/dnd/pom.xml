@@ -36,6 +36,7 @@
 
 	<properties>
         <siteBaseDir>.</siteBaseDir>
+        <docbkxBaseDir>../../..</docbkxBaseDir>        
 
 		<docbkxGuideTitle>Expressive Objects DnD Viewer</docbkxGuideTitle>
         <docbkxGuideSubTitle>Configuration, Customization and Deployment Guide</docbkxGuideSubTitle>

@@ -33,6 +33,8 @@
 
     <properties>
         <siteBaseDir>.</siteBaseDir>
+        <docbkxBaseDir>../../..</docbkxBaseDir>
+        
 
         <docbkxGuideTitle>Expressive Objects Default Runtime SQL ObjectStore</docbkxGuideTitle>
         <docbkxGuideSubTitle>Configuration and Deployment Guide</docbkxGuideSubTitle>

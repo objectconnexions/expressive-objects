@@ -39,6 +39,7 @@
 
     <properties>
         <siteBaseDir>.</siteBaseDir>
+        <docbkxBaseDir>../../..</docbkxBaseDir>        
 
         <docbkxGuideTitle>Expressive Objects NOSQL ObjectStore</docbkxGuideTitle>
         <docbkxGuideSubTitle>Configuration and Deployment Guide</docbkxGuideSubTitle>

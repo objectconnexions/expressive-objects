@@ -1,8 +1,7 @@
 package uk.co.objectconnexions.expressiveobjects.datagenerator;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,10 +13,17 @@ public class CsvFileReaderTest {
     }
 
     @Test
-    public void test() {
-        System.out.println(new File(".").getAbsolutePath());
-        
-        new CsvFileReader().read("src/test/resources/test.csv");
+    public void testFileFromFileSystem() {
+        CsvFileReader read = new CsvFileReader().loadFile("src/test/resources/test.csv");
+        assertThat(read.value("name"), is("Fred Smith"));
+        assertThat(read.value("phone"), is("0123456789"));
+    }
+
+    @Test
+    public void testFileFromClasspath() {
+        CsvFileReader read = new CsvFileReader().loadResource("test.csv");
+        assertThat(read.value("name"), is("Fred Smith"));
+        assertThat(read.value("phone"), is("0123456789"));
     }
 
 }

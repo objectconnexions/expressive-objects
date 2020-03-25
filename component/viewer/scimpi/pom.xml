@@ -37,6 +37,7 @@
 
 	<properties>
         <siteBaseDir>.</siteBaseDir>
+        <docbkxBaseDir>../../..</docbkxBaseDir>        
 
 		<docbkxGuideTitle>Expressive Objects Scimpi</docbkxGuideTitle>
         <docbkxGuideSubTitle>Configuration, Customization and Deployment Guide</docbkxGuideSubTitle>

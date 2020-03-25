@@ -36,6 +36,7 @@
 
 	<properties>
         <siteBaseDir>..</siteBaseDir>
+        <docbkxBaseDir>../..</docbkxBaseDir>        
 		<relativeUrl>applib/</relativeUrl>
 
 		<docbkxGuideTitle>Expressive Objects Application Library</docbkxGuideTitle>
@@ -69,7 +70,7 @@
                 </configuration>
 				<reportSets>
 					<reportSet>
-						<inherited>true</inherited>
+						<inherited>false</inherited>
 						<reports>
 							<report>dependencies</report>
 							<report>dependency-convergence</report>

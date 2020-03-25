@@ -35,6 +35,7 @@
 
 	<properties>
         <siteBaseDir>.</siteBaseDir>
+       <docbkxBaseDir>../../..</docbkxBaseDir>        
 
         <docbkxGuideTitle>Default Runtime XML ProfileStore</docbkxGuideTitle>
         <docbkxGuideSubTitle>Configuration and Deployment Guide</docbkxGuideSubTitle>

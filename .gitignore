@@ -30,3 +30,6 @@ component/objectstore/xml/tmp/tests/
 
 pom.xml.tag
 pom.xml.releaseBackup
+
+nohup.out
+

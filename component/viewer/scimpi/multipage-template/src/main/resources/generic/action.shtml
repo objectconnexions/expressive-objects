@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <swf:page-title>Action <swf:action-name method="${_method}"/></swf:page-title>
-<swf:template  file="../scimpi/style/template.shtml" />
+<swf:template  file="../style/template.shtml" />
 
 <swf:action-form method="${_method}" view="_generic.shtml" ${_cancel-to:optional}/>
 

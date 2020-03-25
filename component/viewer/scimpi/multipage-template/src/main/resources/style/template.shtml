@@ -4,10 +4,10 @@
 
 <div id="side">
 	<h2>Planning</h2>
-	<!-- 
+	<!--
     <swf:run-action object="service:customers" method="allCustomers" result-name="customers" />
-    <swf:list object="${customers}" link="${_context}/_generic.shtml" link-view="_generic.shtml" /> 
- 
+    <swf:list object="${customers}" link="${_context}/_generic.shtml" link-view="_generic.shtml" />
+
      <swf:services>
         <swf:include name="allCustomers" />
         <swf:include name="newCustomer" />
@@ -19,10 +19,10 @@
 </div>
 
 <div id="main">
-<!-- 
+<!--
     <swf:breadcrumbs action="parent" factory="uk.co.objectconnexions.example.viewer.scimpi.dispatcher.breadcrumbs.BasicCrumbFactory"/>
  -->
-    <swf:history />
+    <swf:history action="display" />
     <swf:feedback />
 	<swf:content />
 </div>

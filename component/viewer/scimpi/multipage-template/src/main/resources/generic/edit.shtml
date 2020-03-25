@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <swf:page-title>Edit <swf:title-string /></swf:page-title>
-<swf:template  file="../scimpi/style/template.shtml" />
+<swf:template  file="../style/template.shtml" />
 
 <h2>Edit <swf:title /></h2>
 <swf:edit />

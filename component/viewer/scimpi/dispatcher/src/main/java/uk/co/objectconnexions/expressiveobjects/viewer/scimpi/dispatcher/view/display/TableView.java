@@ -23,8 +23,11 @@ import java.util.List;
 
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.object.parseable.ParseableFacet;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecification;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAssociation;
 import uk.co.objectconnexions.expressiveobjects.core.runtime.persistence.ObjectNotFoundException;
+import uk.co.objectconnexions.expressiveobjects.core.runtime.system.context.ExpressiveObjectsContext;
+import uk.co.objectconnexions.expressiveobjects.core.runtime.system.persistence.PersistenceSession;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.Dispatcher;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context.RequestContext.Scope;
@@ -160,7 +163,8 @@ public class TableView extends AbstractTableView {
                     request.appendAsHtmlEncoded(element.titleString());
                     request.appendHtml("</td>");
                 }
-
+                
+                ObjectSpecification booleanSpecification = ExpressiveObjectsContext.getSpecificationLoader().loadSpecification(Boolean.class);
                 for (int i = 0; i < noColumns; i++) {
                     if (fields.get(i).isOneToManyAssociation()) {
                         continue;
@@ -181,7 +185,12 @@ public class TableView extends AbstractTableView {
 
                         }
                         try {
-                            request.appendAsHtmlEncoded(field.titleString());
+                            String fieldValueTitle = field.titleString();
+                            if (field.getSpecification() == booleanSpecification) {
+                                if (fieldValueTitle.equals("True")) fieldValueTitle = "Yes";
+                                else if (fieldValueTitle.equals("False")) fieldValueTitle = "No";
+                            }
+                            request.appendAsHtmlEncoded(fieldValueTitle);
                         } catch (final ObjectNotFoundException e) {
                             request.appendAsHtmlEncoded(e.getMessage());
                         }
@@ -246,7 +255,7 @@ public class TableView extends AbstractTableView {
         final boolean showEditOption = request.isRequested(SHOW_EDIT, true);
         final boolean showDeleteOption = request.isRequested(SHOW_DELETE, true);
 
-        final String noColumnsString = request.getOptionalProperty("no-columns", "3");
+        final String noColumnsString = request.getOptionalProperty("no-columns", "5");
 
         final LinkedFieldsBlock block = new LinkedFieldsBlock();
         request.setBlockContent(block);

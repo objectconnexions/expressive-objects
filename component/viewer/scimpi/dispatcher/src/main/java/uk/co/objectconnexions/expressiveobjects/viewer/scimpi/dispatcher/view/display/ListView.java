@@ -39,6 +39,7 @@ public class ListView extends AbstractObjectProcessor {
 
     @Override
     public void process(final Request request, final ObjectAdapter object) {
+        final String fieldName = request.getOptionalProperty(FIELD_NAME);
         final String linkRowView = request.getOptionalProperty(LINK_VIEW);
         final String linkObjectName = request.getOptionalProperty(ELEMENT_NAME, RequestContext.RESULT);
         final String linkObjectScope = request.getOptionalProperty(SCOPE, Scope.INTERACTION.toString());
@@ -47,10 +48,10 @@ public class ListView extends AbstractObjectProcessor {
             linkedRow = new LinkedObject(linkObjectName, linkObjectScope, request.getContext().fullUriPath(linkRowView));
         }
         final String bulletType = request.getOptionalProperty("type");
-        write(request, object, linkedRow, bulletType);
+        write(request, object, fieldName, linkedRow, bulletType);
     }
 
-    public static void write(final Request request, final ObjectAdapter collection, final LinkedObject linkRow, final String bulletType) {
+    public static void write(final Request request, final ObjectAdapter collection, String fieldName, final LinkedObject linkRow, final String bulletType) {
 
         if (bulletType == null) {
             request.appendHtml("<ol>");
@@ -60,6 +61,10 @@ public class ListView extends AbstractObjectProcessor {
 
         final CollectionFacet facet = collection.getSpecification().getFacet(CollectionFacet.class);
         final Iterator<ObjectAdapter> iterator = facet.iterator(collection);
+        ObjectAssociation association = null;
+        if (fieldName != null) {
+            association = collection.getElementSpecification().getAssociation(fieldName);
+        }
         while (iterator.hasNext()) {
             final ObjectAdapter element = iterator.next();
 
@@ -71,7 +76,14 @@ public class ListView extends AbstractObjectProcessor {
                 request.appendHtml("<a class=\"item-select\" href=\"" + linkRow.getForwardView() + "?" + linkRow.getVariable()
                         + "=" + rowId + context.encodedInteractionParameters() + "\">");
             }
-            request.appendAsHtmlEncoded(element.titleString());
+            String elementTitle;
+            if (association == null) {
+                elementTitle = element.titleString();
+            } else {
+                ObjectAdapter objectAdapter = association.get(element);
+                elementTitle = objectAdapter == null ? "NA" : objectAdapter.titleString();
+            }
+            request.appendAsHtmlEncoded(elementTitle);
             if (linkRow != null) {
                 request.appendHtml("</a>");
             }

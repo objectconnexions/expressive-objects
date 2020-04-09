@@ -45,7 +45,8 @@ import com.mongodb.MongoException;
 
 public class MongoDb implements NoSqlDataDatabase {
 
-	private static final String SERIALNUMBERS_COLLECTION_NAME = "serialnumbers";
+	private static final String SERVICES_COLLECTION_NAME = "services";
+    private static final String SERIALNUMBERS_COLLECTION_NAME = "serialnumbers";
 
 	private static final Logger LOG = Logger.getLogger(MongoDb.class);
 	
@@ -102,7 +103,9 @@ public class MongoDb implements NoSqlDataDatabase {
 
     @Override
     public boolean containsData() {
-        return db.getCollectionNames().size() > 0;
+        final DBCollection system = db.getCollection(SERIALNUMBERS_COLLECTION_NAME);
+        DBObject object = system.findOne();
+        return object != null;
     }
 
     
@@ -240,14 +243,14 @@ public class MongoDb implements NoSqlDataDatabase {
 
     @Override
     public void addService(final ObjectSpecId objectSpecId, final String key) {
-        final DBCollection services = db.getCollection("services");
+        final DBCollection services = db.getCollection(SERVICES_COLLECTION_NAME);
         services.insert(new BasicDBObject().append("name", objectSpecId.asString()).append("key", key));
         LOG.info("service added " + objectSpecId + ":" + key);
     }
 
     @Override
     public String getService(final ObjectSpecId objectSpecId) {
-        final DBCollection services = db.getCollection("services");
+        final DBCollection services = db.getCollection(SERVICES_COLLECTION_NAME);
         final DBObject object = services.findOne(new BasicDBObject().append("name", objectSpecId.asString()));
         if (object == null) {
             return null;

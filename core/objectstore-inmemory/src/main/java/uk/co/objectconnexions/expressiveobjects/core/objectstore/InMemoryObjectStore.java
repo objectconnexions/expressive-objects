@@ -222,13 +222,13 @@ public class InMemoryObjectStore implements ObjectStoreSpi {
 
     @Override
     public void execute(final List<PersistenceCommand> commands) throws ObjectPersistenceException {
-        if (LOG.isInfoEnabled()) {
-            LOG.info("execute commands");
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("execute commands " + commands);
         }
         for (final PersistenceCommand command : commands) {
             command.execute(null);
         }
-        LOG.info("end execution");
+        LOG.debug("end execution");
     }
 
     // ///////////////////////////////////////////////////////

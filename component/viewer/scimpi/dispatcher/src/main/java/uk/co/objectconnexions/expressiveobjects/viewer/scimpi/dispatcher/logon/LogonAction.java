@@ -68,6 +68,7 @@ public class LogonAction implements Action {
                 final String objectId = context.getParameter(LOGON_OBJECT);
                 final String scope = context.getParameter(LOGON_SCOPE);
                 final String loginMethodName = context.getParameter(LOGON_METHOD);
+                final String usernameFieldName = context.getParameter(PREFIX + "username-field");
                 final String roleFieldName = context.getParameter(PREFIX + "roles-field");
                 String resultName = context.getParameter(LOGON_RESULT_NAME);
                 resultName = resultName == null ? "_" + USER : resultName;
@@ -90,11 +91,24 @@ public class LogonAction implements Action {
                 isValid = result != null;
                 if (isValid) {
                     ObjectSpecification specification = result.getSpecification();
-                    ObjectAssociation association = specification.getAssociation(roleFieldName);
-                    if (association == null) {
-                        throw new ScimpiException("Expected a role name field called: " + roleFieldName);
+                    
+                    ObjectAssociation userIdAssociation = specification.getAssociation(usernameFieldName);
+                    if (userIdAssociation == null) {
+                        throw new ScimpiException("Expected a username field called: " + usernameFieldName);
                     }
-                    ObjectAdapter role = association.get(result);
+                    ObjectAdapter userIdAdapter = userIdAssociation.get(result);
+                    String userId;
+                    if (userIdAdapter == null) {
+                        userId = result.titleString();
+                    } else {
+                        userId = userIdAdapter.titleString();
+                    }
+                    
+                    ObjectAssociation roleAssociation = specification.getAssociation(roleFieldName);
+                    if (roleAssociation == null) {
+                        throw new ScimpiException("Expected a roles field called: " + roleFieldName);
+                    }
+                    ObjectAdapter role = roleAssociation.get(result);
                     List<String> roles = new ArrayList<String>();
                     if (role != null) {
                         String[] split = role.titleString().split("\\|");
@@ -103,7 +117,6 @@ public class LogonAction implements Action {
                         }
                     }
                     //String domainRoleName = role == null ? "" : role.titleString(); 
-                    
                     
                     Scope scope2 = scope == null ? Scope.SESSION : RequestContext.scope(scope);
                     final String resultId = context.mapObject(result, scope2);
@@ -118,7 +131,7 @@ public class LogonAction implements Action {
  //                   context.clearVariable(PREFIX + "expressive-objects-user", Scope.SESSION);
                     context.clearVariable(LOGON_FORM_ID, Scope.SESSION);
 
-                    session = new DomainSession(result.titleString(), roles);
+                    session = new DomainSession(userId, roles);
                 } else {
                     session = context.getSession();
                 }

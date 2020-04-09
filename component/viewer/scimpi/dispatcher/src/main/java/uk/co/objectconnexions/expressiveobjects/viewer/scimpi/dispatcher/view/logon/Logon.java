@@ -55,7 +55,8 @@ public class Logon extends AbstractElementProcessor {
         final String method = request.getOptionalProperty(METHOD, "logon");
         final String result = request.getOptionalProperty(RESULT_NAME, "_user");
         final String resultScope = request.getOptionalProperty(SCOPE, Scope.SESSION.name());
-        final String role = request.getOptionalProperty("field", "roles");
+        final String rolesField = request.getOptionalProperty("roles-field", "roles");
+        final String usernameField = request.getOptionalProperty("username-field", "username");
 //        final String expressiveObjectsUser = request.getOptionalProperty("expressive-objects-user", "_web_default");
         final String formId = request.getOptionalProperty(FORM_ID, request.nextFormId());
         final String labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, ":");
@@ -68,7 +69,8 @@ public class Logon extends AbstractElementProcessor {
             context.addVariable(LOGON_METHOD, method, Scope.SESSION);
             context.addVariable(LOGON_RESULT_NAME, result, Scope.SESSION);
             context.addVariable(LOGON_SCOPE, resultScope, Scope.SESSION);
-            context.addVariable(PREFIX + "roles-field", role, Scope.SESSION);
+            context.addVariable(PREFIX + "roles-field", rolesField, Scope.SESSION);
+            context.addVariable(PREFIX + "username-field", usernameField, Scope.SESSION);
 //            context.addVariable(PREFIX + "expressive-objects-user", expressiveObjectsUser, Scope.SESSION);
             context.addVariable(LOGON_FORM_ID, formId, Scope.SESSION);
         }

@@ -58,9 +58,10 @@ public class FieldValue extends AbstractElementProcessor {
             throw new ForbiddenException(field, ForbiddenException.VISIBLE);
         }
         final boolean isIconShowing = request.isRequested(SHOW_ICON, showIconByDefault());
+        final boolean contentAsClass = request.isRequested("content-as-class", false);
         final int truncateTo = Integer.valueOf(request.getOptionalProperty(TRUNCATE, "0")).intValue();
 
-        write(request, object, field, null, className, isIconShowing, truncateTo);
+        write(request, object, field, null, className, isIconShowing, truncateTo, contentAsClass);
     }
 
     @Override
@@ -68,15 +69,23 @@ public class FieldValue extends AbstractElementProcessor {
         return "field";
     }
 
-    public static void write(final Request request, final ObjectAdapter object, final ObjectAssociation field, final LinkedObject linkedField, final String className, final boolean showIcon, final int truncateTo) {
+    public static void write(final Request request, final ObjectAdapter object, final ObjectAssociation field, final LinkedObject linkedField, final String className, final boolean showIcon, final int truncateTo, boolean contentAsClass) {
 
         final ObjectAdapter fieldReference = field.get(object);
 
         if (fieldReference != null) {
+            String value = fieldReference == null ? "" : fieldReference.titleString();
+            if (truncateTo > 0 && value.length() > truncateTo) {
+                value = value.substring(0, truncateTo) + "...";
+            }
+
             String classes = className == null ? "value" : className;
             if (field.containsFacet(MultiLineFacet.class)) {
                 classes += " multiline";
             } 
+            if (contentAsClass) {
+                classes += " " + value.toLowerCase().replace(" ", "-");
+            }
             final String classSection = "class=\"" + classes + "\"";
             request.appendHtml("<span " + classSection + ">");
             if (field.isOneToOneAssociation()) {
@@ -94,10 +103,6 @@ public class FieldValue extends AbstractElementProcessor {
             if (linkedField != null) {
                 final String id = request.getContext().mapObject(fieldReference, linkedField.getScope(), Scope.INTERACTION);
                 request.appendHtml("<a href=\"" + linkedField.getForwardView() + "?" + linkedField.getVariable() + "=" + id + request.getContext().encodedInteractionParameters() + "\">");
-            }
-            String value = fieldReference == null ? "" : fieldReference.titleString();
-            if (truncateTo > 0 && value.length() > truncateTo) {
-                value = value.substring(0, truncateTo) + "...";
             }
 
             // TODO figure out a better way to determine if boolean or a

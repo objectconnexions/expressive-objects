@@ -132,7 +132,7 @@ public abstract class AbstractFormView extends AbstractObjectProcessor {
     }
 
     protected void addField(final Request request, final ObjectAdapter object, final ObjectAssociation field, final LinkedObject linkedObject, final boolean showIcons) {
-        FieldValue.write(request, object, field, linkedObject, null, showIcons, 0);
+        FieldValue.write(request, object, field, linkedObject, null, showIcons, 0, false);
     }
 
     protected boolean ignoreField(final ObjectAssociation objectField) {

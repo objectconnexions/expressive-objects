@@ -66,15 +66,15 @@ public class Date extends Magnitude<Date> {
      * portion of the Java date is disposed of.
      */
     public Date(final java.util.Date date) {
-        this.date = new DateTime(date.getTime(), Defaults.getTimeZone());
+        this.date = new DateTime(date.getTime(), Defaults.getTimeZone()).withMillisOfDay(0);
     }
 
     public Date(final long millisSinceEpoch) {
-        this.date = new DateTime(millisSinceEpoch);
+        this.date = new DateTime(millisSinceEpoch).withMillisOfDay(0);
     }
 
     public Date(final DateTime date) {
-        this.date = new DateTime(date);
+        this.date = new DateTime(date).withMillisOfDay(0);
     }
 
     private DateTime newDateTime(final int year, final int month, final int day) {

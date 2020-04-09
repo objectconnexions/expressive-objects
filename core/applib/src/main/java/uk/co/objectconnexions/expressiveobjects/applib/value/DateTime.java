@@ -186,6 +186,16 @@ public class DateTime extends Magnitude<DateTime> {
     }
 
     /**
+     * Calculates, and returns, an int representing the day of the week relative
+     * to the current date. With Mon = 0 through to Sun = 6
+     * 
+     * @author Joshua Cassidy
+     */
+    public int getDayOfWeek() {
+        return dateTime.getDayOfWeek() - 1; // Mon - Sun == 1 - 7
+    }
+
+    /**
      * Day of year (1 to 365 [366 in leap years]) for Gregorian calendar.
      * 
      * @return

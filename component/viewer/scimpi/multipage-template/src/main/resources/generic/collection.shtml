@@ -4,11 +4,11 @@
 <swf:template  file="../style/template.shtml" />
 
 <!--
- -->
 <swf:breadcrumbs action="add" />
 <swf:history action="add" object="${_result}"  link-view="_generic.shtml" />
+ -->
 
-<h2>${title}</h2>
+<h2>${_title}</h2>
 <swf:table xxtitle="My Little Table" xxxno-columns="7" xxheader="no"  footer="yes" link-view="_generic.shtml" />
 
 

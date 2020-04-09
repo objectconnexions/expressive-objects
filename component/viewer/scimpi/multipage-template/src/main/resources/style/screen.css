@@ -13,7 +13,7 @@ strong {
 }
 h1, h2, h3, div#title, form .title {
 	margin-bottom: 0.8em;
-	font-weight: bold;'
+	font-weight: bold;
 	letter-spacing: 2px;
     text-shadow: 0.1em 0.1em 0.1em #bbb;
 }

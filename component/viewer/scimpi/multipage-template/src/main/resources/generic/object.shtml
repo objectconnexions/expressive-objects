@@ -3,13 +3,15 @@
 <swf:page-title><swf:title-string /></swf:page-title>
 <swf:template  file="../style/template.shtml" />
 <!--
- -->
 <swf:breadcrumbs action="add" object="${_result}"/>
 <swf:history action="add" object="${_result}"  link-view="_generic.shtml" />
+ -->
 
-<h2><swf:title /> <span class="edit"><swf:edit-link>Edit...</swf:edit-link></span></h2>
-<swf:long-form link-view="_generic.shtml" title="" />
-
-<swf:methods />
+<div class="scimpi-object">
+	<h2><swf:title /></h2>
+	<div class="type"><swf:type /></div>
+	<swf:long-form link-view="_generic.shtml" title="" />
+	<swf:methods />
+</div>
 
 

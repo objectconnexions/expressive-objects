@@ -3,6 +3,7 @@
 <swf:page-title>Action <swf:action-name method="${_method}"/></swf:page-title>
 <swf:template  file="../style/template.shtml" />
 
+<swf:short-form />
 <swf:action-form method="${_method}" view="_generic.shtml" ${_cancel-to:optional}/>
 
 

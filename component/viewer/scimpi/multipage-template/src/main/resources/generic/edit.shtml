@@ -3,7 +3,9 @@
 <swf:page-title>Edit <swf:title-string /></swf:page-title>
 <swf:template  file="../style/template.shtml" />
 
-<h2>Edit <swf:title /></h2>
-<swf:edit />
+<swf:unless set="${_title}">
+    <swf:variable name="_title"><swf:title-string /></swf:variable>
+</swf:unless>
+<swf:edit title="${_title}" />
 
 

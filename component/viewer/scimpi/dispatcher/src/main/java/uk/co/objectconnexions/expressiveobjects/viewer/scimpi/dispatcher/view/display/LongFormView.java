@@ -22,6 +22,7 @@ package uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.d
 import java.util.List;
 
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.adapter.ObjectAdapter;
+import uk.co.objectconnexions.expressiveobjects.core.metamodel.facets.collections.modify.CollectionFacet;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.ObjectSpecification;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAssociation;
 import uk.co.objectconnexions.expressiveobjects.core.metamodel.spec.feature.ObjectAssociationFilters;
@@ -68,11 +69,15 @@ public class LongFormView extends AbstractFormView {
             
             final LinkedObject[] linkedFields = new LinkedObject[fields.size()];
 
-      //      linkedObject2 = new LinkedObject(forwardView)
-
-            final TableContentWriter rowBuilder =new SimpleTableBuilder(object.titleString(), true, false, "", noColumns, headers, fields, false,
-                    showIcons, false, false, false, field.getName(), linkedFields, linkedObject);
-            TableView.write(request, collection, summary, rowBuilder, null, "", tableClass, rowClasses);
+            final CollectionFacet facet = collection.getSpecification().getFacet(CollectionFacet.class);
+            int size = facet.size(collection);
+            if (size == 0) {
+                request.appendHtml("<div class=\"empty-collection\">No " + collection.getElementSpecification().getPluralName() + "</div>");
+            } else {
+                final TableContentWriter rowBuilder =new SimpleTableBuilder(object.titleString(), true, false, null, noColumns, headers, fields, false,
+                        showIcons, false, false, false, field.getName(), linkedFields, linkedObject);
+                TableView.write(request, collection, summary, rowBuilder, null, "", tableClass, rowClasses);
+            }
         } else {
             super.addField(request, object, field, linkedObject, showIcons);
         }

@@ -37,6 +37,7 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.context
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.util.MethodsUtils;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.HelpLink;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.form.HiddenInputField;
 
 public class ActionButton extends AbstractElementProcessor {
     private static final Logger LOG = Logger.getLogger(ActionButton.class);
@@ -219,6 +220,8 @@ public class ActionButton extends AbstractElementProcessor {
             request.appendHtml("  <input type=\"hidden\" name=\"" + "_" + MESSAGE + "\" value=\"" + completionMessage + "\" />\n");
         }
 
+        request.appendHtml("  <input type=\"hidden\" name=\"" + "_" + FORM_TITLE + "\" value=\"" + action.getName() + "\" />\n");
+        
         for (int i = 0; i < parameters.length; i++) {
             request.appendHtml("  <input type=\"hidden\" name=\"param" + (i + 1) + "\" value=\"" + parameters[i] + "\" />\n");
         }

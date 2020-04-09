@@ -109,11 +109,16 @@ public class ActionForm extends AbstractElementProcessor {
         if (action.isContributed() && !action.hasReturn() && parameterObject.resultOverride == null) {
             parameterObject.resultOverride = objectId;
         }
-        final HiddenInputField[] hiddenFields = new HiddenInputField[] { new HiddenInputField("_" + OBJECT, objectId), new HiddenInputField("_" + VERSION, version), new HiddenInputField("_" + FORM_ID, parameterObject.formId), new HiddenInputField("_" + METHOD, parameterObject.methodName),
-                parameterObject.forwardResultTo == null ? null : new HiddenInputField("_" + VIEW, context.fullFilePath(parameterObject.forwardResultTo)), new HiddenInputField("_" + VOID, voidView), new HiddenInputField("_" + ERROR, errorView),
+        final HiddenInputField[] hiddenFields = new HiddenInputField[] { 
+                new HiddenInputField("_" + OBJECT, objectId), new HiddenInputField("_" + VERSION, version), 
+                new HiddenInputField("_" + FORM_ID, parameterObject.formId), new HiddenInputField("_" + METHOD, parameterObject.methodName),
+                parameterObject.forwardResultTo == null ? null : new HiddenInputField("_" + VIEW, context.fullFilePath(parameterObject.forwardResultTo)), 
+                new HiddenInputField("_" + VOID, voidView), new HiddenInputField("_" + ERROR, errorView),
                 parameterObject.completionMessage == null ? null : new HiddenInputField("_" + MESSAGE, parameterObject.completionMessage), parameterObject.scope == null ? null : new HiddenInputField("_" + SCOPE, parameterObject.scope),
                 parameterObject.resultOverride == null ? null : new HiddenInputField("_" + RESULT_OVERRIDE, parameterObject.resultOverride), parameterObject.resultName == null ? null : new HiddenInputField("_" + RESULT_NAME, parameterObject.resultName),
-                parameterObject.resultName == null ? null : new HiddenInputField(RequestContext.RESULT, (String) request.getContext().getVariable(RequestContext.RESULT)) };
+                parameterObject.resultName == null ? null : new HiddenInputField(RequestContext.RESULT, (String) request.getContext().getVariable(RequestContext.RESULT)),
+                new HiddenInputField("_" + FORM_TITLE, action.getName())
+        };
 
         // TODO when the block contains a selector tag it doesn't disable it if
         // the field cannot be edited!!!

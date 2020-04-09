@@ -15,6 +15,7 @@ public class CsvFileReaderTest {
     @Test
     public void testFileFromFileSystem() {
         CsvFileReader read = new CsvFileReader().loadFile("src/test/resources/test.csv");
+        read.next();
         assertThat(read.value("name"), is("Fred Smith"));
         assertThat(read.value("phone"), is("0123456789"));
     }
@@ -22,6 +23,7 @@ public class CsvFileReaderTest {
     @Test
     public void testFileFromClasspath() {
         CsvFileReader read = new CsvFileReader().loadResource("test.csv");
+        read.next();
         assertThat(read.value("name"), is("Fred Smith"));
         assertThat(read.value("phone"), is("0123456789"));
     }

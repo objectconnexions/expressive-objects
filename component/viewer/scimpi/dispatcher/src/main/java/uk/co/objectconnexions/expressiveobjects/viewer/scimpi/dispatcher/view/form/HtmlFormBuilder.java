@@ -90,7 +90,7 @@ public class HtmlFormBuilder {
                 final String fieldSegment = createField(fld);
                 final String helpSegment = HelpLink.createHelpSegment(fld.getDescription(), fld.getHelpReference());
                 final String title = fld.getDescription().equals("") ? "" : " title=\"" + fld.getDescription() + "\"";
-                request.appendHtml("  <div class=\"field " + fld.getName() + "\"><label class=\"label\" " + title + ">");
+                request.appendHtml("  <div class=\"field fld_" + fld.getName() + "\"><label class=\"label\" " + title + ">");
                 request.appendAsHtmlEncoded(fld.getLabel());
                 request.appendHtml(labelDelimiter + "</label>" + fieldSegment + errorSegment + helpSegment + "</div>\n");
             }

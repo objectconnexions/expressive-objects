@@ -5,14 +5,18 @@ import java.io.Serializable;
 public class BreadCrumb implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    protected final String id;
-    protected final String title;
-    protected String url;
+    private final String id;
+    private final String title;
+    private final String url;
+    private final String separator;
+    private final String hint;
 
-    public BreadCrumb(String page, String parameter, String id, String title) {
+    public BreadCrumb(String url, String id, String title, String hint, String separator) {
+        this.url = url;
         this.id = id;
         this.title = title;
-        url = page + "?" + parameter + "=" + id;
+        this.hint = hint;
+        this.separator = separator;
     }
 
     public String getId() {
@@ -20,17 +24,31 @@ public class BreadCrumb implements Serializable {
     }
 
     public String displayFirst() {
-        return "<a href=\"" + url + "\">" + title + "</a>";
+        return "<span class=\"scimpi-crumb scimpi-available\"><a href=\"" + url + "\""  + tooltip() +">" + "<span class=\"name\">"
+                + title + "</span></a></span/>";
     }
 
     public String displayNormal() {
-        return "<a href=\"" + url + "\">" + title + "</a>";
+        return "<span class=\"scimpi-crumb scimpi-available\">" + separator() + "<a href=\"" + url + "\"" + tooltip() + ">"
+                + "<span class=\"name\">" + title + "</span></a></span/>";
     }
 
     public String displayLast() {
-        return "<span class=\"scimpi-current\">" + title + "</span>";
+        return "<span class=\"scimpi-crumb scimpi-current\"" + tooltip() + ">" + separator() + "<span class=\"name\">" + title
+                + "</span></span/>";
     }
-    
+
+    private String tooltip() {
+       if(hint != null) {
+           return " title=\"" + hint + "\"";
+       }
+        return "";
+    }
+
+    private String separator() {
+        return "<span class=\"scimpi-crumb scimpi-separator\">" + separator + "</span>";
+    }
+
     @Override
     public String toString() {
         return title + "|" + url;

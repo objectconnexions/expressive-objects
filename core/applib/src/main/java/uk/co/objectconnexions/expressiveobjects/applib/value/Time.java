@@ -158,6 +158,11 @@ public class Time extends Magnitude<Time> {
         return time.getSecondOfMinute();
     }
 
+    @Override
+    public int compareTo(Time time) {
+        return this.time.compareTo(time.time);
+    }
+
     /**
      * returns true if the time of this object has the same value as the
      * specified time

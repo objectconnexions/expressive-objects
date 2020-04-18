@@ -108,6 +108,11 @@ public class Money extends Magnitude<Money> {
     }
 
     @Override
+    public int compareTo(Money money) {
+        return this.intValue() - intValue();
+    }
+
+    @Override
     public boolean isEqualTo(final Money magnitude) {
         if (!hasSameCurrency(magnitude)) {
             throw new IllegalArgumentException("Parameter must be of type Money and have the same currency");

@@ -205,6 +205,11 @@ public class Date extends Magnitude<Date> {
         return this.date.isBefore((date).date);
     }
 
+    @Override
+    public int compareTo(Date date) {
+        return this.date.compareTo(date.date);
+    }
+    
     private boolean sameAs(final Date as, final DateTimeFieldType field) {
 
         return date.get(field) == as.date.get(field);

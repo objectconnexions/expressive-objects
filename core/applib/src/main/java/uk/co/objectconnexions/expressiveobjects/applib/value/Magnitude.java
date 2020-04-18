@@ -21,7 +21,7 @@ package uk.co.objectconnexions.expressiveobjects.applib.value;
 
 import java.io.Serializable;
 
-public abstract class Magnitude<T extends Magnitude<T>> implements Serializable {
+public abstract class Magnitude<T extends Magnitude<T>> implements Serializable, Comparable<T> {
     private static final long serialVersionUID = 1L;
 
     public boolean isBetween(final T minMagnitude, final T maxMagnitude) {
@@ -52,9 +52,24 @@ public abstract class Magnitude<T extends Magnitude<T>> implements Serializable 
         return isLessThan(magnitude) ? thisAsT() : magnitude;
     }
 
+    
     @SuppressWarnings("unchecked")
     private T thisAsT() {
         return (T) this;
+    }
+
+    public int compareTo(final T magnitude) {
+        if (isLessThan(magnitude)) {
+            return -1;
+        } else  if(isGreaterThan(magnitude)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public int compare(Magnitude<?> magnitude) {
+        return 0;
     }
 
 }

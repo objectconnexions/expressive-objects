@@ -225,6 +225,11 @@ public class DateTime extends Magnitude<DateTime> {
     public DateTime startOfYear() {
         return new DateTime(dateTime.withDayOfYear(1));
     }
+    
+    @Override
+    public int compareTo(DateTime dateTime) {
+        return this.dateTime.compareTo(dateTime.dateTime);
+    }
 
     /**
      * returns true if the time stamp of this object has the same value as the

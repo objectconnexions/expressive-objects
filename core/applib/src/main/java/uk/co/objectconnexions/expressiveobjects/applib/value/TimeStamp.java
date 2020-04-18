@@ -47,6 +47,11 @@ public class TimeStamp extends Magnitude<TimeStamp> {
         this.time = time;
     }
 
+    @Override
+    public int compareTo(TimeStamp timeStamp) {
+        return (int) (this.time - timeStamp.time);
+    }
+
     /**
      * returns true if the time stamp of this object has the same value as the
      * specified timeStamp

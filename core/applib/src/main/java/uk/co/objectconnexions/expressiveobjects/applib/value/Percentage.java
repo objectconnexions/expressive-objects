@@ -60,6 +60,11 @@ public class Percentage extends Magnitude<Percentage> {
         return (int) value;
     }
 
+    @Override
+    public int compareTo(Percentage percentage) {
+        return this.intValue() - intValue();
+    }
+
     /**
      */
     @Override

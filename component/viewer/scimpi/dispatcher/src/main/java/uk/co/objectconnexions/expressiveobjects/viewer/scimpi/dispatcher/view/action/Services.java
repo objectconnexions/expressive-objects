@@ -50,7 +50,7 @@ public class Services extends AbstractElementProcessor {
             List<ObjectAction> actions = adapter.getSpecification().getObjectActions(ActionType.USER, Contributed.INCLUDED);
 			if (inclusionList.includedActions(actions).size() > 0) {
 	            final String serviceId = request.getContext().mapObject(adapter, Scope.REQUEST);
-	            request.appendHtml("<div class=\"actions\">");
+	            request.appendHtml("<div class=\"services\">");
 	            request.appendHtml("<h3>");
 	            request.appendAsHtmlEncoded(adapter.titleString());
 	            request.appendHtml("</h3>");

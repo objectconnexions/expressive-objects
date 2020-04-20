@@ -60,7 +60,7 @@ public class Methods extends AbstractElementProcessor {
         request.setBlockContent(inclusionList);
         request.processUtilCloseTag();
 
-        request.appendHtml("<div class=\"actions\">");
+        request.appendHtml("<div class=\"methods\">");
         if (inclusionList.includes("edit") && !object.getSpecification().isService()) {
             request.appendHtml("<div class=\"action\">");
             request.appendHtml("<a class=\"button\" href=\"_generic_edit." + Dispatcher.EXTENSION + "?" + RequestContext.RESULT
@@ -108,7 +108,7 @@ public class Methods extends AbstractElementProcessor {
         for (int j = 0; j < actions.size(); j++) {
             final ObjectAction action = actions.get(j);
             if (action instanceof ObjectActionSet) {
-                request.appendHtml("<div class=\"actions\">");
+                request.appendHtml("<div class=\"subset\">");
                 writeMethods(request, adapter, action.getActions(), objectId, showForms, inclusionList, view, cancelTo);
                 request.appendHtml("</div>");
             } else if (action.isContributed()) {
@@ -119,7 +119,7 @@ public class Methods extends AbstractElementProcessor {
                         final String realTargetId = request.getContext().mapObject(realTarget, Scope.INTERACTION);
                         writeMethod(request, adapter, new String[] { objectId }, action, realTargetId, showForms, view, cancelTo);
                     } else {
-                        request.appendHtml("<div class=\"action\">");
+                        request.appendHtml("<div class=\"button\">");
                         request.appendAsHtmlEncoded(action.getName());
                         request.appendHtml("???</div>");
                     }
@@ -157,8 +157,9 @@ public class Methods extends AbstractElementProcessor {
                  * action.isUsable(ExpressiveObjectsContext.getSession(), null).getReason() +
                  * "\">"); request.appendHtml(action.getName());
                  * request.appendHtml("</span>");
-                 */} else if (action.isUsable(ExpressiveObjectsContext.getAuthenticationSession(), adapter, where).isVetoed()) {
-                request.appendHtml("<span class=\"disabled\" title=\"" + action.isUsable(ExpressiveObjectsContext.getAuthenticationSession(), adapter, where).getReason() + "\">");
+                 */
+            } else if (action.isUsable(ExpressiveObjectsContext.getAuthenticationSession(), adapter, where).isVetoed()) {
+                request.appendHtml("<span class=\"disabled\" title=\"Disabled: " + action.isUsable(ExpressiveObjectsContext.getAuthenticationSession(), adapter, where).getReason() + "\">");
                 request.appendAsHtmlEncoded(action.getName());
                 request.appendHtml("</span>");
             } else {

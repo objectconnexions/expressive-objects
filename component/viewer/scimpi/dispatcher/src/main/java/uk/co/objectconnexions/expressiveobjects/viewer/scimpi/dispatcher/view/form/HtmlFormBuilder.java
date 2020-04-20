@@ -101,7 +101,7 @@ public class HtmlFormBuilder {
         request.appendHtml("\" name=\"execute\" />\n");
         HelpLink.append(request, description, helpReference);
         // TODO alllow forms to be cancelled, returning to previous page.
-        // request.appendHtml("  <div class=\"action\"><a class=\"button\" href=\"reset\">Cancel</a></div>");
+        // request.appendHtml("  <div class=\"action-button\"><a class=\"button\" href=\"reset\">Cancel</a></div>");
 
         if (cancelTo != null) {
             request.appendHtml("  <input class=\"button\" type=\"button\" value=\"");

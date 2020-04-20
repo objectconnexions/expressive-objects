@@ -18,11 +18,15 @@ h1, h2, h3, div#title, form .title {
     text-shadow: 0.1em 0.1em 0.1em #bbb;
 }
 h1 {
-	font-size: 200%;
+	font-size: 160%;
 }
 h2, form .title {
 	margin-top: 1.5em;
-	font-size: 160%;
+	font-size: 130%;
+}
+h3 {
+    margin-top: 1.2em;
+    font-size: 115%;
 }
 ol, ul {
 	margin: 1em 0 2em 0
@@ -169,64 +173,76 @@ a:VISITED {
 /*
 * Forms
 */
-.form {
+.form,
+form.full  {
 	margin-bottom: 2em;
 }
 .field {
-	position: relative;
+    display: inline-block;
+    position: relative;
 	min-height: 1.5em;
 	margin-bottom: 1em;
 }
+.form .field,
+form.full .field {
+    display: block;
+}
 .field > * {
-	display: inline-block;
 	vertical-align: top;
 	font-size: 100%;
 }
-.field > * {
-	margin-left: 10em;
+.form .field > *,
+form.full .field > * {
+    display: inline-block;
+	margin-left: 11em;
 }
-.field > .label  {
-	width: 10em;
-	margin-left: 0;
-	position: absolute;
-	padding-top: 0.4em;
+.form .field > .label,
+form .field > .label  {
+	margin-right: 1em;
 	font-style: italic;
-	font-size: 90%;
+	font-size: 80%;
+	color: #888;
+	
+	padding-top: 1em;
+    vertical-align: middle;
 }
-.field > .value  {
+.form .field > .label,
+form.full .field > .label {
+	padding-top: 0.6em;
+    margin-left: 0;
+    width: 13em; 
+    position: absolute;
+}
+.form .field > .value,
+form .field > .value  {
 	white-space: pre-wrap;
 }
-.field > .required {
+.form .field > .required,
+form .field > .required {
 	background-color: #ffe;
 }
-textarea {
+.form textarea,
+form textarea {
 	font-family: Arial, Sans-Serif;
 }
 	
 
 .actions {
 	margin-bottom: 2.5em;
+	border: 2px red solid;
 }
-.action {
+.action-button {
 	margin-bottom: 1em;
 	min-height: 20px;
+	background: pink;
 }
 
-xxxform.action a.button, 
-xxxform.action,
 form.full input.button {
-	xxxmargin-top: 1em;
-	margin-left: 12.5em;
+	margin-left: 13.9em;
 }
 form.full input.button + input.button {
 	xxxmargin-top: 1em;
 	margin-left: 0.5em;
-}
-.action .form .label, 
-.action.field label {
-	xxxvertical-align: 2px;
-	xxxpadding-top: 12px;
-	font-style: italic;
 }
 a.action > .button {
 	font-size: 90%;
@@ -238,22 +254,24 @@ a.action > .button {
 .controls > .button,
 .controls > form > .button,
 span.edit a {
-	box-shadow:  1px 1px black;
-	border: 1px solid gray;
+	padding: 5px 12px;
+	background-color: #666;
+	border: 1px solid #666;
 	border-radius: 4px;
 	font-size: 80%;
 	text-decoration: none;
+	color: #ddd;
 	cursor: default;
-	padding: 5px 12px;
 }
-.edit > .button,
-.action > .button,
-.controls > .button,
-.controls > form > .button,
-span.edit a {
-	background-color: #666;
-	text-shadow: 1px 1px black;
-	color: #ddd
+.edit > .button:hover,
+.action > .button:hover,
+.controls > .button:hover,
+.controls > form > .button:hover,
+span.edit a:hover {
+    cursor: pointer;
+    background-color: #888;
+    border-color: #666;
+    color: #fff;
 }
 td input.button,
 td a.button {
@@ -267,7 +285,7 @@ td form.element-delete {
 }
 .action > .disabled {
 	background-color: #aaa;
-	xxtext-shadow: 1px 1px white;
+	border-color: #aaa;
 	color: #666;
 }
 xxxform#newToDo .title {
@@ -332,10 +350,20 @@ span.error {
 	maring-left: 6px;
 }
 
-p.scimpi-breadcrumbs {
+div.scimpi-crumbs {
+    font-size: 14px;
 	font-weight: bold;
-	margin: 10px 0;
+	margin: 1em 0 2em 0;
 }
-p.scimpi-breadcrumbs span.scimpi-separator {
-	margin: 0 12px;
+div.scimpi-crumbs span.scimpi-separator {
+    margin: 0 12px;
+    color: #aaa;
 } 
+div.scimpi-crumbs span.scimpi-separator a:hover {
+    font-style: none;
+}
+div.scimpi-crumbs span.scimpi-available {
+}
+div.scimpi-crumbs span.scimpi-current {
+    color: #888;
+}

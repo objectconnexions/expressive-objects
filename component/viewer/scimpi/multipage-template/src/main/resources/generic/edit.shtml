@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<swf:page-title>Edit <swf:title-string /></swf:page-title>
+<swf:page-title>Edit</swf:page-title>
+<swf:action-crumb />
 <swf:template  file="../style/template.shtml" />
 
 <swf:unless set="${_title}">
     <swf:variable name="_title"><swf:title-string /></swf:variable>
 </swf:unless>
-<swf:edit title="${_title}" />
+<swf:edit title="${_title}" hide-uneditable="yes" />
 
 

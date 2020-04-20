@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <swf:page-title><swf:title-string /></swf:page-title>
+<swf:object-crumb />
 <swf:template  file="../style/template.shtml" />
 <!--
 <swf:breadcrumbs action="add" object="${_result}"/>

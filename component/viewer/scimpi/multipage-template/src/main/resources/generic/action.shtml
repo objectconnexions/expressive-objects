@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<swf:page-title>Action <swf:action-name method="${_method}"/></swf:page-title>
+<swf:page-title><swf:action-name method="${_method}"/></swf:page-title>
+<swf:action-crumb />
 <swf:template  file="../style/template.shtml" />
 
-<swf:short-form />
+<swf:short-form no-fields="6" />
 <swf:action-form method="${_method}" view="_generic.shtml" ${_cancel-to:optional}/>
 
 

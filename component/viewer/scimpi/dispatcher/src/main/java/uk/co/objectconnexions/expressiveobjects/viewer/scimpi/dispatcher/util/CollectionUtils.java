@@ -44,6 +44,13 @@ public class CollectionUtils {
         public int compare(ObjectAdapter o1, ObjectAdapter o2) {
             ObjectAdapter field1 = orderField.get(o1);
             ObjectAdapter field2 = orderField.get(o2);
+            if (field1 == null && field2 != null) {
+                return -1;
+            } else if (field2 == null && field1 != null) {
+                return 1;
+            } else if (field1 == null && field2 == null) {
+                return 0;
+            }
             return comparator.compare(field1, field2);
         }
     }

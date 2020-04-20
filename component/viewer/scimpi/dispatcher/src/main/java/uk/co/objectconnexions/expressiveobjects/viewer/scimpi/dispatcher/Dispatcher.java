@@ -341,7 +341,7 @@ public class Dispatcher {
             } else if (fileName.equals(GENERIC + EDIT + "." + EXTENSION)) {
                 file = findFileForSpecification(context, mappedObject.getSpecification(), "edit", EXTENSION);
             } else if (fileName.equals(GENERIC + ACTION + "." + EXTENSION)) {
-                final String method = context.getParameter("method");
+                final String method = context.getParameter("_method");
                 file = findFileForSpecification(context, mappedObject.getSpecification(), method, "action", EXTENSION);
             }
         }

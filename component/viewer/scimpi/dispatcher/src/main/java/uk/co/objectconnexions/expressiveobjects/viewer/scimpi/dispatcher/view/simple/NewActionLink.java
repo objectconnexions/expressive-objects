@@ -59,4 +59,11 @@ public class NewActionLink extends AbstractLink {
         return "new-action-link";
     }
 
+    @Override
+    protected String hint(final Request request, ObjectAdapter object) {
+        final String method = request.getRequiredProperty(METHOD);
+        final ObjectAction action = MethodsUtils.findAction(object, method);
+        String hint = action.getDescription();
+        return hint.length() == 0 ? action.getName() : hint;
+    }
 }

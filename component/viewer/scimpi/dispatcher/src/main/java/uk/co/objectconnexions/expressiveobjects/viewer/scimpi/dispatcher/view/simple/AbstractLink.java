@@ -38,8 +38,8 @@ public abstract class AbstractLink extends AbstractElementProcessor {
         final String title = request.getOptionalProperty(FORM_TITLE);
         final String name = request.getOptionalProperty(NAME);
         final boolean showAsButton = request.isRequested("show-as-button", false);
-        final String linkClass = request.getOptionalProperty(CLASS, showAsButton ? "button" : defaultLinkClass());
-        final String containerClass = request.getOptionalProperty(CONTAINER_CLASS, "action");
+        final String linkClass = request.getOptionalProperty(CLASS, showAsButton ? "button" : "link");
+        final String containerClass = request.getOptionalProperty(CONTAINER_CLASS, "action inline");
         final String object = request.getOptionalProperty(OBJECT);
         final RequestContext context = request.getContext();
         String objectId = object != null ? object : (String) context.getVariable(RequestContext.RESULT);
@@ -80,7 +80,17 @@ public abstract class AbstractLink extends AbstractElementProcessor {
             }
             view = context.fullUriPath(view);
             final String classSegment = " class=\"" + linkClass + "\"";
-            final String titleSegment = title == null ? "" : (" title=\"" + title + "\"");
+            final String titleSegment;
+            if (title == null) {
+                String hint = hint(request, adapter);
+                if (hint == null) {
+                titleSegment = "";
+                } else {
+                    titleSegment = " title=\"" + hint + "\"";
+                }
+            } else {
+                titleSegment = " title=\"" + title + "\"";
+            }
             String additionalSegment = additionalParameters(request);
             additionalSegment = additionalSegment == null ? "" : "&amp;" + additionalSegment;
             if (showAsButton) {
@@ -104,10 +114,10 @@ public abstract class AbstractLink extends AbstractElementProcessor {
         }
     }
 
-    private String defaultLinkClass() {
-        return "action";
+    protected String hint(final Request request, ObjectAdapter object) {
+        return null;
     }
-
+    
     protected abstract String linkLabel(String name, ObjectAdapter object);
 
     protected String additionalParameters(final Request request) {

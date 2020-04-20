@@ -29,7 +29,7 @@ public class SimpleButton extends AbstractElementProcessor {
         request.pushNewBuffer();
         request.processUtilCloseTag();
         final String text = request.popBuffer();
-        request.appendHtml("<div class=\"action\"><a class=\"button\" href=\"" + href + "\">" + text + "</a></div>");
+        request.appendHtml("<div class=\"action-button\"><a class=\"button\" href=\"" + href + "\">" + text + "</a></div>");
     }
 
     @Override

@@ -157,7 +157,7 @@ public class ActionLink extends AbstractElementProcessor {
         }
 
         final String idSegment = idName == null ? "" : ("id=\"" + idName + "\" ");
-        final String classSegment = "class=\"" + (className == null ? "action in-line" : className) + "\"";
+        final String classSegment = "class=\"" + (className == null ? "action-link in-line" : className) + "\"";
         final String interactionParamters = context.encodedInteractionParameters();
         final String forwardResultSegment = forwardResultTo == null ? "" : "&amp;" + "_" + VIEW + "=" + context.fullFilePath(forwardResultTo);
         final String resultOverrideSegment = resultOverride == null ? "" : "&amp;" + "_" + RESULT_OVERRIDE + "=" + resultOverride;

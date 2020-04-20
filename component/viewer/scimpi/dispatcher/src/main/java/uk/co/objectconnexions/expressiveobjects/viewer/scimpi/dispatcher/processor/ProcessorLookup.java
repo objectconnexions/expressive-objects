@@ -48,7 +48,11 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.ac
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.action.Parameter;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.action.RunAction;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.action.Services;
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs.BreadCrumbsTrail;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs.ActionCrumb;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs.CrumbTrail;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs.ObjectCrumb;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs.PageCrumb;
+import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.breadcrumbs.ResetCrumbTrail;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.collection.Collection;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.debug.DebugAccessCheck;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.debug.DebugCollectionView;
@@ -149,7 +153,11 @@ public class ProcessorLookup {
         addElementProcessor(new AddWarning());
         addElementProcessor(new BlockDefine());
         addElementProcessor(new BlockUse());
-        addElementProcessor(new BreadCrumbsTrail());
+        addElementProcessor(new CrumbTrail());
+        addElementProcessor(new ObjectCrumb());
+        addElementProcessor(new PageCrumb());
+        addElementProcessor(new ActionCrumb());
+        addElementProcessor(new ResetCrumbTrail());
         addElementProcessor(new History());
         addElementProcessor(new Collection());
         addElementProcessor(new Commit());

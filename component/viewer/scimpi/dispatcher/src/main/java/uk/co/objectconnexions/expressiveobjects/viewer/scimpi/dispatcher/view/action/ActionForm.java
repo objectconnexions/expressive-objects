@@ -58,7 +58,7 @@ public class ActionForm extends AbstractElementProcessor {
         parameters.showIcon = request.isRequested(SHOW_ICON, showIconByDefault());
         parameters.buttonTitle = request.getOptionalProperty(BUTTON_TITLE);
         parameters.formTitle = request.getOptionalProperty(FORM_TITLE);
-        parameters.labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, ":");
+        parameters.labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, "");
         parameters.formId = request.getOptionalProperty(FORM_ID, request.nextFormId());
         parameters.resultName = request.getOptionalProperty(RESULT_NAME);
         parameters.resultOverride = request.getOptionalProperty(RESULT_OVERRIDE);

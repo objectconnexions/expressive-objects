@@ -59,7 +59,7 @@ public class Logon extends AbstractElementProcessor {
         final String usernameField = request.getOptionalProperty("username-field", "username");
 //        final String expressiveObjectsUser = request.getOptionalProperty("expressive-objects-user", "_web_default");
         final String formId = request.getOptionalProperty(FORM_ID, request.nextFormId());
-        final String labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, ":");
+        final String labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, "");
 
         // TODO error if all values are not set (not if use type is not set and all others are still defaults);
 

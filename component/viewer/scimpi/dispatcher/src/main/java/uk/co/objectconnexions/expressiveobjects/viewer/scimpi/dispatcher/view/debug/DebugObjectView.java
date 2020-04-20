@@ -110,7 +110,7 @@ public class DebugObjectView extends AbstractObjectProcessor {
                    request.appendHtml("</ol>");
                 }
             } else {
-                FieldValue.write(request, object, field, linkedObject, "value", showIcons, 0, false);
+                FieldValue.write(request, object, field, "", linkedObject, "value", showIcons, 0, false);
             }
 
             

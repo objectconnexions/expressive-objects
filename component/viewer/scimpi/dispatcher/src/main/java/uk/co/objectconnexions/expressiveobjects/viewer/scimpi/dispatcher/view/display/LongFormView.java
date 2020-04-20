@@ -34,7 +34,8 @@ import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.fi
 public class LongFormView extends AbstractFormView {
 
     @Override
-    protected void addField(final Request request, final ObjectAdapter object, final ObjectAssociation field, final LinkedObject linkedObject, final boolean showIcons) {
+    protected void addField(final Request request, final ObjectAdapter object, final ObjectAssociation field, final String emptyValue,
+            final LinkedObject linkedObject, final boolean showIcons) {
         if (field.isOneToManyAssociation()) {
             final String noColumnsString = request.getOptionalProperty("no-columns", "3");
             final String tableClass = request.getOptionalProperty("table-class");
@@ -79,7 +80,7 @@ public class LongFormView extends AbstractFormView {
                 TableView.write(request, collection, summary, rowBuilder, null, "", tableClass, rowClasses);
             }
         } else {
-            super.addField(request, object, field, linkedObject, showIcons);
+            super.addField(request, object, field, emptyValue, linkedObject, showIcons);
         }
     }
 

@@ -52,10 +52,19 @@ public abstract class AbstractFormView extends AbstractObjectProcessor {
             String title = request.getOptionalProperty(FORM_TITLE);
             final String oddRowClass = request.getOptionalProperty(ODD_ROW_CLASS);
             final String evenRowClass = request.getOptionalProperty(EVEN_ROW_CLASS);
-            final String labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, ":");
+            final String labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, "");
+            final String emptyValue = request.getOptionalProperty("empty-value");
+            final String noFieldEntry = request.getOptionalProperty("no-fields");
             final boolean showIcons = request.isRequested(SHOW_ICON, showIconByDefault()); 
             String linkAllView = request.getOptionalProperty(LINK_VIEW);
 
+            int noFields;
+            if (noFieldEntry == null) {
+                noFields = Integer.MAX_VALUE;
+            } else {
+                noFields = Integer.valueOf(noFieldEntry);
+            }
+            
             request.setBlockContent(tag);
             request.processUtilCloseTag();
 
@@ -79,7 +88,7 @@ public abstract class AbstractFormView extends AbstractObjectProcessor {
                 title = null;
             }
 
-            write(request, object, fields, linkFields, classString, title, labelDelimiter, oddRowClass, evenRowClass, showIcons);
+            write(request, object, noFields, fields, linkFields, classString, title, emptyValue, labelDelimiter, oddRowClass, evenRowClass, showIcons);
         } else {
             request.skipUntilClose(); 
         }
@@ -88,14 +97,15 @@ public abstract class AbstractFormView extends AbstractObjectProcessor {
     private void write(
             final Request request,
             final ObjectAdapter object,
+            int noFields,
             final List<ObjectAssociation> fields,
             final LinkedObject[] linkFields,
             final String classString,
             final String title,
+            final String emptyValue,
             final String labelDelimiter,
             final String oddRowClass,
-            final String evenRowClass,
-            final boolean showIcons) {
+            final String evenRowClass, final boolean showIcons) {
         request.appendHtml("<div" + classString + ">");
         if (title != null) {
             request.appendHtml("<div class=\"title\">");
@@ -104,8 +114,9 @@ public abstract class AbstractFormView extends AbstractObjectProcessor {
             HelpLink.append(request, object.getSpecification().getDescription(), object.getSpecification().getHelp());
         }
         int row = 1;
-        for (int i = 0; i < fields.size(); i++) {
-            final ObjectAssociation field = fields.get(i);
+        for (int i = 0; i < fields.size() && i < noFields; i++) {
+            final ObjectAssociation field = fields.get(i);           
+            
             if (ignoreField(field)) {
                 continue;
             }
@@ -124,15 +135,16 @@ public abstract class AbstractFormView extends AbstractObjectProcessor {
             request.appendAsHtmlEncoded(field.getName());
             request.appendHtml(labelDelimiter + "</span>");
             final LinkedObject linkedObject = linkFields[i];
-            addField(request, object, field, linkedObject, showIcons);
+            addField(request, object, field, emptyValue, linkedObject, showIcons);
             HelpLink.append(request, field.getDescription(), field.getHelp());
             request.appendHtml("</div>");
         }
         request.appendHtml("</div>");
     }
 
-    protected void addField(final Request request, final ObjectAdapter object, final ObjectAssociation field, final LinkedObject linkedObject, final boolean showIcons) {
-        FieldValue.write(request, object, field, linkedObject, null, showIcons, 0, false);
+    protected void addField(final Request request, final ObjectAdapter object, final ObjectAssociation field,
+            final String emptyValue, final LinkedObject linkedObject, final boolean showIcons) {
+        FieldValue.write(request, object, field, emptyValue, linkedObject, null, showIcons, 0, false);
     }
 
     protected boolean ignoreField(final ObjectAssociation objectField) {

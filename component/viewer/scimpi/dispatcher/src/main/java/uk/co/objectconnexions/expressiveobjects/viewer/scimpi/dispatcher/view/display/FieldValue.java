@@ -49,6 +49,7 @@ public class FieldValue extends AbstractElementProcessor {
         final String className = request.getOptionalProperty(CLASS);
         final String id = request.getOptionalProperty(OBJECT);
         final String fieldName = request.getRequiredProperty(FIELD);
+        final String emptyValue= request.getOptionalProperty("empty-value");
         final ObjectAdapter object = request.getContext().getMappedObjectOrResult(id);
         final ObjectAssociation field = object.getSpecification().getAssociation(fieldName);
         if (field == null) {
@@ -61,7 +62,7 @@ public class FieldValue extends AbstractElementProcessor {
         final boolean contentAsClass = request.isRequested("content-as-class", false);
         final int truncateTo = Integer.valueOf(request.getOptionalProperty(TRUNCATE, "0")).intValue();
 
-        write(request, object, field, null, className, isIconShowing, truncateTo, contentAsClass);
+        write(request, object, field, emptyValue, null, className, isIconShowing, truncateTo, contentAsClass);
     }
 
     @Override
@@ -69,18 +70,20 @@ public class FieldValue extends AbstractElementProcessor {
         return "field";
     }
 
-    public static void write(final Request request, final ObjectAdapter object, final ObjectAssociation field, final LinkedObject linkedField, final String className, final boolean showIcon, final int truncateTo, boolean contentAsClass) {
+    public static void write(final Request request, final ObjectAdapter object, final ObjectAssociation field,
+            final String emptyValue, final LinkedObject linkedField, final String className, final boolean showIcon,
+            final int truncateTo, boolean contentAsClass) {
 
         final ObjectAdapter fieldReference = field.get(object);
 
         if (fieldReference != null) {
-            String value = fieldReference == null ? "" : fieldReference.titleString();
+            String value = fieldReference.titleString();
             if (truncateTo > 0 && value.length() > truncateTo) {
                 value = value.substring(0, truncateTo) + "...";
             }
 
             String classes = className == null ? "value" : className;
-            if (field.containsFacet(MultiLineFacet.class)) {
+            if (field.getFacet(MultiLineFacet.class).numberOfLines() > 1) {
                 classes += " multiline";
             } 
             if (contentAsClass) {
@@ -121,6 +124,17 @@ public class FieldValue extends AbstractElementProcessor {
             if (linkedField != null) {
                 request.appendHtml("</a>");
             }
+            request.appendHtml("</span>");
+            
+        } else if (emptyValue != null) {
+            String classes = className == null ? "value" : className;
+            if (field.getFacet(MultiLineFacet.class).numberOfLines() > 1) {
+                classes += " multiline";
+            } 
+            classes += " empty";
+            final String classSection = "class=\"" + classes + "\"";   
+            request.appendHtml("<span " + classSection + ">");
+            request.appendHtml(emptyValue);
             request.appendHtml("</span>");
         }
     }

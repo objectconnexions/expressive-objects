@@ -40,6 +40,7 @@ public class Services extends AbstractElementProcessor {
         final boolean showForms = request.isRequested(FORMS, false);
         final String view = request.getOptionalProperty(VIEW, "_generic_action." + Dispatcher.EXTENSION);
         final String cancelTo = request.getOptionalProperty(CANCEL_TO);
+        final String labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, "");
 
         final InclusionList inclusionList = new InclusionList();
         request.setBlockContent(inclusionList);
@@ -54,7 +55,7 @@ public class Services extends AbstractElementProcessor {
 	            request.appendHtml("<h3>");
 	            request.appendAsHtmlEncoded(adapter.titleString());
 	            request.appendHtml("</h3>");
-	            Methods.writeMethods(request, serviceId, adapter, showForms, inclusionList, view, cancelTo);
+	            Methods.writeMethods(request, serviceId, adapter, showForms, inclusionList, view, cancelTo, labelDelimiter);
 	            request.appendHtml("</div>");
 			}
         }

@@ -51,6 +51,8 @@ public class Methods extends AbstractElementProcessor {
         final String view = request.getOptionalProperty(VIEW, "_generic_action." + Dispatcher.EXTENSION);
         final String cancelTo = request.getOptionalProperty(CANCEL_TO);
         final boolean showForms = request.isRequested(FORMS, false);
+        final String labelDelimiter = request.getOptionalProperty(LABEL_DELIMITER, "");
+
         final ObjectAdapter object = MethodsUtils.findObject(request.getContext(), objectId);
         if (objectId == null) {
             objectId = request.getContext().mapObject(object, null);
@@ -68,7 +70,7 @@ public class Methods extends AbstractElementProcessor {
             request.appendHtml("</div>");
         }
         writeMethods(request, objectId, object, showForms, inclusionList, view, "_generic.shtml?" + RequestContext.RESULT
-                + "=" + objectId);
+                + "=" + objectId, labelDelimiter);
         request.popBlockContent();
         request.appendHtml("</div>");
     }
@@ -80,18 +82,19 @@ public class Methods extends AbstractElementProcessor {
             final boolean showForms,
             final InclusionList inclusionList,
             final String view,
-            final String cancelTo) {
+            final String cancelTo,
+            final String labelDelimeter) {
         List<ObjectAction> actions = adapter.getSpecification().getObjectActions(ActionType.USER, Contributed.INCLUDED);
-        writeMethods(request, adapter, actions, objectId, showForms, inclusionList, view, cancelTo);
+        writeMethods(request, adapter, actions, objectId, showForms, inclusionList, view, cancelTo, labelDelimeter);
         // TODO determine if system is set up to display exploration methods
         if (true) {
             actions = adapter.getSpecification().getObjectActions(ActionType.EXPLORATION, Contributed.INCLUDED);
-            writeMethods(request, adapter, actions, objectId, showForms, inclusionList, view, cancelTo);
+            writeMethods(request, adapter, actions, objectId, showForms, inclusionList, view, cancelTo, labelDelimeter);
         }
         // TODO determine if system is set up to display debug methods
         if (true) {
             actions = adapter.getSpecification().getObjectActions(ActionType.DEBUG, Contributed.INCLUDED);
-            writeMethods(request, adapter, actions, objectId, showForms, inclusionList, view, cancelTo);
+            writeMethods(request, adapter, actions, objectId, showForms, inclusionList, view, cancelTo, labelDelimeter);
         }
     }
 
@@ -103,13 +106,14 @@ public class Methods extends AbstractElementProcessor {
             final boolean showForms,
             final InclusionList inclusionList,
             final String view,
-            final String cancelTo) {
+            final String cancelTo,
+            final String labelDelimeter) {
         actions = inclusionList.includedActions(actions);
         for (int j = 0; j < actions.size(); j++) {
             final ObjectAction action = actions.get(j);
             if (action instanceof ObjectActionSet) {
                 request.appendHtml("<div class=\"subset\">");
-                writeMethods(request, adapter, action.getActions(), objectId, showForms, inclusionList, view, cancelTo);
+                writeMethods(request, adapter, action.getActions(), objectId, showForms, inclusionList, view, cancelTo, labelDelimeter);
                 request.appendHtml("</div>");
             } else if (action.isContributed()) {
                 if (action.getParameterCount() == 1 && adapter.getSpecification().isOfType(action.getParameters().get(0).getSpecification())) {
@@ -117,17 +121,17 @@ public class Methods extends AbstractElementProcessor {
                         final ObjectAdapter target = request.getContext().getMappedObject(objectId);
                         final ObjectAdapter realTarget = action.realTarget(target);
                         final String realTargetId = request.getContext().mapObject(realTarget, Scope.INTERACTION);
-                        writeMethod(request, adapter, new String[] { objectId }, action, realTargetId, showForms, view, cancelTo);
+                        writeMethod(request, adapter, new String[] { objectId }, action, realTargetId, showForms, view, cancelTo, labelDelimeter);
                     } else {
                         request.appendHtml("<div class=\"button\">");
                         request.appendAsHtmlEncoded(action.getName());
                         request.appendHtml("???</div>");
                     }
                 } else if (!adapter.getSpecification().isService()) {
-                    writeMethod(request, adapter, new String[0], action, objectId, showForms, view, cancelTo);
+                    writeMethod(request, adapter, new String[0], action, objectId, showForms, view, cancelTo, labelDelimeter);
                 }
             } else {
-                writeMethod(request, adapter, new String[0], action, objectId, showForms, view, cancelTo);
+                writeMethod(request, adapter, new String[0], action, objectId, showForms, view, cancelTo, labelDelimeter);
             }
         }
     }
@@ -140,7 +144,8 @@ public class Methods extends AbstractElementProcessor {
             final String objectId,
             final boolean showForms,
             final String view,
-            final String cancelTo) {
+            final String cancelTo,
+            final String labelDelimeter) {
         // if (action.isVisible(ExpressiveObjectsContext.getSession(), null) &&
         // action.isVisible(ExpressiveObjectsContext.getSession(), adapter))
         // {
@@ -173,6 +178,7 @@ public class Methods extends AbstractElementProcessor {
                     params.forwardResultTo = "_generic." + Dispatcher.EXTENSION;
                     params.buttonTitle = "OK";
                     params.formTitle = action.getName();
+                    params.labelDelimiter = labelDelimeter;
                     ActionForm.createForm(request, params, true);
                 } else {
                     request.appendHtml("<a class=\"button\" href=\"" + view + "?" + RequestContext.RESULT

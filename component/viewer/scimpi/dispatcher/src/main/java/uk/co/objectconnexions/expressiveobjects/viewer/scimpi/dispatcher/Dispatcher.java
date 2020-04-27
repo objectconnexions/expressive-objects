@@ -353,8 +353,10 @@ public class Dispatcher {
     }
 
     private String findFileForSpecification(final RequestContext context, final ObjectSpecification specification, final String name, final String defaultName, final String extension) {
-
         String find = findFile(context, specification, name, extension);
+        if (find == null && !name.equals(defaultName)) {
+            find = findFile(context, specification, defaultName, extension);
+        }
         if (find == null) {
             find = "/generic/" + defaultName + "." + extension;
         }

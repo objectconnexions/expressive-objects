@@ -23,8 +23,6 @@ import uk.co.objectconnexions.expressiveobjects.core.commons.exceptions.UnknownT
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.processor.Request;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.HelpLink;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.History;
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.History.Event;
-import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.History.Events;
 import uk.co.objectconnexions.expressiveobjects.viewer.scimpi.dispatcher.view.ReferencedObjects;
 
 public class HtmlFormBuilder {

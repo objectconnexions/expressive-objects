@@ -34,7 +34,7 @@
 	<name>Example Claims App DnD Viewer</name>
 
 	<properties>
-		<jetty.version>6.1.4</jetty.version>
+		<jetty.version>6.1.23</jetty.version>
 	</properties>
 
     <build>
